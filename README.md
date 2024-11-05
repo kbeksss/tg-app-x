@@ -1,3 +1,3 @@
-# FSD Template for React + Vite (DYOR)
+# X
 
-This template provides a minimal setup to get React working in Vite with FSD architecture.
+React and Vite, with FSD architecture.
