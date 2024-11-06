@@ -2,12 +2,12 @@ body {
     overflow: hidden !important;
     margin: 0;
     padding: 0;
-    height: var(--tg-viewport-height);
+    height: 100vh;
     width: 100vw;
 }
 #root {
     width: 100vw;
-    height: var(--tg-viewport-height);
+    height: 100vh;
     overflow-y: auto;
     margin: 0;
 }
