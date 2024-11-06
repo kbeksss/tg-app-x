@@ -6,9 +6,15 @@ const themeParams = tg.themeParams
 const isDarkMode = tg.colorScheme === 'dark'
 
 const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#007AFF',
+        },
+    },
     typography: {
         h1: {
             fontSize: 46,
+            fontWeight: 700,
         },
     },
 })

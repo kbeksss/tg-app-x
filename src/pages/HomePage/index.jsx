@@ -1,8 +1,9 @@
 import React from 'react'
 import { Box } from '@mui/material'
+import { Home } from '@widgets'
 
 const HomePage = () => {
-    return <Box>home page</Box>
+    return <Home />
 }
 
 export default HomePage
