@@ -1,6 +1,9 @@
 import { Routes, Route, Outlet } from 'react-router'
-import Home from '@pages/Home/index.jsx'
 import { Layout } from '@widgets'
+import HomePage from '@pages/HomePage'
+import SearchPage from '@pages/SearchPage'
+import TradePage from '@pages/TradePage'
+import AccountPage from '@pages/AccountPage'
 
 export const Routing = () => {
     return (
@@ -12,10 +15,10 @@ export const Routing = () => {
                             <Outlet />
                         </Layout>
                     }>
-                    <Route path={'/'} element={<Home />} />
-                    <Route path={'/search'} element={<Home />} />
-                    <Route path={'/trade'} element={<Home />} />
-                    <Route path={'/account'} element={<Home />} />
+                    <Route path={'/'} element={<HomePage />} />
+                    <Route path={'/search'} element={<SearchPage />} />
+                    <Route path={'/trade'} element={<TradePage />} />
+                    <Route path={'/account'} element={<AccountPage />} />
                 </Route>
             </Routes>
         </>

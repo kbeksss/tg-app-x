@@ -5,7 +5,13 @@ const tg = window.Telegram.WebApp
 const themeParams = tg.themeParams
 const isDarkMode = tg.colorScheme === 'dark'
 
-const theme = createTheme({})
+const theme = createTheme({
+    typography: {
+        h1: {
+            fontSize: 46,
+        },
+    },
+})
 
 export const withMui = (component) => () => {
     return <ThemeProvider theme={theme}>{component()}</ThemeProvider>
