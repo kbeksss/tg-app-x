@@ -26,7 +26,6 @@ const Layout = ({ children }) => {
                     borderTop: '0.5px solid #707579',
                     pt: 1,
                     right: 0,
-                    backgroundColor: 'transparent',
                 }}>
                 <BottomNavigation
                     showLabels

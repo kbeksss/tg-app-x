@@ -32,7 +32,7 @@ const NetworkSelect = ({ network, setNetwork }) => {
                 onChange={(e) => setNetwork(e.target.value)}>
                 <MenuItem value={''}>Select network</MenuItem>
                 {networks.map((network) => (
-                    <MenuItem value={network.value}>
+                    <MenuItem value={network.value} key={network.value}>
                         <Stack
                             spacing={1}
                             direction={'row'}
