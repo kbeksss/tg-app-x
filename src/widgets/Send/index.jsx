@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
 import { networks, NetworkSelect } from '@widgets'
 import { BottomButton } from '@shared/ui'
-import { notify } from '@shared/utils/functions/index.js'
+import { copyToClipboard, notify } from '@shared/utils/functions'
 import SendConfirmDialog from '@widgets/Send/ui/SendConfirmDialog.jsx'
 import { useNavigate } from 'react-router'
 import { paths } from '@pages/paths.js'
@@ -43,7 +43,17 @@ const Send = () => {
     }
     const showQr = () => {
         console.log('qr')
-        tg.showScanQrPopup({ text: 'Scan qr' })
+        tg.showScanQrPopup({
+            text: 'Scan the address QR',
+            onResult: (result) => {
+                copyToClipboard(result)
+                console.log('QR Code Result:', result)
+                alert('success', result)
+            },
+            onClose: () => {
+                console.log('QR scanner closed')
+            },
+        })
     }
     return (
         <Box sx={{ px: 2, pt: 3 }}>
