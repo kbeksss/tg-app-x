@@ -5,8 +5,10 @@ import SearchPage from '@pages/SearchPage'
 import TradePage from '@pages/TradePage'
 import AccountPage from '@pages/AccountPage'
 import SeedphrasePage from '@pages/SeedphrasePage'
-import ReceivePage from '@pages/ReceivePage/index.jsx'
+import ReceivePage from '@pages/ReceivePage'
+import SendPage from '@pages/SendPage'
 import { paths } from '@pages/paths.js'
+import PaymentSuccessPage from '@pages/PaymentSuccessPage/index.jsx'
 
 export const Routing = () => {
     return (
@@ -23,6 +25,11 @@ export const Routing = () => {
                     <Route path={paths.trade} element={<TradePage />} />
                     <Route path={paths.account} element={<AccountPage />} />
                     <Route path={paths.receive} element={<ReceivePage />} />
+                    <Route path={paths.send} element={<SendPage />} />
+                    <Route
+                        path={paths.sendSuccess}
+                        element={<PaymentSuccessPage />}
+                    />
                 </Route>
                 <Route path={paths.seedphrase} element={<SeedphrasePage />} />
             </Routes>

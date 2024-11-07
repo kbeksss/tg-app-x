@@ -12,6 +12,7 @@ const theme = createTheme({
         },
         text: {
             secondary: '#707579',
+            dark: '#757575',
         },
     },
     typography: {
@@ -25,10 +26,55 @@ const theme = createTheme({
         },
     },
     components: {
-        MuiButton: {
+        MuiDialog: {
+            styleOverrides: {
+                paper: {
+                    borderRadius: '16px',
+                },
+            },
+        },
+        MuiDialogTitle: {
             styleOverrides: {
                 root: {
-                    boxShadow: 'none',
+                    fontSize: 16,
+                    fontWeight: 600,
+                    paddingTop: 36,
+                    textAlign: 'center',
+                },
+            },
+        },
+        MuiDialogContent: {
+            styleOverrides: {
+                root: {
+                    padding: '16px',
+                },
+            },
+        },
+        MuiDialogContentText: {
+            styleOverrides: {
+                root: {
+                    textAlign: 'center',
+                    fontSize: 14,
+                    color: '#000',
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                        borderRadius: '14px',
+                    },
+                },
+            },
+        },
+        MuiButton: {
+            defaultProps: {
+                disableElevation: true,
+            },
+            styleOverrides: {
+                root: {
+                    // boxShadow: 'none',
                     textTransform: 'initial',
                     height: 50,
                     fontSize: 17,

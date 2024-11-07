@@ -17,26 +17,10 @@ const SaveWarn = ({ open, handleClose }) => {
         navigate(paths.home)
     }
     return (
-        <Dialog
-            onClose={handleClose}
-            open={open}
-            sx={{
-                '& .MuiDialog-paper': {
-                    borderRadius: '16px',
-                },
-            }}>
-            <DialogTitle
-                sx={{
-                    textAlign: 'center',
-                    pt: 4,
-                    fontSize: 16,
-                    fontWeight: 600,
-                }}>
-                Did you save the phrase?
-            </DialogTitle>
+        <Dialog onClose={handleClose} open={open}>
+            <DialogTitle>Did you save the phrase?</DialogTitle>
             <DialogContent>
-                <DialogContentText
-                    sx={{ textAlign: 'center', color: '#000', fontSize: 14 }}>
+                <DialogContentText sx={{ color: '#000' }}>
                     The phrase must be saved in order to restore access to the
                     wallet later if necessary.
                 </DialogContentText>

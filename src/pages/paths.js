@@ -7,4 +7,5 @@ export const paths = {
     exchange: '/exchange',
     send: '/send',
     seedphrase: '/seedphrase',
+    sendSuccess: '/send-success',
 }

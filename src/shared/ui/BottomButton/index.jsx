@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Box, Button } from '@mui/material'
+import { useCheckIphone } from '@shared/hooks/useCheckIphone.js'
 
-const BottomButton = ({ label, onClick }) => {
+const BottomButton = ({ label, onClick, withToolbar }) => {
+    const isIphone = useCheckIphone()
+    const bottomPosition = useMemo(() => {
+        return withToolbar ? '70px' : '10px'
+    }, [withToolbar, isIphone])
     return (
         <Box
             sx={{
                 position: 'fixed',
                 p: 2,
-                bottom: '10px',
+                bottom: bottomPosition,
                 left: 0,
                 right: 0,
                 zIndex: 99,
