@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Box, InputAdornment, Stack, TextField } from '@mui/material'
+import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
 import { networks, NetworkSelect } from '@widgets'
 import { BottomButton } from '@shared/ui'
 import { notify } from '@shared/utils/functions/index.js'
@@ -8,8 +8,10 @@ import { useNavigate } from 'react-router'
 import { paths } from '@pages/paths.js'
 import { useQueryParams } from '@shared/hooks/useQueryParams.js'
 import dayjs from 'dayjs'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const Send = () => {
+    const { tg } = useTg()
     const { navigateWithParams } = useQueryParams()
     const [dialogOpen, setDialogOpen] = useState(false)
     const [network, setNetwork] = useState(networks[0].value)
@@ -38,6 +40,10 @@ const Send = () => {
             total: `${sum} ${networkSymbol}`,
             address: `${receiverAddress.slice(0, 10)}***${receiverAddress.slice(-15)}`,
         })
+    }
+    const showQr = () => {
+        console.log('qr')
+        tg.showScanQrPopup({ text: 'Scan qr' })
     }
     return (
         <Box sx={{ px: 2, pt: 3 }}>
@@ -73,6 +79,8 @@ const Send = () => {
                     onChange={(e) => setSum(e.target.value)}
                 />
             </Stack>
+            <Button onClick={showQr}>temp</Button>
+
             <SendConfirmDialog
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}
