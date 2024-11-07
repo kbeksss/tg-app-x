@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
 import { networks, NetworkSelect } from '@widgets'
-import { BottomButton } from '@shared/ui'
+import { BottomButton, Iconify } from '@shared/ui'
 import { copyToClipboard, notify } from '@shared/utils/functions'
 import SendConfirmDialog from '@widgets/Send/ui/SendConfirmDialog.jsx'
 import { useNavigate } from 'react-router'
@@ -42,24 +42,25 @@ const Send = () => {
         })
     }
     const showQr = () => {
-        console.log('qr')
-        tg.showScanQrPopup({
-            text: 'Scan the address QR',
-            onResult: (result) => {
-                copyToClipboard(result)
-                console.log('QR Code Result:', result)
-                alert('success', result.data)
-            },
-            onClose: () => {
-                console.log('QR scanner closed')
-            },
-        })
+        try {
+            tg?.showScanQrPopup({ text: 'Scan the address QR' })
+        } catch (e) {
+            notify({
+                type: 'error',
+                msg: "Your device doesn't support QR scan",
+            })
+        }
     }
     useEffect(() => {
-        tg.onEvent('qrTextReceived', function (result) {
-            copyToClipboard(result.data)
+        const handleQrTextReceived = (result) => {
+            setReceiverAddress(result.data)
+            notify({ type: 'success', msg: 'Successfully got address' })
             tg.closeScanQrPopup()
-        })
+        }
+        tg.onEvent('qrTextReceived', handleQrTextReceived)
+        return () => {
+            tg.offEvent('qrTextReceived', handleQrTextReceived)
+        }
     }, [tg])
     return (
         <Box sx={{ px: 2, pt: 3 }}>
@@ -78,6 +79,17 @@ const Send = () => {
                     value={receiverAddress}
                     onChange={(e) => setReceiverAddress(e.target.value)}
                     label={'Address'}
+                    slotProps={{
+                        input: {
+                            endAdornment: (
+                                <InputAdornment
+                                    onClick={showQr}
+                                    position='start'>
+                                    <Iconify icon={'uil:qrcode-scan'} />
+                                </InputAdornment>
+                            ),
+                        },
+                    }}
                 />
                 <TextField
                     label={'Sum'}
@@ -95,8 +107,6 @@ const Send = () => {
                     onChange={(e) => setSum(e.target.value)}
                 />
             </Stack>
-            <Button onClick={showQr}>temp</Button>
-
             <SendConfirmDialog
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}
