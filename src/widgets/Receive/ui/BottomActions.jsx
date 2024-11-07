@@ -6,7 +6,7 @@ import { shareURL } from '@telegram-apps/sdk'
 const BottomActions = ({ copyValue }) => {
     const handleShare = () => {
         console.log('1', copyValue)
-        shareURL(copyValue, copyValue)
+        shareURL('', `My address: ${copyValue}`)
         notify({ type: 'success', msg: t('REFERRAL_SEND_SUCCESS') })
     }
     return (
