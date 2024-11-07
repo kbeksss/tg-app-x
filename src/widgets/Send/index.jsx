@@ -56,10 +56,14 @@ const Send = () => {
         })
     }
     useEffect(() => {
+        alert('a')
         tg.onEvent('qrTextReceived', function (result) {
-            copyToClipboard(result);
+            copyToClipboard(result)
+            setTimeout(() => {
+                alert('check')
+            }, 5000)
             return true
-        });
+        })
     }, [tg])
     return (
         <Box sx={{ px: 2, pt: 3 }}>
