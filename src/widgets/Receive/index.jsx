@@ -40,7 +40,7 @@ const Receive = () => {
                     </Typography>
                 </Box>
             </Stack>
-            <BottomActions />
+            <BottomActions copyValue={tokenAddress} />
         </Box>
     )
 }
