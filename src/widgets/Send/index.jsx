@@ -1,5 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
+import {
+    Box,
+    Button,
+    IconButton,
+    InputAdornment,
+    Stack,
+    TextField,
+} from '@mui/material'
 import { networks, NetworkSelect } from '@widgets'
 import { BottomButton, Iconify } from '@shared/ui'
 import { copyToClipboard, notify } from '@shared/utils/functions'
@@ -85,7 +92,13 @@ const Send = () => {
                                 <InputAdornment
                                     onClick={showQr}
                                     position='start'>
-                                    <Iconify icon={'uil:qrcode-scan'} />
+                                    <Button
+                                        sx={{ fontSize: 14 }}
+                                        endIcon={
+                                            <Iconify icon={'uil:qrcode-scan'} />
+                                        }>
+                                        Scan
+                                    </Button>
                                 </InputAdornment>
                             ),
                         },
