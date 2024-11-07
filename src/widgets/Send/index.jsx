@@ -48,7 +48,7 @@ const Send = () => {
             onResult: (result) => {
                 copyToClipboard(result)
                 console.log('QR Code Result:', result)
-                alert('success', result)
+                alert('success', result.data)
             },
             onClose: () => {
                 console.log('QR scanner closed')
@@ -58,10 +58,7 @@ const Send = () => {
     useEffect(() => {
         tg.onEvent('qrTextReceived', function (result) {
             copyToClipboard(result.data)
-            setTimeout(() => {
-                alert('received')
-            }, 5000)
-            return true
+            tg.closeScanQrPopup()
         })
     }, [tg])
     return (
