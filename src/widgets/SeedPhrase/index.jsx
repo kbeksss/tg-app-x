@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
 import { Box, Button, Stack, Typography } from '@mui/material'
-import { BottomButton, Tag } from '@shared/ui/index.js'
-import { notify } from '@shared/utils/functions/index.js'
+import { BottomButton, Tag } from '@shared/ui'
+import { copyToClipboard, notify } from '@shared/utils/functions'
 import SaveWarn from './ui/SaveWarn'
 
 const SeedPhrase = () => {
     const [isWarnOpen, setIsWarnOpen] = useState(false)
-    const copyToClipboard = async () => {
-        try {
-            await navigator.clipboard.writeText(phrases.join(' ') || '')
-            notify({ type: 'success', msg: 'Copied to clipboard' })
-        } catch (err) {
-            console.error('Copy fail: ', err)
-        }
+    const onCopy = async () => {
+        copyToClipboard(phrases.join(' ') || '')
     }
     return (
         <>
@@ -43,7 +38,7 @@ const SeedPhrase = () => {
                     ))}
                 </Stack>
                 <Stack direction={'row'} justifyContent={'center'}>
-                    <Button onClick={copyToClipboard} sx={{ mt: 2 }}>
+                    <Button onClick={onCopy} sx={{ mt: 2 }}>
                         Copy to clipboard
                     </Button>
                 </Stack>

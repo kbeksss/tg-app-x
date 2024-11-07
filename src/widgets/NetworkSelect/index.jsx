@@ -8,7 +8,7 @@ import {
     Typography,
 } from '@mui/material'
 
-const NetworkSelect = ({ network, setNetwork }) => {
+const NetworkSelect = ({ network, setNetwork, displayEmpty = true }) => {
     return (
         <FormControl
             fullWidth
@@ -28,9 +28,9 @@ const NetworkSelect = ({ network, setNetwork }) => {
                 }}
                 id='network-select'
                 value={network}
-                displayEmpty
+                displayEmpty={displayEmpty}
                 onChange={(e) => setNetwork(e.target.value)}>
-                <MenuItem value={''}>Select network</MenuItem>
+                {displayEmpty && <MenuItem value={''}>Select network</MenuItem>}
                 {networks.map((network) => (
                     <MenuItem value={network.value} key={network.value}>
                         <Stack

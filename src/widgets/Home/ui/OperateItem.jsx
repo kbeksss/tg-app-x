@@ -2,9 +2,9 @@ import React from 'react'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
 
-const OperateItem = ({ icon, label }) => {
+const OperateItem = ({ icon, label, onClick }) => {
     return (
-        <Stack alignItems={'center'}>
+        <Stack onClick={onClick} alignItems={'center'}>
             <Avatar sx={{ backgroundColor: 'primary.main' }}>
                 <Iconify icon={icon} />
             </Avatar>

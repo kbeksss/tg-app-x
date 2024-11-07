@@ -5,6 +5,8 @@ import SearchPage from '@pages/SearchPage'
 import TradePage from '@pages/TradePage'
 import AccountPage from '@pages/AccountPage'
 import SeedphrasePage from '@pages/SeedphrasePage'
+import ReceivePage from '@pages/ReceivePage/index.jsx'
+import { paths } from '@pages/paths.js'
 
 export const Routing = () => {
     return (
@@ -16,12 +18,13 @@ export const Routing = () => {
                             <Outlet />
                         </Layout>
                     }>
-                    <Route path={'/'} element={<HomePage />} />
-                    <Route path={'/search'} element={<SearchPage />} />
-                    <Route path={'/trade'} element={<TradePage />} />
-                    <Route path={'/account'} element={<AccountPage />} />
+                    <Route path={paths.home} element={<HomePage />} />
+                    <Route path={paths.search} element={<SearchPage />} />
+                    <Route path={paths.trade} element={<TradePage />} />
+                    <Route path={paths.account} element={<AccountPage />} />
+                    <Route path={paths.receive} element={<ReceivePage />} />
                 </Route>
-                <Route path={'/seedphrase'} element={<SeedphrasePage />} />
+                <Route path={paths.seedphrase} element={<SeedphrasePage />} />
             </Routes>
         </>
     )

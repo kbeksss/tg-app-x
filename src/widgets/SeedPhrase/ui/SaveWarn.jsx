@@ -8,9 +8,14 @@ import {
     DialogTitle,
 } from '@mui/material'
 import { useNavigate } from 'react-router'
+import { paths } from '@pages/paths.js'
 
 const SaveWarn = ({ open, handleClose }) => {
     const navigate = useNavigate()
+    const handleContinue = () => {
+        window.tempCheck = true
+        navigate(paths.home)
+    }
     return (
         <Dialog
             onClose={handleClose}
@@ -38,7 +43,7 @@ const SaveWarn = ({ open, handleClose }) => {
                 <Box sx={{ mt: 4 }}>
                     <Button
                         sx={{ mb: 1 }}
-                        onClick={() => navigate('/')}
+                        onClick={handleContinue}
                         fullWidth
                         variant={'contained'}>
                         Continue

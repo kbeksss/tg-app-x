@@ -1,0 +1,78 @@
+import React, { useEffect, useRef } from 'react'
+import { Box } from '@mui/material'
+import QRCodeStyling from 'qr-code-styling'
+
+const QRCode = ({ value, qrImage }) => {
+    const qrCode = useRef(null)
+    const ref = useRef(null)
+
+    useEffect(() => {
+        qrCode.current = new QRCodeStyling({
+            width: 300,
+            height: 300,
+            dotsOptions: {
+                color: '#000',
+                type: 'rounded',
+            },
+            cornersSquareOptions: {
+                type: 'extra-rounded',
+            },
+            imageOptions: {
+                crossOrigin: 'anonymous',
+                margin: 20,
+                imageSize: 0.5,
+                hideBackgroundDots: true,
+            },
+            logoOptions: {
+                shape: 'circle',
+                bgColor: '#ffffff',
+            },
+            data: value,
+            image: '/assets/icons/network/eth-icon.png',
+        })
+
+        if (ref.current) {
+            qrCode.current.append(ref.current)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (qrCode.current) {
+            qrCode.current.update({
+                data: value,
+            })
+        }
+    }, [value])
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                position: 'relative',
+            }}>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    width: 48,
+                    height: 48,
+                    transform: 'translateY(-50%)',
+                }}>
+                {qrImage}
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    height: '100%',
+                    canvas: {
+                        width: '100%',
+                        height: '100%',
+                    },
+                }}
+                ref={ref}
+            />
+        </Box>
+    )
+}
+
+export default QRCode
