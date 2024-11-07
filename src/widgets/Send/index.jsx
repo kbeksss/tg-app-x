@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
 import { networks, NetworkSelect } from '@widgets'
 import { BottomButton } from '@shared/ui'
@@ -55,6 +55,12 @@ const Send = () => {
             },
         })
     }
+    useEffect(() => {
+        tg.onEvent('qrTextReceived', (result) => {
+            copyToClipboard(result)
+            return true
+        })
+    }, [tg])
     return (
         <Box sx={{ px: 2, pt: 3 }}>
             <Stack alignItems='center'>
