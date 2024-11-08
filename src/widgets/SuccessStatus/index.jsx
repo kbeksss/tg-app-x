@@ -1,10 +1,8 @@
 import React from 'react'
 import { Avatar, Box, Divider, Stack, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
-import { useQueryParams } from '@shared/hooks/useQueryParams.js'
 
-const PaymentSuccess = () => {
-    const { getParam } = useQueryParams()
+const SuccessStatus = ({ successItems, label, description }) => {
     return (
         <Box sx={{ px: 2 }}>
             <Stack spacing={2} alignItems={'center'}>
@@ -14,10 +12,9 @@ const PaymentSuccess = () => {
                     alt=''
                 />
                 <Stack spacing={0.5} alignItems={'center'}>
-                    <Typography variant={'h5'}>Payment Sent!</Typography>
+                    <Typography variant={'h5'}>{label}</Typography>
                     <Typography align={'center'} color={'text.secondary'}>
-                        The funds will be credited to your wallet within 5
-                        minutes
+                        {description}
                     </Typography>
                 </Stack>
             </Stack>
@@ -38,9 +35,9 @@ const PaymentSuccess = () => {
                     </Stack>
                 }
             />
-            <InfoItem label={'Date'} value={getParam('date')} />
-            <InfoItem label={'Total'} value={getParam('total')} />
-            <InfoItem label={'Address'} value={getParam('address')} />
+            {successItems.map((item, index) => (
+                <InfoItem key={index} label={item.label} value={item.value} />
+            ))}
         </Box>
     )
 }
@@ -58,4 +55,4 @@ const InfoItem = ({ label, value }) => {
     )
 }
 
-export default PaymentSuccess
+export default SuccessStatus

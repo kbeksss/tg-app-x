@@ -3,8 +3,10 @@ import { Avatar, Box, Button, Stack } from '@mui/material'
 import ExchangeCard from './ui/ExchangeCard.jsx'
 import { tokens } from '@_mock/currency.js'
 import { BottomButton, Iconify } from '@shared/ui'
+import ConfirmExchange from './ui/ConfirmExchange.jsx'
 
 const Exchange = () => {
+    const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
     const [sellCurrency, setSellCurrency] = useState({ currencyCode: '' })
     const [buyCurrency, setBuyCurrency] = useState({ currencyCode: '' })
     const [sellAmount, setSellAmount] = useState(0)
@@ -15,19 +17,13 @@ const Exchange = () => {
         )
         setCurrency(selectedToken || { currencyCode: '' })
     }
-    console.log(
-        !!buyAmount &&
-            !!sellAmount &&
-            !!buyCurrency.currencyCode &&
-            !!sellCurrency.currencyCode
-    )
+    console.log(sellCurrency)
     const datasValid = useMemo(() => {
-        return (
-            !!buyAmount &&
-            !!sellAmount &&
-            !!buyCurrency.currencyCode &&
-            !!sellCurrency.currencyCode
-        )
+        return true
+        // !!buyAmount &&
+        // !!sellAmount &&
+        // !!buyCurrency.currencyCode &&
+        // !!sellCurrency.currencyCode
     }, [buyAmount, sellAmount, buyCurrency, sellCurrency])
     return (
         <Box sx={{ px: 2 }}>
@@ -66,10 +62,17 @@ const Exchange = () => {
                     <Iconify color={'text.secondary'} icon={'uil:exchange'} />
                 </Avatar>
             </Stack>
+            <ConfirmExchange
+                onConfirm={() => console.log('confirm')}
+                open={confirmDialogOpen}
+                onClose={() => setConfirmDialogOpen(false)}
+                sellAmount={`-${sellAmount} ${sellCurrency.currencyCode}`}
+                buyAmount={`+${buyAmount} ${buyCurrency.currencyCode}`}
+            />
             <BottomButton
                 disabled={!datasValid}
                 label={'Next'}
-                onClick={() => console.log('a')}
+                onClick={() => setConfirmDialogOpen(true)}
                 withToolbar
             />
         </Box>
