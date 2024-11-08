@@ -13,7 +13,7 @@ const NetworkSelect = ({ network, setNetwork, displayEmpty = true }) => {
         <FormControl
             fullWidth
             sx={{
-                backgroundColor: '#F4F4F6',
+                backgroundColor: 'background.grey',
                 borderRadius: '16px',
                 my: 2,
                 height: 54,

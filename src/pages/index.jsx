@@ -8,7 +8,8 @@ import SeedphrasePage from '@pages/SeedphrasePage'
 import ReceivePage from '@pages/ReceivePage'
 import SendPage from '@pages/SendPage'
 import { paths } from '@pages/paths.js'
-import PaymentSuccessPage from '@pages/PaymentSuccessPage/index.jsx'
+import PaymentSuccessPage from '@pages/PaymentSuccessPage'
+import ExchangePage from '@pages/ExchangePage'
 
 export const Routing = () => {
     return (
@@ -30,6 +31,7 @@ export const Routing = () => {
                         path={paths.sendSuccess}
                         element={<PaymentSuccessPage />}
                     />
+                    <Route path={paths.exchange} element={<ExchangePage />} />
                 </Route>
                 <Route path={paths.seedphrase} element={<SeedphrasePage />} />
             </Routes>

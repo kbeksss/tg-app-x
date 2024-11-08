@@ -14,7 +14,7 @@ const TokenItem = ({
                 borderRadius: '16px',
                 px: 2,
                 py: '14px',
-                background: '#F4F4F6',
+                backgroundColor: 'background.grey',
             }}>
             <Grid container spacing={2}>
                 <Grid container size='auto' alignItems={'center'}>

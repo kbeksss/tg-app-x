@@ -4,63 +4,7 @@ import { Balance, NetworkSelect, TokenList } from '@widgets'
 import Operate from './ui/Operate'
 import { useNavigate } from 'react-router'
 import { paths } from '@pages/paths.js'
-
-export const tokens = [
-    {
-        id: 'kkkaaa',
-        currencyCode: 'sol',
-        currencyName: 'Solana',
-        currencyPrice: '1000',
-        amountInWallet: '2',
-        icon: '/assets/icons/network/solana.png',
-        network: 'solana',
-    },
-    {
-        id: 'kjkjfajfkas',
-        currencyCode: 'bonk',
-        currencyName: 'Bonk',
-        currencyPrice: '500',
-        amountInWallet: '3',
-        icon: '/assets/icons/tokens/bonk.png',
-        network: 'etherium',
-    },
-    {
-        id: 'aadfdafasf',
-        currencyCode: 'inj',
-        currencyName: 'Injective',
-        currencyPrice: '1000',
-        amountInWallet: '0',
-        icon: '/assets/icons/tokens/inj.png',
-        network: 'solana',
-    },
-    {
-        id: 'aadddffccc',
-        currencyCode: 'jup',
-        currencyName: 'Jupiter',
-        currencyPrice: '800',
-        amountInWallet: '3',
-        icon: '/assets/icons/tokens/jupiter.png',
-        network: 'etherium',
-    },
-    {
-        id: 'aabbccdd',
-        currencyCode: 'eth',
-        currencyName: 'Etherium',
-        currencyPrice: '2500',
-        amountInWallet: '5',
-        icon: '/assets/icons/network/eth-icon.png',
-        network: 'solana',
-    },
-    {
-        id: 'abcdefg',
-        currencyCode: 'strk',
-        currencyName: 'Starknet',
-        currencyPrice: '120',
-        amountInWallet: '3',
-        icon: '/assets/icons/tokens/strk.png',
-        network: 'etherium',
-    },
-]
+import { tokens } from '@_mock/currency.js'
 
 window.tempCheck = false //todo: remove later
 

@@ -14,6 +14,9 @@ const theme = createTheme({
             secondary: '#707579',
             dark: '#757575',
         },
+        background: {
+            grey: '#F4F4F6',
+        },
     },
     typography: {
         h1: {
@@ -26,8 +29,8 @@ const theme = createTheme({
         },
         h5: {
             fontSize: 20,
-            fontWeight: 500
-        }
+            fontWeight: 500,
+        },
     },
     components: {
         MuiDialog: {
