@@ -5,7 +5,8 @@ export const paths = {
     account: '/account',
     receive: '/receive',
     exchange: '/exchange',
+    exchangeSuccess: '/exchange-success',
     send: '/send',
-    seedphrase: '/seedphrase',
     sendSuccess: '/send-success',
+    seedphrase: '/seedphrase',
 }

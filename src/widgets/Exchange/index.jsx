@@ -4,8 +4,12 @@ import ExchangeCard from './ui/ExchangeCard.jsx'
 import { tokens } from '@_mock/currency.js'
 import { BottomButton, Iconify } from '@shared/ui'
 import ConfirmExchange from './ui/ConfirmExchange.jsx'
+import { useQueryParams } from '@shared/hooks/useQueryParams.js'
+import { paths } from '@pages/paths.js'
+import dayjs from 'dayjs'
 
 const Exchange = () => {
+    const { navigateWithParams } = useQueryParams()
     const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
     const [sellCurrency, setSellCurrency] = useState({ currencyCode: '' })
     const [buyCurrency, setBuyCurrency] = useState({ currencyCode: '' })
@@ -17,7 +21,6 @@ const Exchange = () => {
         )
         setCurrency(selectedToken || { currencyCode: '' })
     }
-    console.log(sellCurrency)
     const datasValid = useMemo(() => {
         return true
         // !!buyAmount &&
@@ -25,6 +28,13 @@ const Exchange = () => {
         // !!buyCurrency.currencyCode &&
         // !!sellCurrency.currencyCode
     }, [buyAmount, sellAmount, buyCurrency, sellCurrency])
+    const handleConfirm = () => {
+        navigateWithParams(paths.exchangeSuccess, {
+            date: dayjs().format('MMM D, YYYY [at] h:mmA'),
+            sell: `${sellAmount} ${sellCurrency.currencyCode}`,
+            buy: `${buyAmount} ${buyCurrency.currencyCode}`,
+        })
+    }
     return (
         <Box sx={{ px: 2 }}>
             <Stack spacing={1} sx={{ position: 'relative' }}>
@@ -63,7 +73,7 @@ const Exchange = () => {
                 </Avatar>
             </Stack>
             <ConfirmExchange
-                onConfirm={() => console.log('confirm')}
+                onConfirm={handleConfirm}
                 open={confirmDialogOpen}
                 onClose={() => setConfirmDialogOpen(false)}
                 sellAmount={`-${sellAmount} ${sellCurrency.currencyCode}`}

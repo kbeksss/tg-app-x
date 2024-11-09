@@ -37,7 +37,7 @@ const ConfirmExchange = ({
                     <Stack spacing={0.5}>
                         <Typography color={'text.dark'}>Buy</Typography>
                         <Typography
-                            color={'#31D158'}
+                            color={'success.main'}
                             textTransform={'uppercase'}>
                             {buyAmount}
                         </Typography>
