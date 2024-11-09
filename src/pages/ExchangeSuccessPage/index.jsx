@@ -2,9 +2,13 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import { useQueryParams } from '@shared/hooks/useQueryParams.js'
 import { SuccessStatus } from '@widgets'
+import { BottomButton } from '@shared/ui'
+import { useNavigate } from 'react-router-dom'
+import {paths} from "@pages/paths.js";
 
 const ExchangeSuccessPage = () => {
     const { getParam } = useQueryParams()
+    const navigate = useNavigate()
     return (
         <Box sx={{ pt: 3 }}>
             <SuccessStatus
@@ -29,6 +33,11 @@ const ExchangeSuccessPage = () => {
                         ),
                     },
                 ]}
+            />
+            <BottomButton
+                label={'Home'}
+                withToolbar
+                onClick={() => navigate(paths.home)}
             />
         </Box>
     )
