@@ -71,7 +71,7 @@ const Layout = ({ children }) => {
                             '.MuiBottomNavigationAction-label': { mt: 1 },
                         }}
                         label={'Trade'}
-                        value={'/trade'}
+                        value={'/trades'}
                         icon={<Iconify width={24} icon={'bx:candles'} />}
                     />
                     <BottomNavigationAction
