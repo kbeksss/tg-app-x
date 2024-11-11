@@ -1,6 +1,7 @@
 export const paths = {
     home: '/',
     search: '/search',
+    trades: '/trades',
     trade: '/trade',
     account: '/account',
     networkSettings: '/network-settings',

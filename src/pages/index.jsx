@@ -2,7 +2,7 @@ import { Routes, Route, Outlet } from 'react-router'
 import { Layout } from '@widgets'
 import HomePage from '@pages/HomePage'
 import SearchPage from '@pages/SearchPage'
-import TradePage from '@pages/TradePage'
+import TradesPage from '@pages/TradesPage'
 import AccountPage from '@pages/AccountPage'
 import SeedphrasePage from '@pages/SeedphrasePage'
 import ReceivePage from '@pages/ReceivePage'
@@ -12,6 +12,7 @@ import PaymentSuccessPage from '@pages/PaymentSuccessPage'
 import ExchangePage from '@pages/ExchangePage'
 import ExchangeSuccessPage from '@pages/ExchangeSuccessPage'
 import NetworkSettingsPage from '@pages/NetworkSettingsPage'
+import TradePage from '@pages/TradePage'
 
 export const Routing = () => {
     return (
@@ -25,7 +26,11 @@ export const Routing = () => {
                     }>
                     <Route path={paths.home} element={<HomePage />} />
                     <Route path={paths.search} element={<SearchPage />} />
-                    <Route path={paths.trade} element={<TradePage />} />
+                    <Route path={paths.trades} element={<TradesPage />} />
+                    <Route
+                        path={`${paths.trade}/:id`}
+                        element={<TradePage />}
+                    />
                     <Route path={paths.account} element={<AccountPage />} />
                     <Route
                         path={`${paths.networkSettings}/:network`}
