@@ -2,7 +2,13 @@ import React, { useMemo } from 'react'
 import { Box, Button } from '@mui/material'
 import { useCheckIphone } from '@shared/hooks/useCheckIphone.js'
 
-const BottomButton = ({ label, onClick, withToolbar, disabled }) => {
+const BottomButton = ({
+    label,
+    onClick,
+    withToolbar,
+    disabled,
+    color = 'primary',
+}) => {
     const isIphone = useCheckIphone()
     const bottomPosition = useMemo(() => {
         return withToolbar ? '70px' : '10px'
@@ -20,6 +26,7 @@ const BottomButton = ({ label, onClick, withToolbar, disabled }) => {
             <Button
                 disabled={disabled}
                 fullWidth
+                color={color}
                 variant={'contained'}
                 onClick={onClick}>
                 {label}

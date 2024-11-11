@@ -9,7 +9,7 @@ import {
     Typography,
 } from '@mui/material'
 import { Iconify } from '@shared/ui/index.js'
-import { networks } from '@widgets'
+import { networks } from '@_mock/networks'
 
 const ExchangeCard = ({
     type,

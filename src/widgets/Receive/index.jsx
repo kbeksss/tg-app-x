@@ -1,8 +1,10 @@
 import React, { useMemo, useState } from 'react'
 import { Box, Stack, Typography } from '@mui/material'
-import { networks, NetworkSelect } from '@widgets'
+import { NetworkSelect } from '@widgets'
+
 import { QRCode } from '@shared/ui/index.js'
 import BottomActions from './ui/BottomActions'
+import {networks} from "@_mock/networks.js";
 
 const Receive = () => {
     const [network, setNetwork] = useState(networks[0].value)

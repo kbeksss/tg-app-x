@@ -3,6 +3,7 @@ export const paths = {
     search: '/search',
     trade: '/trade',
     account: '/account',
+    networkSettings: '/network-settings',
     receive: '/receive',
     exchange: '/exchange',
     exchangeSuccess: '/exchange-success',

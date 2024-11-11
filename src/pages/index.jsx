@@ -11,6 +11,7 @@ import { paths } from '@pages/paths.js'
 import PaymentSuccessPage from '@pages/PaymentSuccessPage'
 import ExchangePage from '@pages/ExchangePage'
 import ExchangeSuccessPage from '@pages/ExchangeSuccessPage'
+import NetworkSettingsPage from '@pages/NetworkSettingsPage'
 
 export const Routing = () => {
     return (
@@ -26,6 +27,10 @@ export const Routing = () => {
                     <Route path={paths.search} element={<SearchPage />} />
                     <Route path={paths.trade} element={<TradePage />} />
                     <Route path={paths.account} element={<AccountPage />} />
+                    <Route
+                        path={`${paths.networkSettings}/:network`}
+                        element={<NetworkSettingsPage />}
+                    />
                     <Route path={paths.receive} element={<ReceivePage />} />
                     <Route path={paths.send} element={<SendPage />} />
                     <Route

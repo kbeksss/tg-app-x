@@ -7,7 +7,8 @@ import {
     Stack,
     TextField,
 } from '@mui/material'
-import { networks, NetworkSelect } from '@widgets'
+import { NetworkSelect } from '@widgets'
+import { networks } from '@_mock/networks'
 import { BottomButton, Iconify } from '@shared/ui'
 import { copyToClipboard, notify } from '@shared/utils/functions'
 import SendConfirmDialog from '@widgets/Send/ui/SendConfirmDialog.jsx'
