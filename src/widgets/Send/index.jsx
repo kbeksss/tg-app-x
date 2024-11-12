@@ -124,7 +124,7 @@ const Send = () => {
             <SendConfirmDialog
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}
-                address={receiverAddress}
+                address={`${receiverAddress.slice(0, 10)}***${receiverAddress.slice(-15)}`}
                 total={`${sum} ${networkSymbol}`}
                 onConfirm={sendSuccess}
             />

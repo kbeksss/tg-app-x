@@ -4,7 +4,7 @@ import { Receive } from '@widgets'
 
 const ReceivePage = () => {
     return (
-        <Box sx={{ pt: '10vh' }}>
+        <Box sx={{ pt: 1, pb: 15 }}>
             <Receive />
         </Box>
     )

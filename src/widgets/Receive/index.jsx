@@ -4,7 +4,7 @@ import { NetworkSelect } from '@widgets'
 
 import { QRCode } from '@shared/ui/index.js'
 import BottomActions from './ui/BottomActions'
-import {networks} from "@_mock/networks.js";
+import { networks } from '@_mock/networks.js'
 
 const Receive = () => {
     const [network, setNetwork] = useState(networks[0].value)
@@ -26,7 +26,7 @@ const Receive = () => {
                     />
                 </Box>
             </Stack>
-            <Stack sx={{ mt: 2 }} alignItems={'center'}>
+            <Stack alignItems={'center'}>
                 <Box
                     sx={{
                         p: '10px',
@@ -37,6 +37,7 @@ const Receive = () => {
                     <QRCode value={tokenAddress} />
                     <Typography
                         sx={{ wordWrap: 'break-word', mt: 2 }}
+                        variant={'body2'}
                         align={'center'}>
                         {tokenAddress}
                     </Typography>

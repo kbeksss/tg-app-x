@@ -62,8 +62,7 @@ const QRCode = ({ value, qrImage }) => {
             </Box>
             <Box
                 sx={{
-                    width: '100%',
-                    height: '100%',
+                    height: 'calc(10vh * 3)',
                     canvas: {
                         width: '100%',
                         height: '100%',
