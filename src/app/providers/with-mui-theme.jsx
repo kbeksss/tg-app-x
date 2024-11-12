@@ -13,6 +13,9 @@ const theme = createTheme({
         success: {
             main: '#31D158',
         },
+        secondary: {
+            main: '#F4F4F6',
+        },
         text: {
             secondary: '#707579',
             dark: '#757575',
@@ -35,8 +38,8 @@ const theme = createTheme({
             fontWeight: 500,
         },
         body1: {
-            fontSize: 17
-        }
+            fontSize: 17,
+        },
     },
     components: {
         MuiDialog: {
@@ -87,11 +90,15 @@ const theme = createTheme({
             },
             styleOverrides: {
                 root: {
-                    // boxShadow: 'none',
                     textTransform: 'initial',
+                    borderRadius: '10px',
+                },
+                sizeMedium: {
                     height: 50,
                     fontSize: 17,
-                    borderRadius: '10px',
+                },
+                sizeSmall: {
+                    height: 36,
                 },
             },
         },

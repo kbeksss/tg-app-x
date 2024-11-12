@@ -1,19 +1,23 @@
 import React from 'react'
 import { Box, Stack, Typography } from '@mui/material'
 
-const ProfileImage = ({ label, icon }) => {
+const ProfileImage = ({
+    label,
+    icon = '/assets/icons/utilities/user-icon.png',
+    width = 80,
+}) => {
     return (
         <Box>
             <Stack spacing={2} alignItems={'center'}>
                 <Box
                     sx={{
                         borderRadius: '50%',
-                        width: 80,
-                        height: 80,
+                        width,
+                        height: width,
                         backgroundImage: `url(${icon})`,
                         backgroundSize: 'contain',
                     }}></Box>
-                <Typography>{label}</Typography>
+                {label && <Typography>{label}</Typography>}
             </Stack>
         </Box>
     )

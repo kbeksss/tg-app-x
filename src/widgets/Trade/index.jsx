@@ -72,7 +72,7 @@ const Trade = ({ tradeId }) => {
                 </Box>
             </Box>
             {trade.direction === 'positive' && (
-                <BottomButton label={'Send'} withToolbar />
+                <BottomButton label={'Sell'} withToolbar />
             )}
         </Box>
     )
