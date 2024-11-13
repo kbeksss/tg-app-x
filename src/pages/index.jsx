@@ -13,6 +13,7 @@ import ExchangePage from '@pages/ExchangePage'
 import ExchangeSuccessPage from '@pages/ExchangeSuccessPage'
 import NetworkSettingsPage from '@pages/NetworkSettingsPage'
 import TradePage from '@pages/TradePage'
+import UserProfilePage from '@pages/UserProfilePage'
 
 export const Routing = () => {
     return (
@@ -46,6 +47,10 @@ export const Routing = () => {
                     <Route
                         path={paths.exchangeSuccess}
                         element={<ExchangeSuccessPage />}
+                    />
+                    <Route
+                        path={`${paths.userProfile}/:id`}
+                        element={<UserProfilePage />}
                     />
                 </Route>
                 <Route path={paths.seedphrase} element={<SeedphrasePage />} />
