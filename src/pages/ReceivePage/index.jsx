@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import { Receive } from '@widgets'
-import { useNavigate } from 'react-router-dom'
 import { useTg } from '@shared/hooks/useTg.js'
 
 const ReceivePage = () => {

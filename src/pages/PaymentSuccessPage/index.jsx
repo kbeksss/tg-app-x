@@ -2,8 +2,10 @@ import React from 'react'
 import { Box } from '@mui/material'
 import { SuccessStatus } from '@widgets'
 import { useQueryParams } from '@shared/hooks/useQueryParams.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const PaymentSuccessPage = () => {
+    useTg({ backButtonVisible: true })
     const { getParam } = useQueryParams()
     return (
         <Box sx={{ pt: 3 }}>

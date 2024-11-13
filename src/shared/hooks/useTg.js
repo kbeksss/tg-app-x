@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 const tg = window.Telegram.WebApp
 
-export function useTg({ backButtonVisible }) {
+export function useTg(params) {
     const navigate = useNavigate()
     const closeTg = () => {
         tg.close()
@@ -21,7 +21,7 @@ export function useTg({ backButtonVisible }) {
     }
 
     useEffect(() => {
-        if (backButtonVisible) {
+        if (params?.backButtonVisible) {
             showBackButton()
 
             tg.BackButton.onClick(() => {
@@ -32,7 +32,7 @@ export function useTg({ backButtonVisible }) {
             hideBackButton()
             tg.BackButton.offClick()
         }
-    }, [backButtonVisible])
+    }, [params?.backButtonVisible])
 
     return {
         tg,

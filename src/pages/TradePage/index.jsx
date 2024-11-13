@@ -3,8 +3,10 @@ import { Box } from '@mui/material'
 import { Trade } from '@widgets'
 import { useParams } from 'react-router'
 import { tradeItems } from '@_mock/trade.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const TradePage = () => {
+    useTg({ backButtonVisible: true })
     const { id: tradeId } = useParams()
     return (
         <Box sx={{ pt: 3 }}>
