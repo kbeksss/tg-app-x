@@ -1,36 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const tg = window.Telegram.WebApp;
+const tg = window.Telegram.WebApp
 
-export function useTg(navigate) {
+export function useTg({ backButtonVisible }) {
+    const navigate = useNavigate()
     const closeTg = () => {
-        tg.close();
-    };
-    const showBackButton = () => tg.BackButton.show();
+        tg.close()
+    }
+    const showBackButton = () => tg.BackButton.show()
 
-    const hideBackButton = () => tg.BackButton.hide();
+    const hideBackButton = () => tg.BackButton.hide()
 
     const onToggleButton = () => {
         if (tg.MainButton.isVisible) {
-            tg.MainButton.hide();
+            tg.MainButton.hide()
         } else {
-            tg.MainButton.show();
+            tg.MainButton.show()
         }
-    };
+    }
 
     useEffect(() => {
-        if (navigate) {
-            showBackButton();
+        if (backButtonVisible) {
+            showBackButton()
 
             tg.BackButton.onClick(() => {
-                navigate(-1);
-            });
+                navigate(-1)
+            })
         }
         return () => {
-            hideBackButton();
-            tg.BackButton.offClick();
-        };
-    }, [navigate]);
+            hideBackButton()
+            tg.BackButton.offClick()
+        }
+    }, [backButtonVisible])
 
     return {
         tg,
@@ -41,5 +43,5 @@ export function useTg(navigate) {
         onToggleButton,
         queryId: tg.initDataUnsafe?.query_id,
         themeParams: tg.themeParams,
-    };
+    }
 }
