@@ -10,7 +10,7 @@ const UserItem = ({ username, subscribed, onClick }) => {
                     <ProfileImage width={50} />
                 </Grid2>
                 <Grid2 size={'grow'}>{username}</Grid2>
-                <Grid2 size={3} container justifyContent={'end'}>
+                <Grid2 size={5} container justifyContent={'end'}>
                     <Button
                         color={subscribed ? 'secondary' : 'primary'}
                         size={'small'}
