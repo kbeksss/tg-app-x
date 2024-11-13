@@ -2,9 +2,9 @@ import React from 'react'
 import { Box, Button, Grid2 } from '@mui/material'
 import { ProfileImage } from '@widgets'
 
-const UserItem = ({ username, subscribed }) => {
+const UserItem = ({ username, subscribed, onClick }) => {
     return (
-        <Box>
+        <Box onClick={onClick}>
             <Grid2 spacing={2} container alignItems={'center'}>
                 <Grid2 size={'auto'}>
                     <ProfileImage width={50} />

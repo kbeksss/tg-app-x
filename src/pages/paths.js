@@ -12,4 +12,5 @@ export const paths = {
     sendSuccess: '/send-success',
     seedphrase: '/seedphrase',
     userProfile: '/user-profile',
+    userSubscribeSuccess: '/subscribe-success',
 }

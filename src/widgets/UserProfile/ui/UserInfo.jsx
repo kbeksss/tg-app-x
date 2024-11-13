@@ -2,7 +2,7 @@ import React from 'react'
 import { Avatar, Box, Button, Grid2, Stack, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
 
-const UserInfo = ({ subscribed, toggleSubscribe }) => {
+const UserInfo = ({ subscribed, toggleSubscribe, name, username }) => {
     return (
         <Box sx={{ px: 2 }}>
             <Grid2 container spacing={2} alignItems={'center'}>
@@ -16,9 +16,9 @@ const UserInfo = ({ subscribed, toggleSubscribe }) => {
                         src={'/assets/images/ana_de.jpeg'}></Avatar>
                 </Grid2>
                 <Grid2 size={'grow'}>
-                    <Typography variant={'h6'}>Watcher Guru</Typography>
+                    <Typography variant={'h6'}>{name}</Typography>
                     <Typography color={'text.secondary'}>
-                        @watcherguru
+                        @{username}
                     </Typography>
                 </Grid2>
                 <Grid2 size={1}>

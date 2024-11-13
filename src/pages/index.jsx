@@ -14,6 +14,7 @@ import ExchangeSuccessPage from '@pages/ExchangeSuccessPage'
 import NetworkSettingsPage from '@pages/NetworkSettingsPage'
 import TradePage from '@pages/TradePage'
 import UserProfilePage from '@pages/UserProfilePage'
+import SubscribeSuccessPage from '@pages/SubscribeSuccessPage'
 
 export const Routing = () => {
     return (
@@ -51,6 +52,10 @@ export const Routing = () => {
                     <Route
                         path={`${paths.userProfile}/:id`}
                         element={<UserProfilePage />}
+                    />
+                    <Route
+                        path={`${paths.userSubscribeSuccess}/:id`}
+                        element={<SubscribeSuccessPage />}
                     />
                 </Route>
                 <Route path={paths.seedphrase} element={<SeedphrasePage />} />
