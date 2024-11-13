@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTg } from '@shared/hooks/useTg.js'
 
 const ReceivePage = () => {
-    useTg({ backButtonVisible })
+    useTg({ backButtonVisible: true })
     return (
         <Box sx={{ pt: 1, pb: 15 }}>
             <Receive />
