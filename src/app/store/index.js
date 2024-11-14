@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { rootReducer } from './reducers'
-import { authApi } from '@shared/api/services/authService.js'
+import { accountApi, authApi } from '@shared/api/services'
 
 export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
-        }).concat(authApi.middleware),
+        }).concat(authApi.middleware, accountApi.middleware),
 })
