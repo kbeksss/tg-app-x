@@ -21,7 +21,7 @@ const Home = () => {
             : tokens
     }, [network])
     const account = useSelector((state) => state.account)
-    const { solanaBalances, etheriumBalances, balances } = useGetTokens({
+    const { balances } = useGetTokens({
         wallets: account?.Wallets,
         portfolio: data?.portfolio,
         network,
