@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Grid2, Typography } from '@mui/material'
+import { Avatar, Box, Grid2, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
 
 const SettingsItem = ({ icon, label, onClick }) => {
@@ -14,7 +14,7 @@ const SettingsItem = ({ icon, label, onClick }) => {
             }}>
             <Grid2 alignItems={'center'} spacing={2} container>
                 <Grid2 size={'auto'}>
-                    <img width={40} src={icon} alt='' />
+                    <Avatar sx={{ width: 40 }} src={icon} />
                 </Grid2>
                 <Grid2 size={'grow'}>
                     <Typography>{label}</Typography>

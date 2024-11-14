@@ -7,11 +7,17 @@ import { useNavigate } from 'react-router-dom'
 import { networks } from '@_mock/networks.js'
 import { paths } from '@pages/paths.js'
 import { useSelector } from 'react-redux'
+import { useGetTokens } from '@shared/hooks/useGetTokens.js'
+import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
 
 const Account = () => {
     const navigate = useNavigate()
     const account = useSelector((state) => state.account)
-    console.log(account)
+    const { data } = useFetchAccountPortfolioQuery()
+    const { networkPortfolios } = useGetTokens({
+        wallets: account?.Wallets,
+        portfolio: data?.portfolio,
+    })
     return (
         <Box>
             <ProfileImage
@@ -20,19 +26,7 @@ const Account = () => {
             />
             <Box sx={{ px: 2, py: 3 }}>
                 <Stack spacing={1}>
-                    {account?.Wallets.map((wallet, index) => (
-                        <SettingsItem
-                            key={index}
-                            onClick={() =>
-                                navigate(
-                                    `${paths.networkSettings}/${'network.symbol'}`
-                                )
-                            }
-                            label={`Setting up ${'network.symbol'} trading`}
-                            icon={'network.icon'}
-                        />
-                    ))}
-                    {networks.map((network, index) => (
+                    {networkPortfolios?.map((network, index) => (
                         <SettingsItem
                             key={index}
                             onClick={() =>
@@ -41,7 +35,7 @@ const Account = () => {
                                 )
                             }
                             label={`Setting up ${network.symbol} trading`}
-                            icon={network.icon}
+                            icon={network.image}
                         />
                     ))}
                 </Stack>
