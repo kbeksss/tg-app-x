@@ -1,12 +1,6 @@
 import React from 'react'
 import { Avatar, Box, Grid2 as Grid, Stack, Typography } from '@mui/material'
-
-const floatAmountToString = (amount) => {
-    return parseFloat(amount).toFixed(4)
-}
-const floatAmountToNumber = (amount) => {
-    return Number(parseFloat(amount).toFixed(4))
-}
+import { floatAmountToString } from '@shared/utils/functions'
 
 const TokenItem = ({
     currencyCode,

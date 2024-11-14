@@ -32,3 +32,11 @@ export const getBalance = async (portfolio, wallets) => {
     )
     return { ethereumBalances, solanaBalances }
 }
+
+export const floatAmountToString = (amount) => {
+    return parseFloat(amount).toFixed(4)
+}
+
+export const floatAmountToNumber = (amount) => {
+    return Number(parseFloat(amount).toFixed(4))
+}
