@@ -17,15 +17,11 @@ import UserProfilePage from '@pages/UserProfilePage'
 import SubscribeSuccessPage from '@pages/SubscribeSuccessPage'
 import { useAppInit } from '@shared/hooks/useAppInit.jsx'
 import { useTg } from '@shared/hooks/useTg.js'
-import {
-    useFetchAccountPortfolioQuery,
-    useFetchAccountQuery,
-} from '@shared/api/services'
+import { useFetchAccountQuery } from '@shared/api/services'
 
 export const Routing = () => {
     const { tg } = useTg()
     useFetchAccountQuery()
-    useFetchAccountPortfolioQuery()
     useAppInit({ tg })
     return (
         <>

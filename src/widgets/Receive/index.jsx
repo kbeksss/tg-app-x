@@ -5,8 +5,11 @@ import { NetworkSelect } from '@widgets'
 import { QRCode } from '@shared/ui/index.js'
 import BottomActions from './ui/BottomActions'
 import { networks } from '@_mock/networks.js'
+import { useSelector } from 'react-redux'
 
 const Receive = () => {
+    const account = useSelector((state) => state.account)
+    console.log(account)
     const [network, setNetwork] = useState(networks[0].value)
     const tokenAddress = useMemo(
         () =>

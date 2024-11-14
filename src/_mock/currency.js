@@ -6,7 +6,7 @@ export const tokens = [
         currencyPrice: '1000',
         amountInWallet: '2',
         icon: '/assets/icons/network/solana.png',
-        network: 'solana',
+        network: 'SOLANA',
     },
     {
         id: 'kjkjfajfkas',
@@ -15,7 +15,7 @@ export const tokens = [
         currencyPrice: '500',
         amountInWallet: '3',
         icon: '/assets/icons/tokens/bonk.png',
-        network: 'etherium',
+        network: 'ETHEREUM',
     },
     {
         id: 'aadfdafasf',
@@ -24,7 +24,7 @@ export const tokens = [
         currencyPrice: '1000',
         amountInWallet: '0',
         icon: '/assets/icons/tokens/inj.png',
-        network: 'solana',
+        network: 'SOLANA',
     },
     {
         id: 'aadddffccc',
@@ -33,16 +33,16 @@ export const tokens = [
         currencyPrice: '800',
         amountInWallet: '3',
         icon: '/assets/icons/tokens/jupiter.png',
-        network: 'etherium',
+        network: 'ETHEREUM',
     },
     {
         id: 'aabbccdd',
         currencyCode: 'eth',
-        currencyName: 'Etherium',
+        currencyName: 'Ethereum',
         currencyPrice: '2500',
         amountInWallet: '5',
         icon: '/assets/icons/network/eth-icon.png',
-        network: 'solana',
+        network: 'ETHEREUM',
     },
     {
         id: 'abcdefg',
@@ -51,6 +51,6 @@ export const tokens = [
         currencyPrice: '120',
         amountInWallet: '3',
         icon: '/assets/icons/tokens/strk.png',
-        network: 'etherium',
+        network: 'SOLANA',
     },
 ]

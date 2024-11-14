@@ -1,11 +1,19 @@
 import React from 'react'
-import { Box, Grid2 as Grid, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Grid2 as Grid, Stack, Typography } from '@mui/material'
+
+const floatAmountToString = (amount) => {
+    return parseFloat(amount).toFixed(4)
+}
+const floatAmountToNumber = (amount) => {
+    return Number(parseFloat(amount).toFixed(4))
+}
 
 const TokenItem = ({
     currencyCode,
     currencyName,
     currencyPrice,
     amountInWallet,
+    balanceInDollars,
     icon,
 }) => {
     return (
@@ -18,7 +26,7 @@ const TokenItem = ({
             }}>
             <Grid container spacing={2}>
                 <Grid container size='auto' alignItems={'center'}>
-                    <img height={40} src={icon} alt='' />
+                    <Avatar sx={{ width: 40, height: 40 }} src={icon} />
                 </Grid>
                 <Grid size={5}>
                     <Box>
@@ -38,7 +46,7 @@ const TokenItem = ({
                         </Typography>
                     </Box>
                     <Typography fontSize={15} color={'primary.main'}>
-                        ${currencyPrice}
+                        ${floatAmountToString(currencyPrice)}
                     </Typography>
                 </Grid>
                 <Grid size='grow'>
@@ -46,10 +54,10 @@ const TokenItem = ({
                         textTransform={'uppercase'}
                         fontWeight={500}
                         align={'right'}>
-                        {amountInWallet} {currencyCode}
+                        {floatAmountToString(amountInWallet)} {currencyCode}
                     </Typography>
                     <Typography fontSize={15} align={'right'}>
-                        ${amountInWallet * currencyPrice}
+                        ${floatAmountToString(balanceInDollars)}
                     </Typography>
                 </Grid>
             </Grid>

@@ -92,30 +92,32 @@ function portfolioMapper(portfolio, balanceData) {
 async function test() {
     console.log('a')
     const connection = new Connection(
-        'https://api.mainnet-beta.solana.com',
+        'https://rpc.ankr.com/solana/f923874ebdf1b551a5b0b76555394b72a876ab93c7906468b604937d1726dd96',
         'confirmed'
     )
-    const walletAddress = 'FnWXaVqEcivuXDTwU3XbKowYfWYKCEFoU2z92YqQcsF3'
+    const walletAddress = '6ZUeThQ9FovzaS8HejAfGW2VqCXwRYPKKyUNsozpfrSx'
     const portfolio = [
         {
-            id: '1',
-            address: '4X7jzVqsWGKvkophSu61ghHMgyuTs82S6VpNg9uFpump',
-            symbol: 'TEST',
-            decimals: '9',
-            name: 'TEST',
-            network: 'SOLANA',
-            image: 'image',
-            price: '10',
+            "id": "solana",
+            "address": "So11111111111111111111111111111111111111112",
+            "symbol": "SOL",
+            "decimals": "9",
+            "name": "Solana",
+            "network": "SOLANA",
+            "image": "https://s2.coinmarketcap.com/static/img/coins/128x128/5426.png",
+            "price": "215.432115621288656950756291431785410423968422626254553158",
+            "createdAt": "2024-11-12T23:57:54.000Z"
         },
         {
-            id: '2',
-            address: 'So11111111111111111111111111111111111111112',
-            symbol: 'SOL',
-            name: 'Solana',
-            decimals: '9',
-            network: 'SOLANA',
-            image: 'image',
-            price: '200',
+            "id": "61605454-f983-4173-b2a6-d546335526ca",
+            "address": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+            "symbol": "JUP",
+            "decimals": "6",
+            "name": "Jupiter",
+            "network": "SOLANA",
+            "image": "https://s2.coinmarketcap.com/static/img/coins/128x128/29210.png",
+            "price": "1.118946709641720225151980744571717268112079139712340118954951970380371632",
+            "createdAt": "2024-11-14T21:26:54.000Z"
         },
     ]
 
