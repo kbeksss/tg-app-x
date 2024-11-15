@@ -1,13 +1,9 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Avatar, Box, Grid2, Stack, Typography } from '@mui/material'
 import { BottomButton, Iconify, NestedAvatars } from '@shared/ui'
-import { tradeItems } from '@_mock/trade.js'
+import dayjs from 'dayjs'
 
-const Trade = ({ tradeId }) => {
-    const trade = useMemo(
-        () => tradeItems.find((t) => t.id === tradeId),
-        [tradeId]
-    )
+const Trade = ({ trade, networkIcon }) => {
     return (
         <Box>
             <Box sx={{ px: 3 }}>
@@ -15,15 +11,15 @@ const Trade = ({ tradeId }) => {
                     <Grid2 alignItems={'center'} container spacing={2}>
                         <Grid2 size={'auto'}>
                             <NestedAvatars
-                                avatar={trade.tokenIcon}
-                                secondaryAvatar={trade.networkIcon}
+                                avatar={trade.Token.image}
+                                secondaryAvatar={networkIcon}
                             />
                         </Grid2>
-                        {trade.direction === 'positive' && (
+                        {trade.type === 'BUY' && (
                             <Grid2 size={'grow'}>
                                 <Typography>Recommendation from</Typography>
                                 <Typography color={'primary'}>
-                                    @WatcherGuru
+                                    {trade?.Kol?.username}
                                 </Typography>
                             </Grid2>
                         )}
@@ -33,19 +29,19 @@ const Trade = ({ tradeId }) => {
                     sx={{
                         mt: 2,
                         color:
-                            trade.direction === 'positive'
+                            trade.type === 'BUY'
                                 ? 'success.main'
                                 : 'error.main',
                     }}
                     variant={'h1'}>
-                    {trade.direction === 'positive' ? '+' : '-'}
+                    {trade.type === 'BUY' ? '+' : '-'}
                     {trade.amount} $
                     <span style={{ textTransform: 'uppercase' }}>
-                        {trade.currencyCode}
+                        {trade.Token.symbol}
                     </span>
                 </Typography>
                 <Typography color={'text.secondary'}>
-                    06.11.2024 at 8:40 AM
+                    {dayjs(trade.createdAt).format('DD.MM.YYYY [at] h:mm A')}
                 </Typography>
                 <Box
                     sx={{
@@ -71,7 +67,7 @@ const Trade = ({ tradeId }) => {
                     </Stack>
                 </Box>
             </Box>
-            {trade.direction === 'positive' && (
+            {trade.type === 'BUY' && (
                 <BottomButton label={'Sell'} withToolbar />
             )}
         </Box>

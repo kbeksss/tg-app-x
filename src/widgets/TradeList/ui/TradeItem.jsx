@@ -1,14 +1,15 @@
 import React from 'react'
 import { Box, Grid2, Typography } from '@mui/material'
 import { Iconify, NestedAvatars } from '@shared/ui'
+import dayjs from 'dayjs'
 
 const TradeItem = ({
     tokenIcon,
     networkIcon,
     tokenCode,
     date,
-    direction,
     amount,
+    type,
 }) => {
     return (
         <Grid2 container spacing={2} alignItems={'center'}>
@@ -27,13 +28,13 @@ const TradeItem = ({
                         component={'span'}
                         variant={'body2'}
                         color={'text.secondary'}>
-                        {date}
+                        {dayjs(date).format('DD.MM.YY')}
                     </Typography>
                 </Box>
                 <Typography
                     textTransform={'uppercase'}
-                    color={direction === 'positive' ? 'success' : 'error'}>
-                    {direction === 'positive' ? '+' : '-'}
+                    color={type === 'BUY' ? 'success' : 'error'}>
+                    {type === 'BUY' ? '+' : '-'}
                     {amount} ${tokenCode}
                 </Typography>
             </Grid2>

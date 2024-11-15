@@ -9,6 +9,7 @@ import {
     ACCOUNT_SEND_SOLANA,
     ACCOUNT_SOLANA_CONFIG,
     ACCOUNT_SOLANA_TRADE_TOGGLE,
+    ACCOUNT_TRANSACTION_URL, ACCOUNT_TRANSACTIONS_URL,
     ACCOUNT_URL,
 } from './constants'
 
@@ -93,6 +94,20 @@ export const accountApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: [{ type: 'Account' }],
         }),
+        fetchTransactions: build.query({
+            query: (params) => ({
+                url: ACCOUNT_TRANSACTIONS_URL,
+                method: 'GET',
+                params,
+            }),
+        }),
+        fetchTransaction: build.query({
+            query: (params) => ({
+                url: ACCOUNT_TRANSACTION_URL,
+                method: 'GET',
+                params,
+            }),
+        }),
     }),
 })
 
@@ -107,4 +122,7 @@ export const {
     useSendSolanaMutation,
     useSellEthereumMutation,
     useSellSolanaMutation,
+    useFetchTransactionsQuery,
+    useLazyFetchTransactionsQuery,
+    useFetchTransactionQuery
 } = accountApi
