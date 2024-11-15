@@ -11,9 +11,29 @@ import {
     TextField,
     Typography,
 } from '@mui/material'
-import { floatAmountToString } from '@shared/utils/functions/index.js'
+import { floatAmountToString, notify } from '@shared/utils/functions/index.js'
+import {
+    useSellEthereumMutation,
+    useSellSolanaMutation,
+} from '@shared/api/services/index.js'
 
 const SellTokens = ({ open, onClose, sellingToken }) => {
+    const [sellEthereum] = useSellEthereumMutation()
+    const [sellSolana] = useSellSolanaMutation()
+    const sellSumbit = async () => {
+        let res
+        if (sellingToken.network === 'ETHEREUM') {
+            res = await sellEthereum({ tokenId: sellingToken.id })
+        } else {
+            res = await sellSolana({ tokenId: sellingToken.id })
+        }
+        if (res?.error) {
+            notify({ type: 'error', msg: res.error.data.message })
+        } else {
+            notify({ type: 'success', msg: 'Successfuly sold' })
+        }
+        onClose()
+    }
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Sell your tokens</DialogTitle>
@@ -49,7 +69,9 @@ const SellTokens = ({ open, onClose, sellingToken }) => {
                     />
                 </Box>
                 <Stack spacing={1}>
-                    <Button variant={'contained'}>Sell everything</Button>
+                    <Button onClick={sellSumbit} variant={'contained'}>
+                        Sell everything
+                    </Button>
                     <Button
                         onClick={onClose}
                         variant={'contained'}
