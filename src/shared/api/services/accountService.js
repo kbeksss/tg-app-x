@@ -3,6 +3,10 @@ import {
     ACCOUNT_ETHEREUM_CONFIG,
     ACCOUNT_ETHEREUM_TRADE_TOGGLE,
     ACCOUNT_PORTFOLIO_URL,
+    ACCOUNT_SELL_ETHEREUM,
+    ACCOUNT_SELL_SOLANA,
+    ACCOUNT_SEND_ETHEREUM,
+    ACCOUNT_SEND_SOLANA,
     ACCOUNT_SOLANA_CONFIG,
     ACCOUNT_SOLANA_TRADE_TOGGLE,
     ACCOUNT_URL,
@@ -57,6 +61,38 @@ export const accountApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: [{ type: 'Account' }],
         }),
+        sendEthereum: build.mutation({
+            query: (body) => ({
+                url: ACCOUNT_SEND_ETHEREUM,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: [{ type: 'Account' }],
+        }),
+        sendSolana: build.mutation({
+            query: (body) => ({
+                url: ACCOUNT_SEND_SOLANA,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: [{ type: 'Account' }],
+        }),
+        sellEthereum: build.mutation({
+            query: (body) => ({
+                url: ACCOUNT_SELL_ETHEREUM,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: [{ type: 'Account' }],
+        }),
+        sellSolana: build.mutation({
+            query: (body) => ({
+                url: ACCOUNT_SELL_SOLANA,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: [{ type: 'Account' }],
+        }),
     }),
 })
 
@@ -67,4 +103,8 @@ export const {
     useToggleSolanaTradeMutation,
     usePostEthereumConfigMutation,
     usePostSolanaConfigMutation,
+    useSendEthereumMutation,
+    useSendSolanaMutation,
+    useSellEthereumMutation,
+    useSellSolanaMutation,
 } = accountApi

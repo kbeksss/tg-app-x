@@ -1,7 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { floatAmountToNumber, getBalance } from '@shared/utils/functions'
 
-export const useGetTokens = ({ wallets, portfolio, network }) => {
+export const useGetTokens = ({
+    wallets,
+    portfolio,
+    network,
+    networkSymbol,
+}) => {
     const [solanaBalances, setSolanaBalances] = useState([])
     const [ethereumBalances, setEthereumBalances] = useState([])
     useEffect(() => {
@@ -37,6 +42,14 @@ export const useGetTokens = ({ wallets, portfolio, network }) => {
             (wallet) => wallet.name === 'Ethereum' || wallet.name === 'Solana'
         )
     }, [solanaBalances, ethereumBalances])
+    const networkPortfolio = useMemo(() => {
+        if (!networkSymbol) {
+            return
+        }
+        return [...solanaBalances, ...ethereumBalances].find(
+            (wallet) => wallet.symbol === networkSymbol
+        )
+    }, [solanaBalances, ethereumBalances, networkSymbol])
 
     const totalBalance = useMemo(() => {
         return [...solanaBalances, ...ethereumBalances].reduce(
@@ -53,6 +66,7 @@ export const useGetTokens = ({ wallets, portfolio, network }) => {
         ethereumBalances,
         balances,
         networkPortfolios,
+        networkPortfolio,
         totalBalance: floatAmountToNumber(totalBalance),
     }
 }

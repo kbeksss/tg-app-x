@@ -1,24 +1,25 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import {
-    Box,
-    Button,
-    IconButton,
-    InputAdornment,
-    Stack,
-    TextField,
-} from '@mui/material'
+import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
 import { NetworkSelect } from '@widgets'
 import { networks } from '@_mock/networks'
 import { BottomButton, Iconify } from '@shared/ui'
-import { copyToClipboard, notify } from '@shared/utils/functions'
+import { floatAmountToString, notify } from '@shared/utils/functions'
 import SendConfirmDialog from '@widgets/Send/ui/SendConfirmDialog.jsx'
-import { useNavigate } from 'react-router'
 import { paths } from '@pages/paths.js'
 import { useQueryParams } from '@shared/hooks/useQueryParams.js'
 import dayjs from 'dayjs'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useGetTokens } from '@shared/hooks/useGetTokens.js'
+import { useSelector } from 'react-redux'
+import {
+    useFetchAccountPortfolioQuery,
+    useSendEthereumMutation,
+    useSendSolanaMutation,
+} from '@shared/api/services/index.js'
 
 const Send = () => {
+    const [sendEthereum] = useSendEthereumMutation()
+    const [sendSolana] = useSendSolanaMutation()
     const { tg } = useTg()
     const { navigateWithParams } = useQueryParams()
     const [dialogOpen, setDialogOpen] = useState(false)
@@ -42,7 +43,17 @@ const Send = () => {
             notify({ type: 'error', msg: 'Please enter data' })
         }
     }
-    const sendSuccess = () => {
+    const sendSuccess = async () => {
+        let res
+        if (networkSymbol === 'ETH') {
+            res = await sendEthereum({ address: receiverAddress })
+        } else {
+            res = await sendSolana({ address: receiverAddress })
+        }
+        if (res?.error) {
+            notify({ type: 'error', msg: res?.error?.data?.message })
+            return
+        }
         navigateWithParams(paths.sendSuccess, {
             date: dayjs().format('MMM D, YYYY [at] h:mmA'),
             total: `${sum} ${networkSymbol}`,
@@ -70,6 +81,20 @@ const Send = () => {
             tg.offEvent('qrTextReceived', handleQrTextReceived)
         }
     }, [tg])
+
+    const account = useSelector((state) => state.account)
+    const { data } = useFetchAccountPortfolioQuery()
+
+    const { networkPortfolio } = useGetTokens({
+        wallets: account?.Wallets,
+        portfolio: data?.portfolio,
+        networkSymbol: networkSymbol,
+    })
+    useEffect(() => {
+        if (networkPortfolio) {
+            setSum(floatAmountToString(networkPortfolio.holdings))
+        }
+    }, [networkPortfolio])
     return (
         <Box sx={{ px: 2, pt: 3 }}>
             <Stack alignItems='center'>
@@ -108,6 +133,7 @@ const Send = () => {
                 <TextField
                     label={'Sum'}
                     value={sum}
+                    disabled
                     type={'number'}
                     slotProps={{
                         input: {
@@ -118,7 +144,6 @@ const Send = () => {
                             ),
                         },
                     }}
-                    onChange={(e) => setSum(e.target.value)}
                 />
             </Stack>
             <SendConfirmDialog
