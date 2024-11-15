@@ -6,8 +6,11 @@ import { tokens } from '@_mock/currency.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
+import SellTokens from '@widgets/SellTokens/index.jsx'
 
 const Home = () => {
+    const [sellingToken, setSellingToken] = useState(null)
+    const [sendDialogOpen, setSendDialogOpen] = useState(false)
     const { data } = useFetchAccountPortfolioQuery()
     const [network, setNetwork] = useState('')
     const account = useSelector((state) => state.account)
@@ -16,6 +19,13 @@ const Home = () => {
         portfolio: data?.portfolio,
         network,
     })
+    const openSendDialog = () => {
+        setSendDialogOpen(true)
+    }
+    const openSellDialog = (token) => {
+        setSellingToken(token)
+        console.log('token', token)
+    }
     return (
         <Box sx={{ py: 1.5 }}>
             <Stack alignItems={'center'}>
@@ -28,8 +38,17 @@ const Home = () => {
                 <Operate />
             </Box>
             <Box sx={{ px: 2 }}>
-                <TokenList tokens={balances} />
+                <TokenList
+                    openSendDialog={openSendDialog}
+                    openSellDialog={openSellDialog}
+                    tokens={balances}
+                />
             </Box>
+            <SellTokens
+                sellingToken={sellingToken}
+                open={!!sellingToken}
+                onClose={() => setSellingToken(null)}
+            />
         </Box>
     )
 }

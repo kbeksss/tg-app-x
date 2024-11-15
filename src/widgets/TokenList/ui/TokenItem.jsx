@@ -1,6 +1,7 @@
 import React from 'react'
 import { Avatar, Box, Grid2 as Grid, Stack, Typography } from '@mui/material'
 import { floatAmountToString } from '@shared/utils/functions'
+import { networks } from '@_mock/networks.js'
 
 const TokenItem = ({
     currencyCode,
@@ -8,10 +9,18 @@ const TokenItem = ({
     currencyPrice,
     amountInWallet,
     balanceInDollars,
+    openSellDialog,
+    openSendDialog,
     icon,
 }) => {
+    const handleOpenDialog = () => {
+        const isNetwork = networks.find((n) => n.symbol === currencyCode)
+        console.log('isNetwork', isNetwork)
+        isNetwork ? openSendDialog() : openSellDialog()
+    }
     return (
         <Box
+            onClick={handleOpenDialog}
             sx={{
                 borderRadius: '16px',
                 px: 2,
