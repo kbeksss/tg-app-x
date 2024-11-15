@@ -50,7 +50,10 @@ const SellTokens = ({ open, onClose, sellingToken }) => {
                 </Box>
                 <Stack spacing={1}>
                     <Button variant={'contained'}>Sell everything</Button>
-                    <Button variant={'contained'} color={'secondary'}>
+                    <Button
+                        onClick={onClose}
+                        variant={'contained'}
+                        color={'secondary'}>
                         Cancel
                     </Button>
                 </Stack>

@@ -9,18 +9,12 @@ const TokenItem = ({
     currencyPrice,
     amountInWallet,
     balanceInDollars,
-    openSellDialog,
-    openSendDialog,
+    openDialog,
     icon,
 }) => {
-    const handleOpenDialog = () => {
-        const isNetwork = networks.find((n) => n.symbol === currencyCode)
-        console.log('isNetwork', isNetwork)
-        isNetwork ? openSendDialog() : openSellDialog()
-    }
     return (
         <Box
-            onClick={handleOpenDialog}
+            onClick={openDialog}
             sx={{
                 borderRadius: '16px',
                 px: 2,

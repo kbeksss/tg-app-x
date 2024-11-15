@@ -1,16 +1,16 @@
 import React, { useMemo, useState } from 'react'
 import { Box, Stack } from '@mui/material'
-import { Balance, NetworkSelect, TokenList } from '@widgets'
+import { Balance, NetworkSelect, SellTokens, TokenList } from '@widgets'
 import Operate from './ui/Operate'
 import { tokens } from '@_mock/currency.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
-import SellTokens from '@widgets/SellTokens/index.jsx'
+import SendConfirm from './ui/SendConfirm.jsx'
 
 const Home = () => {
     const [sellingToken, setSellingToken] = useState(null)
-    const [sendDialogOpen, setSendDialogOpen] = useState(false)
+    const [sendingToken, setSendingToken] = useState(null)
     const { data } = useFetchAccountPortfolioQuery()
     const [network, setNetwork] = useState('')
     const account = useSelector((state) => state.account)
@@ -19,12 +19,12 @@ const Home = () => {
         portfolio: data?.portfolio,
         network,
     })
-    const openSendDialog = () => {
-        setSendDialogOpen(true)
-    }
-    const openSellDialog = (token) => {
-        setSellingToken(token)
-        console.log('token', token)
+    const openDialog = (token) => {
+        if (token.symbol === 'ETH' || token.symbol === 'SOL') {
+            setSendingToken(token)
+        } else {
+            setSellingToken(token)
+        }
     }
     return (
         <Box sx={{ py: 1.5 }}>
@@ -38,16 +38,17 @@ const Home = () => {
                 <Operate />
             </Box>
             <Box sx={{ px: 2 }}>
-                <TokenList
-                    openSendDialog={openSendDialog}
-                    openSellDialog={openSellDialog}
-                    tokens={balances}
-                />
+                <TokenList openDialog={openDialog} tokens={balances} />
             </Box>
             <SellTokens
                 sellingToken={sellingToken}
                 open={!!sellingToken}
                 onClose={() => setSellingToken(null)}
+            />
+            <SendConfirm
+                sendingToken={sendingToken}
+                open={!!sendingToken}
+                onClose={() => setSendingToken(null)}
             />
         </Box>
     )
