@@ -23,7 +23,9 @@ const RecItem = ({ image, author, date, text }) => {
                     </Typography>
                 </Grid2>
             </Grid2>
-            <Typography sx={{ mt: 2 }}>{text}</Typography>
+            <Typography sx={{ mt: 2, wordWrap: 'break-word' }}>
+                {text}
+            </Typography>
         </Box>
     )
 }
