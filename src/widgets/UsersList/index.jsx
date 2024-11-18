@@ -1,16 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Box, Divider, Stack } from '@mui/material'
 import UserItem from './ui/UserItem'
-import { myUsers, users } from '@_mock/users.js'
 import { useNavigate } from 'react-router-dom'
 import { paths } from '@pages/paths.js'
+import {
+    useFetchUsersQuery,
+    useFollowUserMutation,
+    useUnfollowUserMutation,
+} from '@shared/api/services/index.js'
 
 const UsersList = ({ myList = true }) => {
+    const { data } = useFetchUsersQuery({ myKol: myList })
+    const [followUser] = useFollowUserMutation()
+    const [unfollowUser] = useUnfollowUserMutation()
+    console.log('data', data)
+    const subscribeToggle = async (id) => {
+        let res
+        if (myList) {
+            res = await unfollowUser({ id })
+        } else {
+            res = await followUser({ id })
+        }
+        console.log('res', res)
+    }
     const navigate = useNavigate()
-    const [userList, setUsersList] = useState(myUsers)
-    useEffect(() => {
-        setUsersList(myList ? myUsers : users)
-    }, [myList])
     return (
         <Stack
             spacing={2}
@@ -21,12 +34,14 @@ const UsersList = ({ myList = true }) => {
                     sx={{ width: 'calc(100% - 66px)', ml: 'auto!important' }}
                 />
             }>
-            {userList.map((user) => (
+            {data?.kols.map((user) => (
                 <UserItem
                     key={user.id}
+                    image={user.image}
                     onClick={() => navigate(`${paths.userProfile}/${user.id}`)}
                     subscribed={myList}
                     username={user.username}
+                    onSubscribeToggle={() => subscribeToggle(user.id)}
                 />
             ))}
         </Stack>
