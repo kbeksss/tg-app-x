@@ -20,3 +20,7 @@ export const USER_URL = '/api/v1/kol'
 export const USERS_URL = '/api/v1/kol/all'
 export const USER_FOLLOW_URL = '/api/v1/kol/follow'
 export const USER_UNFOLLOW_URL = '/api/v1/kol/unfollow'
+
+
+export const SCRAPER_TWEET_URL = '/api/v1/tweet'
+export const SCRAPER_TWEETS_URL = '/api/v1/tweet/all'

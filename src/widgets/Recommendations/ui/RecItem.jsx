@@ -1,7 +1,10 @@
 import React from 'react'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import { Avatar, Box, Grid2, Typography } from '@mui/material'
+dayjs.extend(relativeTime)
 
-const RecItem = () => {
+const RecItem = ({ image, author, date, text }) => {
     return (
         <Box
             sx={{
@@ -11,19 +14,16 @@ const RecItem = () => {
             }}>
             <Grid2 spacing={'14px'} container>
                 <Grid2>
-                    <Avatar src={'/assets/images/ana_de.jpeg'}></Avatar>
+                    <Avatar src={image} />
                 </Grid2>
                 <Grid2>
-                    <Typography fontWeight={500}>Watcher Guru</Typography>
+                    <Typography fontWeight={500}>{author}</Typography>
                     <Typography variant={'body2'} color={'text.secondary'}>
-                        8 h. ago
+                        {dayjs(date).fromNow()}
                     </Typography>
                 </Grid2>
             </Grid2>
-            <Typography sx={{ mt: 2 }}>
-                i think WILL DO GREAT 0x6982508145454ce325ddbe47a25d4ec3d2311933
-                $BEBEPEPE
-            </Typography>
+            <Typography sx={{ mt: 2 }}>{text}</Typography>
         </Box>
     )
 }

@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { rootReducer } from './reducers'
-import {accountApi, authApi, usersApi} from '@shared/api/services'
+import { accountApi, authApi, usersApi } from '@shared/api/services'
+import { tweetsApi } from '@shared/api/services/tweetsService.js'
 
 export const store = configureStore({
     reducer: rootReducer,
@@ -11,6 +12,7 @@ export const store = configureStore({
         }).concat(
             authApi.middleware,
             accountApi.middleware,
-            usersApi.middleware
+            usersApi.middleware,
+            tweetsApi.middleware
         ),
 })

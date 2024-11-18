@@ -1,8 +1,20 @@
 import axios from 'axios'
-import { ACCESS_TOKEN, BACK_API_KEY, BASE_URL } from '@shared/config'
+import {
+    ACCESS_TOKEN,
+    BACK_API_KEY,
+    BASE_URL,
+    SCRAPER_URL,
+} from '@shared/config'
 
 const axiosRequest = axios.create({
     baseURL: BASE_URL,
+    headers: {
+        'X-API-KEY': BACK_API_KEY,
+    },
+})
+
+const axiosScraperRequest = axios.create({
+    baseURL: SCRAPER_URL,
     headers: {
         'X-API-KEY': BACK_API_KEY,
     },
@@ -48,4 +60,7 @@ getInterceptorRequest(axiosRequest)
 
 getInterceptorResponse(axiosRequestClean)
 
-export { axiosRequest, axiosRequestClean }
+getInterceptorResponse(axiosScraperRequest)
+getInterceptorRequest(axiosScraperRequest)
+
+export { axiosRequest, axiosRequestClean, axiosScraperRequest }

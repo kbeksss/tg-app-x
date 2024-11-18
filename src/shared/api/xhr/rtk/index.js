@@ -1,5 +1,5 @@
 import { Mutex } from 'async-mutex'
-import { axiosRequest } from '../axios'
+import { axiosRequest, axiosScraperRequest } from '../axios'
 import { BASE_URL } from '@shared/config'
 import { authActions } from '@app/entities/auth/model'
 import { createApi } from '@reduxjs/toolkit/query/react'
@@ -9,6 +9,17 @@ const mutex = new Mutex()
 const axiosBaseQuery = async ({ url, method, data, params }) => {
     try {
         const result = await axiosRequest({ url, method, data, params })
+        return result
+    } catch (axiosError) {
+        return {
+            error: axiosError.response,
+        }
+    }
+}
+
+const scraperAxiosBaseQuery = async ({ url, method, data, params }) => {
+    try {
+        const result = await axiosScraperRequest({ url, method, data, params })
         return result
     } catch (axiosError) {
         return {
@@ -72,5 +83,11 @@ export const baseQueryWithReAuth = async (args, api) => {
 export const baseQuery = baseQueryWithReAuth
 export const baseApi = createApi({
     baseQuery,
+    endpoints: () => ({}),
+})
+
+export const scraperApi = createApi({
+    reducerPath: 'scraper',
+    baseQuery: scraperAxiosBaseQuery,
     endpoints: () => ({}),
 })

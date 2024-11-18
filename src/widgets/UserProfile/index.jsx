@@ -14,6 +14,7 @@ import {
 } from '@shared/api/services/index.js'
 import { useSelector } from 'react-redux'
 import { notify } from '@shared/utils/functions/index.js'
+import { useFetchTweetsQuery } from '@shared/api/services/tweetsService.js'
 
 const UserProfile = () => {
     const navigate = useNavigate()
@@ -23,6 +24,11 @@ const UserProfile = () => {
         useUnfollowUserMutation()
     const account = useSelector((state) => state.account)
     const { data: user } = useFetchUserQuery({ id })
+    const { data: tweetsData } = useFetchTweetsQuery(
+        { username: user?.username },
+        { skip: !user }
+    )
+    console.log('tweets', tweetsData)
     const isSubscribed = useMemo(() => {
         return user
             ? !!user?.Followers.find((u) => u.accountId === account?.id)
@@ -61,7 +67,10 @@ const UserProfile = () => {
             </Box>
             <Divider sx={{ mt: 1, mb: 3, borderColor: 'rgba(0,0,0,0.3)' }} />
             <Box sx={{ px: 2 }}>
-                <Recommendations />
+                <Recommendations
+                    tweets={tweetsData?.tweets}
+                    avatarImg={user?.image}
+                />
             </Box>
             <ConfirmSubscribe
                 onConfirm={onConfirmSubscribe}
