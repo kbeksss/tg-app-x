@@ -12,19 +12,24 @@ const Recommendations = ({ avatarImg, username }) => {
     const [fetchTweets] = useLazyFetchTweetsQuery()
 
     const loadMore = async () => {
-        const response = await fetchTweets({
-            limit,
-            offset,
-            username: username,
-        }).unwrap()
-        const newTweets = response.tweets
+        try {
+            const response = await fetchTweets({
+                limit,
+                offset,
+                username,
+            }).unwrap()
+            const newTweets = response.tweets
 
-        setTweets(newTweets)
-        if (newTweets.length < limit) {
+            setTweets((prevTweets) => [...prevTweets, ...newTweets])
+            if (newTweets.length < limit) {
+                setHasMore(false)
+            }
+
+            setOffset((prev) => prev + limit)
+        } catch (error) {
+            console.error('Failed to fetch tweets:', error)
             setHasMore(false)
         }
-
-        setOffset((prev) => prev + limit)
     }
 
     useEffect(() => {
@@ -38,6 +43,7 @@ const Recommendations = ({ avatarImg, username }) => {
             dataLength={tweets.length}
             next={loadMore}
             hasMore={hasMore}
+            scrollableTarget='scrollableDiv'
             loader={<h4>Loading...</h4>}>
             <Stack spacing={2}>
                 {tweets?.map((tweet) => (
