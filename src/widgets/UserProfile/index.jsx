@@ -7,22 +7,39 @@ import { useParams } from 'react-router'
 import { users } from '@_mock/users.js'
 import { useNavigate } from 'react-router-dom'
 import { paths } from '@pages/paths.js'
+import {
+    useFetchUserQuery,
+    useFollowUserMutation,
+    useUnfollowUserMutation,
+} from '@shared/api/services/index.js'
+import { useSelector } from 'react-redux'
+import { notify } from '@shared/utils/functions/index.js'
 
 const UserProfile = () => {
     const navigate = useNavigate()
     const { id } = useParams()
-    console.log('id', id)
-    const user = useMemo(() => {
-        return users.find((u) => u.id === id)
-    }, [id])
-    console.log('user', user)
+    const [followUser, { isLoading: followLoading }] = useFollowUserMutation()
+    const [unfollowUser, { isLoading: unfollowLoading }] =
+        useUnfollowUserMutation()
+    const account = useSelector((state) => state.account)
+    const { data: user } = useFetchUserQuery({ id })
+    const isSubscribed = useMemo(() => {
+        return user
+            ? !!user?.Followers.find((u) => u.accountId === account?.id)
+            : false
+    }, [user, account])
     const [isConfirmSubscribe, setIsConfirmSubscribe] = useState(false)
-    const [subscribed, setSubscribed] = useState(false)
-    const toggleSubscribe = () => {
-        subscribed ? setSubscribed(false) : setIsConfirmSubscribe(true)
+    const toggleSubscribe = async () => {
+        isSubscribed
+            ? await unfollowUser({ id: user.id })
+            : setIsConfirmSubscribe(true)
     }
-    const onConfirmSubscribe = () => {
-        setSubscribed(true)
+    const onConfirmSubscribe = async () => {
+        const { error } = await followUser({ id: user.id })
+        if (error) {
+            notify({ type: 'error', msg: 'Follow error' })
+            return
+        }
         setIsConfirmSubscribe(false)
         navigate(`${paths.userSubscribeSuccess}/${id}`)
     }
@@ -30,9 +47,11 @@ const UserProfile = () => {
         <Box>
             {user && (
                 <UserInfo
+                    image={user.image}
                     username={user.username}
                     name={user.name}
-                    subscribed={subscribed}
+                    toggleDisabled={followLoading || unfollowLoading}
+                    subscribed={isSubscribed}
                     toggleSubscribe={toggleSubscribe}
                 />
             )}

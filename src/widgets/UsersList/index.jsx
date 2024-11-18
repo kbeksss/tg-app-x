@@ -13,7 +13,6 @@ const UsersList = ({ myList = true }) => {
     const { data } = useFetchUsersQuery({ myKol: myList })
     const [followUser] = useFollowUserMutation()
     const [unfollowUser] = useUnfollowUserMutation()
-    console.log('data', data)
     const subscribeToggle = async (id) => {
         let res
         if (myList) {

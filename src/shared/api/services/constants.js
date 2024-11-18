@@ -16,6 +16,7 @@ export const ACCOUNT_SELL_SOLANA = '/api/v1/wallet/sell/solana'
 export const ACCOUNT_TRANSACTIONS_URL = '/api/v1/account/transaction'
 export const ACCOUNT_TRANSACTION_URL = '/api/v1/account/transaction/hash'
 
+export const USER_URL = '/api/v1/kol'
 export const USERS_URL = '/api/v1/kol/all'
 export const USER_FOLLOW_URL = '/api/v1/kol/follow'
 export const USER_UNFOLLOW_URL = '/api/v1/kol/unfollow'
