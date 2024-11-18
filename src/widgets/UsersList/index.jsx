@@ -8,19 +8,26 @@ import {
     useFollowUserMutation,
     useUnfollowUserMutation,
 } from '@shared/api/services/index.js'
+import { notify } from '@shared/utils/functions'
 
 const UsersList = ({ myList = true }) => {
-    const { data } = useFetchUsersQuery({ myKol: myList })
-    const [followUser] = useFollowUserMutation()
-    const [unfollowUser] = useUnfollowUserMutation()
-    const subscribeToggle = async (id) => {
-        let res
-        if (myList) {
-            res = await unfollowUser({ id })
-        } else {
-            res = await followUser({ id })
+    const { data, isLoading: listLoading } = useFetchUsersQuery({
+        myKol: myList,
+    })
+    const [followUser, { isLoading: followLoading }] = useFollowUserMutation()
+    const [unfollowUser, { isLoading: unfollowLoading }] =
+        useUnfollowUserMutation()
+    const onUnfollowUser = async (id) => {
+        const { error } = await unfollowUser({ id })
+        if (error) {
+            notify({ type: 'error', msg: "Couldn't unfollow" })
         }
-        console.log('res', res)
+    }
+    const onFollowUser = async (id) => {
+        const { error } = await followUser({ id })
+        if (error) {
+            notify({ type: 'error', msg: "Couldn't unfollow" })
+        }
     }
     const navigate = useNavigate()
     return (
@@ -39,8 +46,12 @@ const UsersList = ({ myList = true }) => {
                     image={user.image}
                     onClick={() => navigate(`${paths.userProfile}/${user.id}`)}
                     subscribed={myList}
+                    buttonDisabled={
+                        followLoading || unfollowLoading || listLoading
+                    }
                     username={user.username}
-                    onSubscribeToggle={() => subscribeToggle(user.id)}
+                    onUnfollow={() => onUnfollowUser(user.id)}
+                    onFollow={() => onFollowUser(user.id)}
                 />
             ))}
         </Stack>

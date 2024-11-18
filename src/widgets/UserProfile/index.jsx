@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Box, Divider, Typography } from '@mui/material'
 import UserInfo from './ui/UserInfo.jsx'
 import { Recommendations } from '@widgets'
-import ConfirmSubscribe from './ui/ConfirmSubscribe.jsx'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 import { paths } from '@pages/paths.js'
@@ -13,6 +12,7 @@ import {
 } from '@shared/api/services/index.js'
 import { useSelector } from 'react-redux'
 import { notify } from '@shared/utils/functions/index.js'
+import {ConfirmSubscribe} from "@features";
 
 const UserProfile = () => {
     const navigate = useNavigate()

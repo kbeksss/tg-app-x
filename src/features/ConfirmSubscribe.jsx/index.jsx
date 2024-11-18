@@ -14,7 +14,8 @@ const ConfirmSubscribe = ({ open, onClose, onConfirm }) => {
             <DialogTitle>Are you sure you want to subscribe?</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    If you don't subscribe you are gay
+                    After subscribing, automatic purchases will be made based on
+                    this user's recommendations.
                 </DialogContentText>
                 <Stack sx={{ mt: 4 }} spacing={1}>
                     <Button variant={'contained'} onClick={onConfirm}>
