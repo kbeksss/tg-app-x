@@ -9,9 +9,11 @@ import {
     ACCOUNT_SEND_SOLANA,
     ACCOUNT_SOLANA_CONFIG,
     ACCOUNT_SOLANA_TRADE_TOGGLE,
-    ACCOUNT_TRANSACTION_URL, ACCOUNT_TRANSACTIONS_URL,
+    ACCOUNT_TRANSACTION_URL,
+    ACCOUNT_TRANSACTIONS_URL,
     ACCOUNT_URL,
 } from './constants'
+import { toLamports, toWei } from '@shared/utils/functions/index.js'
 
 export const accountApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
@@ -47,19 +49,25 @@ export const accountApi = baseApi.injectEndpoints({
             invalidatesTags: [{ type: 'Account' }],
         }),
         postEthereumConfig: build.mutation({
-            query: (body) => ({
-                url: ACCOUNT_ETHEREUM_CONFIG,
-                method: 'POST',
-                body,
-            }),
+            query: ({ value }) => {
+                const transformedValue = toWei(value)
+                return {
+                    url: ACCOUNT_ETHEREUM_CONFIG,
+                    method: 'POST',
+                    body: { value: transformedValue },
+                }
+            },
             invalidatesTags: [{ type: 'Account' }],
         }),
         postSolanaConfig: build.mutation({
-            query: (body) => ({
-                url: ACCOUNT_SOLANA_CONFIG,
-                method: 'POST',
-                body,
-            }),
+            query: ({ value }) => {
+                const transformedValue = toLamports(value)
+                return {
+                    url: ACCOUNT_SOLANA_CONFIG,
+                    method: 'POST',
+                    body: { value: transformedValue },
+                }
+            },
             invalidatesTags: [{ type: 'Account' }],
         }),
         sendEthereum: build.mutation({
@@ -124,5 +132,5 @@ export const {
     useSellSolanaMutation,
     useFetchTransactionsQuery,
     useLazyFetchTransactionsQuery,
-    useFetchTransactionQuery
+    useFetchTransactionQuery,
 } = accountApi
