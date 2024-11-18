@@ -13,7 +13,11 @@ import {
     ACCOUNT_TRANSACTIONS_URL,
     ACCOUNT_URL,
 } from './constants'
-import { toLamports, toWei } from '@shared/utils/functions/index.js'
+import {
+    convertToSmallestUnit,
+    toLamports,
+    toWei,
+} from '@shared/utils/functions/index.js'
 
 export const accountApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
@@ -50,7 +54,7 @@ export const accountApi = baseApi.injectEndpoints({
         }),
         postEthereumConfig: build.mutation({
             query: ({ value }) => {
-                const transformedValue = toWei(value)
+                const transformedValue = convertToSmallestUnit(value, 'ETH')
                 return {
                     url: ACCOUNT_ETHEREUM_CONFIG,
                     method: 'POST',
@@ -61,7 +65,7 @@ export const accountApi = baseApi.injectEndpoints({
         }),
         postSolanaConfig: build.mutation({
             query: ({ value }) => {
-                const transformedValue = toLamports(value)
+                const transformedValue = convertToSmallestUnit(value, 'SOL')
                 return {
                     url: ACCOUNT_SOLANA_CONFIG,
                     method: 'POST',

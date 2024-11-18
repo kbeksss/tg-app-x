@@ -12,6 +12,7 @@ import {
     useToggleSolanaTradeMutation,
 } from '@shared/api/services'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
+import { convertToLargestUnit } from '@shared/utils/functions/index.js'
 
 const NetworkSettingsPage = () => {
     const { network: networkSymbol } = useParams()
@@ -40,7 +41,10 @@ const NetworkSettingsPage = () => {
         if (!account) {
             return ''
         }
-        return account[`${networkSymbol.toLowerCase()}Config`]
+        return convertToLargestUnit(
+            account[`${networkSymbol.toLowerCase()}Config`],
+            networkSymbol
+        )
     }, [account, networkSymbol])
     const toggleSumbit = useCallback(async () => {
         console.log('aa')
