@@ -13,11 +13,7 @@ import {
     ACCOUNT_TRANSACTIONS_URL,
     ACCOUNT_URL,
 } from './constants'
-import {
-    convertToSmallestUnit,
-    toLamports,
-    toWei,
-} from '@shared/utils/functions/index.js'
+import { convertToSmallestUnit } from '@shared/utils/functions/index.js'
 
 export const accountApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
