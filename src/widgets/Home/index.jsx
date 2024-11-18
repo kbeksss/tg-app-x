@@ -11,7 +11,9 @@ import SendConfirm from './ui/SendConfirm.jsx'
 const Home = () => {
     const [sellingToken, setSellingToken] = useState(null)
     const [sendingToken, setSendingToken] = useState(null)
-    const { data } = useFetchAccountPortfolioQuery()
+    const { data } = useFetchAccountPortfolioQuery(undefined, {
+        refetchOnMountOrArgChange: true,
+    })
     const [network, setNetwork] = useState('')
     const account = useSelector((state) => state.account)
     const { balances, totalBalance } = useGetTokens({
