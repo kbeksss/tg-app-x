@@ -49,7 +49,7 @@ const UserProfile = () => {
                 <UserInfo
                     image={user.image}
                     username={user.username}
-                    name={user.name}
+                    name={user?.name}
                     toggleDisabled={followLoading || unfollowLoading}
                     subscribed={isSubscribed}
                     toggleSubscribe={toggleSubscribe}
