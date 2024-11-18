@@ -1,20 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Stack } from '@mui/material'
 import RecItem from './ui/RecItem.jsx'
+import { useLazyFetchTweetsQuery } from '@shared/api/services/tweetsService.js'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
-const Recommendations = ({ tweets, avatarImg }) => {
+const Recommendations = ({ avatarImg, username }) => {
+    const [tweets, setTweets] = useState([])
+    const [offset, setOffset] = useState(0)
+    const [hasMore, setHasMore] = useState(true)
+    const limit = 10
+    const [fetchTweets] = useLazyFetchTweetsQuery()
+
+    const loadMore = async () => {
+        const response = await fetchTweets({
+            limit,
+            offset,
+            username: username,
+        }).unwrap()
+        const newTweets = response.tweets
+
+        setTweets(newTweets)
+        if (newTweets.length < limit) {
+            setHasMore(false)
+        }
+
+        setOffset((prev) => prev + limit)
+    }
+
+    useEffect(() => {
+        if (!username) {
+            return
+        }
+        loadMore()
+    }, [username])
     return (
-        <Stack spacing={2}>
-            {tweets?.map((tweet) => (
-                <RecItem
-                    key={tweet.id}
-                    image={avatarImg}
-                    text={tweet.text}
-                    author={tweet.name}
-                    date={tweet.created_at}
-                />
-            ))}
-        </Stack>
+        <InfiniteScroll
+            dataLength={tweets.length}
+            next={loadMore}
+            hasMore={hasMore}
+            loader={<h4>Loading...</h4>}>
+            <Stack spacing={2}>
+                {tweets?.map((tweet) => (
+                    <RecItem
+                        key={tweet.id}
+                        image={avatarImg}
+                        text={tweet.text}
+                        author={tweet.name}
+                        date={tweet.created_at}
+                    />
+                ))}
+            </Stack>
+        </InfiniteScroll>
     )
 }
 

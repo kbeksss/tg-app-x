@@ -20,4 +20,8 @@ export const tweetsApi = scraperApi.injectEndpoints({
     }),
 })
 
-export const { useFetchTweetQuery, useFetchTweetsQuery } = tweetsApi
+export const {
+    useFetchTweetQuery,
+    useFetchTweetsQuery,
+    useLazyFetchTweetsQuery,
+} = tweetsApi
