@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import TradeItem from './ui/TradeItem.jsx'
 import { tradeItems } from '@_mock/trade.js'
 import { useNavigate } from 'react-router-dom'
@@ -14,7 +14,7 @@ const TradeList = () => {
     const [hasMore, setHasMore] = useState(true)
     const limit = 10
 
-    const [fetchTransactions] = useLazyFetchTransactionsQuery()
+    const [fetchTransactions, { isSuccess }] = useLazyFetchTransactionsQuery()
 
     const loadMore = async () => {
         const response = await fetchTransactions({ limit, offset }).unwrap()
@@ -49,30 +49,42 @@ const TradeList = () => {
     }, [])
     const navigate = useNavigate()
     return (
-        <Box sx={{ px: 2 }}>
-            <InfiniteScroll
-                dataLength={transactions.length}
-                next={loadMore}
-                hasMore={hasMore}
-                loader={<h4>Loading...</h4>}>
-                {transactions.map((transaction, index) => (
-                    <Box
-                        key={index}
-                        sx={{ mb: 3 }}
-                        onClick={() =>
-                            navigate(`${paths.trade}/${transaction.hash}`)
-                        }>
-                        <TradeItem
-                            tokenIcon={transaction.Token.image}
-                            networkIcon={transaction.networkIcon}
-                            tokenCode={transaction.Token.symbol}
-                            date={transaction.createdAt}
-                            type={transaction.type}
-                            amount={transaction.amount}
-                        />
-                    </Box>
-                ))}
-            </InfiniteScroll>
+        <Box sx={{ px: 2, height: 'calc(100vh - 120px)' }}>
+            {isSuccess && !transactions.length ? (
+                <Stack
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                    sx={{ height: '100%' }}>
+                    <Typography variant={'h5'}>No Transactions :(</Typography>
+                    <Typography color={'text.secondary'} align={'center'}>
+                        You haven't made any transactions yet
+                    </Typography>
+                </Stack>
+            ) : (
+                <InfiniteScroll
+                    dataLength={transactions.length}
+                    next={loadMore}
+                    hasMore={hasMore}
+                    loader={<h4>Loading...</h4>}>
+                    {transactions.map((transaction, index) => (
+                        <Box
+                            key={index}
+                            sx={{ mb: 3 }}
+                            onClick={() =>
+                                navigate(`${paths.trade}/${transaction.hash}`)
+                            }>
+                            <TradeItem
+                                tokenIcon={transaction.Token.image}
+                                networkIcon={transaction.networkIcon}
+                                tokenCode={transaction.Token.symbol}
+                                date={transaction.createdAt}
+                                type={transaction.type}
+                                amount={transaction.amount}
+                            />
+                        </Box>
+                    ))}
+                </InfiniteScroll>
+            )}
         </Box>
     )
 }
