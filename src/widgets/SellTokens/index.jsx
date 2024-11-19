@@ -39,7 +39,7 @@ const SellTokens = ({ open, onClose, sellingToken }) => {
             <DialogTitle>Sell confirmation:</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Are you ready to complete this sale
+                    Are you ready to complete this sale?
                 </DialogContentText>
                 <DialogContentText sx={{ fontWeight: 600 }}>
                     1 {sellingToken?.symbol} = $
