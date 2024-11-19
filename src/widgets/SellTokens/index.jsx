@@ -36,9 +36,12 @@ const SellTokens = ({ open, onClose, sellingToken }) => {
     }
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Sell your tokens</DialogTitle>
+            <DialogTitle>Sell confirmation:</DialogTitle>
             <DialogContent>
                 <DialogContentText>
+                    Are you ready to complete this sale
+                </DialogContentText>
+                <DialogContentText sx={{ fontWeight: 500 }}>
                     1 {sellingToken?.symbol} = $
                     {floatAmountToString(sellingToken?.balance)}
                 </DialogContentText>
