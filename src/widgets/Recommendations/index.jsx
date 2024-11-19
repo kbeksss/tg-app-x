@@ -16,7 +16,7 @@ const Recommendations = ({ avatarImg, username }) => {
             const response = await fetchTweets({
                 limit,
                 offset,
-                sort: 'fetched_at',
+                sort: 'created_at',
                 direction: 'desc',
                 username,
             }).unwrap()

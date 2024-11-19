@@ -2,10 +2,12 @@ import React from 'react'
 import { Box, InputAdornment, TextField } from '@mui/material'
 import { Iconify } from '@shared/ui'
 
-const Search = () => {
+const Search = ({ value, setValue }) => {
     return (
         <TextField
             fullWidth
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
             placeholder={'Search'}
             variant='outlined'
             slotProps={{
@@ -26,7 +28,7 @@ const Search = () => {
                 '& .MuiOutlinedInput-root': {
                     background: '#F4F4F6',
                     height: 42,
-                    borderRadius: '16px'
+                    borderRadius: '16px',
                 },
             }}
         />

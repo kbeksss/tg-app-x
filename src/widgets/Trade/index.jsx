@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Box, Grid2, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Button, Grid2, Stack, Typography } from '@mui/material'
 import { BottomButton, Iconify, NestedAvatars } from '@shared/ui'
 import dayjs from 'dayjs'
 
@@ -66,6 +66,20 @@ const Trade = ({ trade, networkIcon }) => {
                         <Typography>Successful</Typography>
                     </Stack>
                 </Box>
+                <Button
+                    sx={{ mt: 3, border: '1px dashed #707579' }}
+                    fullWidth
+                    variant={'outlined'}
+                    component='a'
+                    href={
+                        trade?.network === 'SOLANA'
+                            ? `https://solscan.io/tx/${trade?.hash}`
+                            : `https://etherscan.io/tx/${trade?.hash}`
+                    }
+                    target='_blank'
+                    rel='noopener noreferrer'>
+                    Check explorer
+                </Button>
             </Box>
             {trade.type === 'BUY' && (
                 <BottomButton label={'Sell'} withToolbar />

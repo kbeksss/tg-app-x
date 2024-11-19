@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Divider, Stack } from '@mui/material'
+import { Box, Divider, Stack, Typography } from '@mui/material'
 import UserItem from './ui/UserItem'
 import { useNavigate } from 'react-router-dom'
 import { paths } from '@pages/paths.js'
@@ -10,9 +10,10 @@ import {
 } from '@shared/api/services/index.js'
 import { notify } from '@shared/utils/functions'
 
-const UsersList = ({ myList = true }) => {
+const UsersList = ({ search, myList = true }) => {
     const { data, isLoading: listLoading } = useFetchUsersQuery({
         myKol: myList,
+        search,
     })
     const [followUser, { isLoading: followLoading }] = useFollowUserMutation()
     const [unfollowUser, { isLoading: unfollowLoading }] =
@@ -30,7 +31,7 @@ const UsersList = ({ myList = true }) => {
         }
     }
     const navigate = useNavigate()
-    return (
+    return !!data?.kols?.length ? (
         <Stack
             spacing={2}
             divider={
@@ -54,6 +55,16 @@ const UsersList = ({ myList = true }) => {
                     onFollow={() => onFollowUser(user.id)}
                 />
             ))}
+        </Stack>
+    ) : (
+        <Stack
+            sx={{ height: '100%' }}
+            justifyContent={'center'}
+            alignItems={'center'}>
+            <Typography variant={'h5'}>No Subscriptions Yet!</Typography>
+            <Typography color={'text.secondary'}>
+                Click the 'Subcribe' button to add a favorite.
+            </Typography>
         </Stack>
     )
 }
