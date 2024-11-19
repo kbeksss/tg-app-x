@@ -9,6 +9,7 @@ import {
     useUnfollowUserMutation,
 } from '@shared/api/services/index.js'
 import { notify } from '@shared/utils/functions'
+import { Iconify } from '@shared/ui/index.js'
 
 const UsersList = ({ search, myList = true }) => {
     const { data, isLoading: listLoading } = useFetchUsersQuery({
@@ -61,10 +62,24 @@ const UsersList = ({ search, myList = true }) => {
             sx={{ height: '100%' }}
             justifyContent={'center'}
             alignItems={'center'}>
-            <Typography variant={'h5'}>No Subscriptions Yet!</Typography>
-            <Typography color={'text.secondary'}>
-                Click the 'Subcribe' button to add a favorite.
-            </Typography>
+            {search ? (
+                <>
+                    <img src='/assets/icons/utilities/not-found.png' alt='' />
+                    <Typography variant={'h5'}>Nothing was found :(</Typography>
+                    <Typography align={'center'} color={'text.secondary'}>
+                        Check the spelling and try to write again
+                    </Typography>
+                </>
+            ) : (
+                <>
+                    <Typography variant={'h5'}>
+                        No Subscriptions Yet!
+                    </Typography>
+                    <Typography color={'text.secondary'}>
+                        Click the 'Subcribe' button to add a favorite.
+                    </Typography>
+                </>
+            )}
         </Stack>
     )
 }
