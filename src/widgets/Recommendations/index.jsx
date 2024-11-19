@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Stack } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import RecItem from './ui/RecItem.jsx'
 import { useLazyFetchTweetsQuery } from '@shared/api/services/tweetsService.js'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -9,8 +9,7 @@ const Recommendations = ({ avatarImg, username }) => {
     const [offset, setOffset] = useState(0)
     const [hasMore, setHasMore] = useState(true)
     const limit = 10
-    const [fetchTweets] = useLazyFetchTweetsQuery()
-
+    const [fetchTweets, { isSuccess }] = useLazyFetchTweetsQuery()
     const loadMore = async () => {
         try {
             const response = await fetchTweets({
@@ -41,24 +40,40 @@ const Recommendations = ({ avatarImg, username }) => {
         loadMore()
     }, [username])
     return (
-        <InfiniteScroll
-            dataLength={tweets.length}
-            next={loadMore}
-            hasMore={hasMore}
-            scrollableTarget='scrollableDiv'
-            loader={<h4>Loading...</h4>}>
-            <Stack spacing={2}>
-                {tweets?.map((tweet) => (
-                    <RecItem
-                        key={tweet.id}
-                        image={avatarImg}
-                        text={tweet.text}
-                        author={tweet.name}
-                        date={tweet.created_at}
+        <>
+            {isSuccess && !tweets.length ? (
+                <Stack alignItems={'center'} sx={{ mt: '30px' }}>
+                    <img
+                        width={135}
+                        src='/assets/icons/utilities/no-posts.png'
+                        alt=''
                     />
-                ))}
-            </Stack>
-        </InfiniteScroll>
+                    <Typography variant={'h5'}>Nothing Yet :(</Typography>
+                    <Typography color={'text.secondary'}>
+                        The user has not posted anything yet
+                    </Typography>
+                </Stack>
+            ) : (
+                <InfiniteScroll
+                    dataLength={tweets.length}
+                    next={loadMore}
+                    hasMore={hasMore}
+                    scrollableTarget='scrollableDiv'
+                    loader={<h4>Loading...</h4>}>
+                    <Stack spacing={2}>
+                        {tweets?.map((tweet) => (
+                            <RecItem
+                                key={tweet.id}
+                                image={avatarImg}
+                                text={tweet.text}
+                                author={tweet.name}
+                                date={tweet.created_at}
+                            />
+                        ))}
+                    </Stack>
+                </InfiniteScroll>
+            )}
+        </>
     )
 }
 

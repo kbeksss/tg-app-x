@@ -66,7 +66,7 @@ const TradeList = () => {
                             tokenIcon={transaction.Token.image}
                             networkIcon={transaction.networkIcon}
                             tokenCode={transaction.Token.symbol}
-                            date={transaction.date}
+                            date={transaction.createdAt}
                             type={transaction.type}
                             amount={transaction.amount}
                         />
