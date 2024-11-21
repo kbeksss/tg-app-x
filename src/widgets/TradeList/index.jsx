@@ -1,55 +1,64 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Stack, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, CircularProgress, Stack, Typography } from '@mui/material'
 import TradeItem from './ui/TradeItem.jsx'
-import { tradeItems } from '@_mock/trade.js'
 import { useNavigate } from 'react-router-dom'
 import { paths } from '@pages/paths.js'
-import { useLazyFetchTransactionsQuery } from '@shared/api/services'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import { useIntersectionObserver, useQuery } from '@siberiacancode/reactuse'
+import { axiosRequest } from '@shared/api/xhr'
 import { networks } from '@_mock/networks.js'
 
 const TradeList = () => {
     const [transactions, setTransactions] = useState([])
     const [offset, setOffset] = useState(0)
     const [hasMore, setHasMore] = useState(true)
-    const limit = 10
+    const limit = 5
 
-    const [fetchTransactions, { isSuccess }] = useLazyFetchTransactionsQuery()
+    const { ref } = useIntersectionObserver({
+        threshold: 1,
+        onChange: (entry) => {
+            if (entry.isIntersecting) setOffset((prev) => prev + limit)
+        },
+    })
 
-    const loadMore = async () => {
-        const response = await fetchTransactions({ limit, offset }).unwrap()
-        const newTransactions = response.transactions.map((transaction) => {
-            const network = networks.find(
-                (n) => n.value === transaction.network
-            )
-            return {
-                ...transaction,
-                networkIcon: network.icon,
-            }
-        })
-
-        setTransactions((prev) => {
-            return [
-                ...prev,
-                ...newTransactions.filter(
-                    (item) => !prev.some((t) => t.hash === item.hash)
-                ),
-            ]
-        })
-
-        if (newTransactions.length < limit) {
-            setHasMore(false)
-        }
-
-        setOffset((prev) => prev + limit)
-    }
-
-    useEffect(() => {
-        loadMore()
-    }, [])
     const navigate = useNavigate()
+    const { isSuccess } = useQuery(
+        () =>
+            axiosRequest
+                .get('/api/v1/account/transaction', {
+                    params: { limit, offset },
+                })
+                .then((res) => res.data),
+        {
+            keys: [offset],
+            onSuccess: (data) => {
+                if (data?.transactions.length < limit) {
+                    setHasMore(false)
+                }
+                const newTransactions = data?.transactions.map(
+                    (transaction) => {
+                        const network = networks.find(
+                            (n) => n.value === transaction.network
+                        )
+                        return {
+                            ...transaction,
+                            networkIcon: network.icon,
+                        }
+                    }
+                )
+                setTransactions((prev) => [
+                    ...prev,
+                    ...newTransactions.filter(
+                        (item) => !prev.some((t) => t.hash === item.hash)
+                    ),
+                ])
+            },
+        }
+    )
     return (
-        <Box sx={{ px: 2, height: 'calc(100vh - 120px)' }}>
+        <Box
+            sx={{
+                px: 2,
+            }}>
             {isSuccess && !transactions.length ? (
                 <Stack
                     justifyContent={'center'}
@@ -61,12 +70,8 @@ const TradeList = () => {
                     </Typography>
                 </Stack>
             ) : (
-                <InfiniteScroll
-                    dataLength={transactions.length}
-                    next={loadMore}
-                    hasMore={hasMore}
-                    loader={<h4>Loading...</h4>}>
-                    {transactions.map((transaction, index) => (
+                <Box>
+                    {transactions?.map((transaction, index) => (
                         <Box
                             key={index}
                             sx={{ mb: 3 }}
@@ -83,7 +88,14 @@ const TradeList = () => {
                             />
                         </Box>
                     ))}
-                </InfiniteScroll>
+                    {hasMore && (
+                        <Box ref={ref}>
+                            <Stack alignItems={'center'}>
+                                <CircularProgress />
+                            </Stack>
+                        </Box>
+                    )}
+                </Box>
             )}
         </Box>
     )
