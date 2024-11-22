@@ -15,14 +15,14 @@ const SearchPage = () => {
             if (isMyList) {
                 navigate(-1)
             } else {
-                setIsMyList(false)
+                setIsMyList(true)
             }
         })
         return () => {
             hideTgBackButton()
             tg.BackButton.offClick()
         }
-    }, [isMyList, tg, isMyList])
+    }, [isMyList, tg])
     return (
         <Stack sx={{ pt: 2, px: 2, height: 'calc(100vh - 120px)' }}>
             <Search value={searchQuery} setValue={setSearchQuery} />
