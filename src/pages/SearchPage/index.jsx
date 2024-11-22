@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Stack } from '@mui/material'
 import { BottomButton, Search } from '@shared/ui'
 import { UsersList } from '@widgets'
@@ -9,18 +9,18 @@ const SearchPage = () => {
     const navigate = useNavigate()
     const [searchQuery, setSearchQuery] = useState('')
     const [isMyList, setIsMyList] = useState(true)
-    useTg({
-        backButtonVisible: true,
-        onBack: () => {
-            if (!isMyList) {
-                setIsMyList(true)
-                console.log('is not mine')
-            } else {
-                console.log('mine')
-                navigate(-1)
-            }
-        },
-    })
+    const { tg, hideTgBackButton } = useTg({ backButtonVisible: true })
+    useEffect(() => {
+        if (isMyList) {
+            navigate(-1)
+        } else {
+            setIsMyList(false)
+        }
+        return () => {
+            hideTgBackButton()
+            tg.BackButton.offClick()
+        }
+    }, [isMyList, tg, isMyList])
     return (
         <Stack sx={{ pt: 2, px: 2, height: 'calc(100vh - 120px)' }}>
             <Search value={searchQuery} setValue={setSearchQuery} />
