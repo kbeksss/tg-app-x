@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Box, Stack } from '@mui/material'
 import { BottomButton, Search } from '@shared/ui'
 import { UsersList } from '@widgets'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const SearchPage = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const [isMyList, setIsMyList] = useState(true)
+    useTg({ backButtonVisible: true, onBack: () => alert('back') })
     return (
         <Stack sx={{ pt: 2, px: 2, height: 'calc(100vh - 120px)' }}>
             <Search value={searchQuery} setValue={setSearchQuery} />

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { onBackButtonClick } from '@telegram-apps/sdk'
 
 const tg = window.Telegram.WebApp
 
@@ -23,9 +24,12 @@ export function useTg(params) {
     useEffect(() => {
         if (params?.backButtonVisible) {
             showBackButton()
-
             tg.BackButton.onClick(() => {
-                navigate(-1)
+                if (params?.onBack) {
+                    params.onBack()
+                } else {
+                    navigate(-1)
+                }
             })
         }
         return () => {
