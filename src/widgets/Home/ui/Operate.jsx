@@ -13,11 +13,11 @@ const Operate = () => {
                 icon={'hugeicons:download-01'}
                 label='Receive'
             />
-            <OperateItem
-                onClick={() => navigate(paths.exchange)}
-                icon={'humbleicons:exchange-horizontal'}
-                label='Exchange'
-            />
+            {/*<OperateItem*/}
+            {/*    onClick={() => navigate(paths.exchange)}*/}
+            {/*    icon={'humbleicons:exchange-horizontal'}*/}
+            {/*    label='Exchange'*/}
+            {/*/>*/}
             <OperateItem
                 onClick={() => navigate(paths.send)}
                 icon={'lets-icons:download-circle'}
