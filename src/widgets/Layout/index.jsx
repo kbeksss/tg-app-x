@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { Iconify } from '@shared/ui'
 import { useCheckIphone } from '@shared/hooks/useCheckIphone.js'
+import { TokenTradesIcon } from '@shared/icons'
 
 const Layout = ({ children }) => {
     const { isIphone } = useCheckIphone()
@@ -48,7 +49,7 @@ const Layout = ({ children }) => {
                         }}
                         label={'Home'}
                         value={'/'}
-                        icon={<Iconify width={24} icon={'iconamoon:home'} />}
+                        icon={<Iconify width={24} icon={'akar-icons:home'} />}
                     />
                     <BottomNavigationAction
                         sx={{
@@ -60,7 +61,9 @@ const Layout = ({ children }) => {
                         }}
                         label={'Search'}
                         value={'/search'}
-                        icon={<Iconify width={24} icon={'ri:search-line'} />}
+                        icon={
+                            <Iconify width={24} icon={'meteor-icons:search'} />
+                        }
                     />
                     <BottomNavigationAction
                         sx={{
@@ -72,7 +75,7 @@ const Layout = ({ children }) => {
                         }}
                         label={'Trade'}
                         value={'/trades'}
-                        icon={<Iconify width={24} icon={'bx:candles'} />}
+                        icon={<TokenTradesIcon />}
                     />
                     <BottomNavigationAction
                         sx={{
@@ -84,12 +87,7 @@ const Layout = ({ children }) => {
                         }}
                         label={'Account'}
                         value={'/account'}
-                        icon={
-                            <Iconify
-                                width={24}
-                                icon={'ic:outline-account-circle'}
-                            />
-                        }
+                        icon={<Iconify width={24} icon={'line-md:account'} />}
                     />
                 </BottomNavigation>
             </Paper>
