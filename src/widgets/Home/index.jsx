@@ -11,9 +11,12 @@ import SendConfirm from './ui/SendConfirm.jsx'
 const Home = () => {
     const [sellingToken, setSellingToken] = useState(null)
     const [sendingToken, setSendingToken] = useState(null)
-    const { data } = useFetchAccountPortfolioQuery(undefined, {
-        refetchOnMountOrArgChange: true,
-    })
+    const { data, isLoading: tokensLoading } = useFetchAccountPortfolioQuery(
+        undefined,
+        {
+            refetchOnMountOrArgChange: true,
+        }
+    )
     const [network, setNetwork] = useState('')
     const account = useSelector((state) => state.account)
     const { balances, totalBalance } = useGetTokens({
@@ -40,7 +43,7 @@ const Home = () => {
                 <Operate />
             </Box>
             <Box sx={{ px: 2 }}>
-                <TokenList openDialog={openDialog} tokens={balances} />
+                <TokenList openDialog={openDialog} tokens={balances} tokensLoading={tokensLoading} />
             </Box>
             <SellTokens
                 sellingToken={sellingToken}

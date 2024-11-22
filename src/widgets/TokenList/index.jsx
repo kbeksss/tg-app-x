@@ -1,10 +1,17 @@
 import React from 'react'
-import { Box, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import TokenItem from '@widgets/TokenList/ui/TokenItem.jsx'
 
-const TokenList = ({ tokens, openDialog }) => {
+const TokenList = ({ tokens, openDialog, tokensLoading }) => {
     return (
         <Stack spacing={1}>
+            {tokensLoading && (
+                <>
+                    <TokenItem isLoading />
+                    <TokenItem isLoading />
+                    <TokenItem isLoading />
+                </>
+            )}
             {tokens.map((token) => (
                 <TokenItem
                     key={token.id}
