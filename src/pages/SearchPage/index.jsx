@@ -11,11 +11,13 @@ const SearchPage = () => {
     const [isMyList, setIsMyList] = useState(true)
     const { tg, hideTgBackButton } = useTg({ backButtonVisible: true })
     useEffect(() => {
-        if (isMyList) {
-            navigate(-1)
-        } else {
-            setIsMyList(false)
-        }
+        tg.BackButton.onClick(() => {
+            if (isMyList) {
+                navigate(-1)
+            } else {
+                setIsMyList(false)
+            }
+        })
         return () => {
             hideTgBackButton()
             tg.BackButton.offClick()
