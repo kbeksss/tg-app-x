@@ -11,7 +11,7 @@ const TradeList = () => {
     const [transactions, setTransactions] = useState([])
     const [offset, setOffset] = useState(0)
     const [hasMore, setHasMore] = useState(true)
-    const limit = 5
+    const limit = 10
 
     const { ref } = useIntersectionObserver({
         threshold: 1,
