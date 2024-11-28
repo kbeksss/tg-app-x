@@ -8,10 +8,12 @@ import {
     Stack,
 } from '@mui/material'
 
-const ConfirmSubscribe = ({ open, onClose, onConfirm }) => {
+const ConfirmSubscribe = ({ open, onClose, onConfirm, username }) => {
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Are you sure you want to subscribe?</DialogTitle>
+            <DialogTitle>
+                Are you sure you want to subscribe {username}?
+            </DialogTitle>
             <DialogContent>
                 <DialogContentText>
                     After subscribing, automatic purchases will be made based on

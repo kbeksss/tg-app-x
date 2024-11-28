@@ -38,6 +38,7 @@ const UserItem = ({
                 </Grid2>
             </Box>
             <ConfirmSubscribe
+                username={username}
                 onConfirm={onFollow}
                 open={isConfirmSubscribe}
                 onClose={() => setIsConfirmSubscribe(false)}

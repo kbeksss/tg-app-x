@@ -34,24 +34,22 @@ const Trade = () => {
         <Box>
             {trade ? (
                 <Box sx={{ px: 3 }}>
-                    {trade && (
-                        <Grid2 alignItems={'center'} container spacing={2}>
-                            <Grid2 size={'auto'}>
-                                <NestedAvatars
-                                    avatar={trade.Token.image}
-                                    secondaryAvatar={network?.icon}
-                                />
-                            </Grid2>
-                            {trade.type === 'BUY' && (
-                                <Grid2 size={'grow'}>
-                                    <Typography>Recommendation from</Typography>
-                                    <Typography color={'primary'}>
-                                        {trade?.Kol?.username}
-                                    </Typography>
-                                </Grid2>
-                            )}
+                    <Grid2 alignItems={'center'} container spacing={2}>
+                        <Grid2 size={'auto'}>
+                            <NestedAvatars
+                                avatar={trade.Token.image}
+                                secondaryAvatar={network?.icon}
+                            />
                         </Grid2>
-                    )}
+                        {trade.type === 'BUY' && (
+                            <Grid2 size={'grow'}>
+                                <Typography>Recommendation from</Typography>
+                                <Typography color={'primary'}>
+                                    {trade?.Kol?.username}
+                                </Typography>
+                            </Grid2>
+                        )}
+                    </Grid2>
                     <Typography
                         sx={{
                             mt: 2,

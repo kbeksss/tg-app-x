@@ -7,7 +7,7 @@ const TradePage = () => {
     useTg({ backButtonVisible: true })
     return (
         <Box sx={{ pt: 3 }}>
-            <Trade />}
+            <Trade />
         </Box>
     )
 }
