@@ -1,7 +1,6 @@
 import { Routes, Route, Outlet } from 'react-router'
 import { Layout } from '@widgets'
 import HomePage from '@pages/HomePage'
-import SearchPage from '@pages/SearchPage'
 import TradesPage from '@pages/TradesPage'
 import AccountPage from '@pages/AccountPage'
 import SeedphrasePage from '@pages/SeedphrasePage'
@@ -18,6 +17,8 @@ import SubscribeSuccessPage from '@pages/SubscribeSuccessPage'
 import { useAppInit } from '@shared/hooks/useAppInit.jsx'
 import { useTg } from '@shared/hooks/useTg.js'
 import { useFetchAccountQuery } from '@shared/api/services'
+import Follows from '@pages/Follows'
+import NonFollows from '@pages/NonFollows/index.jsx'
 
 export const Routing = () => {
     const { tg } = useTg()
@@ -33,7 +34,8 @@ export const Routing = () => {
                         </Layout>
                     }>
                     <Route path={paths.home} element={<HomePage />} />
-                    <Route path={paths.search} element={<SearchPage />} />
+                    <Route path={paths.users} element={<Follows />} />
+                    <Route path={paths.newUsers} element={<NonFollows />} />
                     <Route path={paths.trades} element={<TradesPage />} />
                     <Route
                         path={`${paths.trade}/:id`}

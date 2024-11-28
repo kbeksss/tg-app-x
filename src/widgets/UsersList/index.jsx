@@ -9,9 +9,8 @@ import {
     useUnfollowUserMutation,
 } from '@shared/api/services/index.js'
 import { notify } from '@shared/utils/functions'
-import { Iconify } from '@shared/ui/index.js'
 
-const UsersList = ({ search, myList = true }) => {
+const UsersList = ({ search, myList }) => {
     const { data, isLoading: listLoading } = useFetchUsersQuery({
         myKol: myList,
         search,

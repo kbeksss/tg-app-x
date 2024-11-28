@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from 'react-router'
 import { Iconify } from '@shared/ui'
 import { useCheckIphone } from '@shared/hooks/useCheckIphone.js'
 import { TokenTradesIcon } from '@shared/icons'
+import { paths } from '@pages/paths.js'
 
 const Layout = ({ children }) => {
     const { isIphone } = useCheckIphone()
@@ -60,7 +61,7 @@ const Layout = ({ children }) => {
                             '.MuiBottomNavigationAction-label': { mt: 1 },
                         }}
                         label={'Search'}
-                        value={'/search'}
+                        value={paths.users}
                         icon={
                             <Iconify width={24} icon={'meteor-icons:search'} />
                         }

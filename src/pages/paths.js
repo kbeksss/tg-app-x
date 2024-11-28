@@ -13,4 +13,6 @@ export const paths = {
     seedphrase: '/seedphrase',
     userProfile: '/user-profile',
     userSubscribeSuccess: '/subscribe-success',
+    users: '/users',
+    newUsers: '/new-users',
 }
