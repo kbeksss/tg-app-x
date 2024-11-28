@@ -8,23 +8,14 @@ import {
 
 const axiosRequest = axios.create({
     baseURL: BASE_URL,
-    headers: {
-        'X-API-KEY': BACK_API_KEY,
-    },
 })
 
 const axiosScraperRequest = axios.create({
     baseURL: SCRAPER_URL,
-    headers: {
-        'X-API-KEY': BACK_API_KEY,
-    },
 })
 
 const axiosRequestClean = axios.create({
     baseURL: BASE_URL,
-    headers: {
-        'X-API-KEY': BACK_API_KEY,
-    },
 })
 
 const getInterceptorRequest = (baseUrl) => {
