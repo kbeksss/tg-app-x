@@ -60,12 +60,7 @@ const Recommendations = ({ avatarImg, username }) => {
             ) : (
                 <Box>
                     {tweets?.map((tweet, index) => (
-                        <Box
-                            key={index}
-                            sx={{ mb: 3 }}
-                            onClick={() =>
-                                navigate(`${paths.trade}/${tweet.hash}`)
-                            }>
+                        <Box key={index} sx={{ mb: 3 }}>
                             <RecItem
                                 key={tweet.id}
                                 image={avatarImg}
