@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
     const [value, setValue] = useState(location.pathname || '/')
     return (
         <Box sx={{ height: '100vh' }} className='page'>
-            <Box sx={{ pb: 15 }}>{children}</Box>
+            <Box sx={{ pb: '60px' }}>{children}</Box>
             <Paper
                 elevation={0}
                 sx={{
