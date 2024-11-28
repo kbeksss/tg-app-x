@@ -24,7 +24,13 @@ const Recommendations = ({ avatarImg, username }) => {
         () =>
             axiosScraperRequest
                 .get(SCRAPER_TWEETS_URL, {
-                    params: { username, limit, offset },
+                    params: {
+                        sort: 'created_at',
+                        direction: 'desc',
+                        username,
+                        limit,
+                        offset,
+                    },
                 })
                 .then((res) => res.data),
         {
