@@ -12,7 +12,7 @@ import {
 } from '@shared/api/services/index.js'
 import { useSelector } from 'react-redux'
 import { notify } from '@shared/utils/functions/index.js'
-import {ConfirmSubscribe} from "@features";
+import { ConfirmSubscribe } from '@features'
 
 const UserProfile = () => {
     const navigate = useNavigate()
@@ -61,10 +61,12 @@ const UserProfile = () => {
             </Box>
             <Divider sx={{ mt: 1, mb: 3, borderColor: 'rgba(0,0,0,0.3)' }} />
             <Box sx={{ px: 2 }}>
-                <Recommendations
-                    username={user?.username}
-                    avatarImg={user?.image}
-                />
+                {user && (
+                    <Recommendations
+                        username={user?.username}
+                        avatarImg={user?.image}
+                    />
+                )}
             </Box>
             <ConfirmSubscribe
                 onConfirm={onConfirmSubscribe}
