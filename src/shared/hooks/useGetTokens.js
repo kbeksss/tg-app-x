@@ -6,9 +6,11 @@ export const useGetTokens = ({
     portfolio,
     network,
     networkSymbol,
+    tokenSymbol,
 }) => {
     const [solanaBalances, setSolanaBalances] = useState([])
     const [ethereumBalances, setEthereumBalances] = useState([])
+    const [token, setToken] = useState(null)
     useEffect(() => {
         if (wallets && portfolio) {
             getBalance(portfolio, wallets).then(
@@ -19,7 +21,15 @@ export const useGetTokens = ({
             )
         }
     }, [wallets, portfolio])
-
+    useEffect(() => {
+        if (!tokenSymbol) {
+            return
+        }
+        const token = [...solanaBalances, ...ethereumBalances].find(
+            (token) => token.symbol === tokenSymbol
+        )
+        setToken(token || null)
+    }, [tokenSymbol, solanaBalances, ethereumBalances])
     const prioritizedNames = ['Ethereum', 'Solana']
 
     const balances = useMemo(() => {
@@ -68,5 +78,6 @@ export const useGetTokens = ({
         networkPortfolios,
         networkPortfolio,
         totalBalance: floatAmountToNumber(totalBalance),
+        token,
     }
 }
