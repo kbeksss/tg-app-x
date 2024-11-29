@@ -62,22 +62,29 @@ const UsersList = ({ search, myList }) => {
             justifyContent={'center'}
             alignItems={'center'}>
             {search ? (
-                <>
-                    <img src='/assets/icons/utilities/not-found.png' alt='' />
-                    <Typography variant={'h5'}>Nothing was found :(</Typography>
+                <Box sx={{ px: 5 }}>
+                    <Stack direction={'row'} justifyContent={'center'}>
+                        <img
+                            src='/assets/icons/utilities/not-found.png'
+                            alt=''
+                        />
+                    </Stack>
+                    <Typography sx={{ mb: 1 }} align={'center'} variant={'h5'}>
+                        Nothing was found :(
+                    </Typography>
                     <Typography align={'center'} color={'text.secondary'}>
                         Check the spelling and try to write again
                     </Typography>
-                </>
+                </Box>
             ) : (
-                <>
-                    <Typography variant={'h5'}>
+                <Box sx={{ px: 5 }}>
+                    <Typography sx={{ mb: 1 }} align={'center'} variant={'h5'}>
                         No Subscriptions Yet!
                     </Typography>
-                    <Typography color={'text.secondary'}>
+                    <Typography align={'center'} color={'text.secondary'}>
                         Click the 'Subcribe' button to add a favorite.
                     </Typography>
-                </>
+                </Box>
             )}
         </Stack>
     )

@@ -62,6 +62,7 @@ const NetworkSettings = ({
                         }}>
                         <Stack
                             direction={'row'}
+                            alignItems={'center'}
                             justifyContent={'space-between'}>
                             <Typography>Trade ERC20 tokens</Typography>
                             <Switch checked={checked} onChange={handleChange} />

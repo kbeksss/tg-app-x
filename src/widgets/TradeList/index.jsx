@@ -63,8 +63,10 @@ const TradeList = () => {
                 <Stack
                     justifyContent={'center'}
                     alignItems={'center'}
-                    sx={{ height: '100%' }}>
-                    <Typography variant={'h5'}>No Transactions :(</Typography>
+                    sx={{ height: '100%', px: 5 }}>
+                    <Typography align={'center'} variant={'h5'}>
+                        No Transactions :(
+                    </Typography>
                     <Typography color={'text.secondary'} align={'center'}>
                         You haven't made any transactions yet
                     </Typography>

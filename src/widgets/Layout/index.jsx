@@ -41,6 +41,7 @@ const Layout = ({ children }) => {
                         navigate(newValue)
                     }}>
                     <BottomNavigationAction
+                        disableRipple
                         sx={{
                             fontSize: 12,
                             '.MuiBottomNavigationAction-label.Mui-selected': {
@@ -53,6 +54,7 @@ const Layout = ({ children }) => {
                         icon={<Iconify width={24} icon={'akar-icons:home'} />}
                     />
                     <BottomNavigationAction
+                        disableRipple
                         sx={{
                             fontSize: 12,
                             '.MuiBottomNavigationAction-label.Mui-selected': {
@@ -67,6 +69,7 @@ const Layout = ({ children }) => {
                         }
                     />
                     <BottomNavigationAction
+                        disableRipple
                         sx={{
                             fontSize: 12,
                             '.MuiBottomNavigationAction-label.Mui-selected': {
@@ -79,6 +82,7 @@ const Layout = ({ children }) => {
                         icon={<TokenTradesIcon />}
                     />
                     <BottomNavigationAction
+                        disableRipple
                         sx={{
                             fontSize: 12,
                             '.MuiBottomNavigationAction-label.Mui-selected': {
