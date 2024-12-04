@@ -1,5 +1,13 @@
 import React, { useMemo, useState } from 'react'
-import { Avatar, Box, Button, Grid2, Stack, Typography } from '@mui/material'
+import {
+    Avatar,
+    Box,
+    Button,
+    Grid2,
+    Link,
+    Stack,
+    Typography,
+} from '@mui/material'
 import { BottomButton, Iconify, NestedAvatars } from '@shared/ui'
 import dayjs from 'dayjs'
 import {
@@ -11,6 +19,7 @@ import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import { networks } from '@_mock/networks.js'
 import { SellTokens } from '@widgets'
 import { useParams } from 'react-router'
+import { paths } from '@pages/paths.js'
 
 const Trade = () => {
     const { id: tradeHash } = useParams()
@@ -45,7 +54,11 @@ const Trade = () => {
                             <Grid2 size={'grow'}>
                                 <Typography>Recommendation from</Typography>
                                 <Typography color={'primary'}>
-                                    {trade?.Kol?.username}
+                                    <Link
+                                        sx={{ textDecoration: 'none' }}
+                                        href={`${paths.userProfile}/${trade?.kolId}`}>
+                                        {trade?.Kol?.username}
+                                    </Link>
                                 </Typography>
                             </Grid2>
                         )}
