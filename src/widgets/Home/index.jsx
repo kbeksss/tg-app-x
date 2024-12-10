@@ -1,14 +1,23 @@
 import React, { useMemo, useState } from 'react'
-import { Box, Stack } from '@mui/material'
-import { Balance, NetworkSelect, SellTokens, TokenList } from '@widgets'
+import { Avatar, Box, Chip, Stack, Typography } from '@mui/material'
+import {
+    Balance,
+    NetworkSelect,
+    ProfileImage,
+    SellTokens,
+    TokenList,
+} from '@widgets'
 import Operate from './ui/Operate'
 import { tokens } from '@_mock/currency.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import SendConfirm from './ui/SendConfirm.jsx'
+import { Iconify, useSwipeableDialog } from '@shared/ui/index.js'
+import { networks } from '@_mock/networks.js'
 
 const Home = () => {
+    const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sellingToken, setSellingToken] = useState(null)
     const [sendingToken, setSendingToken] = useState(null)
     const { data, isLoading: tokensLoading } = useFetchAccountPortfolioQuery(
@@ -31,20 +40,69 @@ const Home = () => {
             setSellingToken(token)
         }
     }
+    const networkObj = useMemo(() => {
+        return networks.find((n) => n.value === network)
+    }, [network])
     return (
         <Box sx={{ py: 1.5 }}>
-            <Stack alignItems={'center'}>
-                <Box sx={{ minWidth: 250 }}>
-                    <NetworkSelect network={network} setNetwork={setNetwork} />
-                </Box>
-                <Balance balance={totalBalance} />
-            </Stack>
-            <Box sx={{ pt: 4, pb: 2 }}>
-                <Operate />
-            </Box>
             <Box sx={{ px: 2 }}>
-                <TokenList openDialog={openDialog} tokens={balances} tokensLoading={tokensLoading} />
+                <Stack
+                    direction={'row'}
+                    alignItems={'center'}
+                    justifyContent='space-between'>
+                    <ProfileImage width={40} />
+                    <Box sx={{ maxWidth: 200 }}>
+                        <NetworkSelect
+                            network={network}
+                            setNetwork={setNetwork}
+                            isDrawerOpen={isDrawerOpen}
+                            toggleDrawer={toggleDrawer}
+                            setDrawerHeight={setDrawerHeight}>
+                            <Box
+                                onClick={toggleDrawer(true)}
+                                sx={{
+                                    px: '14px',
+                                    py: '9px',
+                                    backgroundColor: 'background.grey',
+                                    borderRadius: 24,
+                                }}>
+                                <Stack
+                                    spacing={1}
+                                    direction={'row'}
+                                    alignItems={'center'}>
+                                    {networkObj ? (
+                                        <>
+                                            <Avatar
+                                                sx={{ width: 20, height: 20 }}
+                                                src={networkObj.icon}
+                                            />
+                                            <Typography>
+                                                {networkObj.label}
+                                            </Typography>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Typography variant={'body2'}>
+                                                Select a network
+                                            </Typography>
+                                        </>
+                                    )}
+                                    <Iconify
+                                        width={11}
+                                        icon={'simple-line-icons:arrow-down'}
+                                    />
+                                </Stack>
+                            </Box>
+                        </NetworkSelect>
+                    </Box>
+                </Stack>
             </Box>
+            <Balance balance={totalBalance} />
+            <TokenList
+                openDialog={openDialog}
+                tokens={balances}
+                tokensLoading={tokensLoading}
+            />
             <SellTokens
                 sellingToken={sellingToken}
                 open={!!sellingToken}

@@ -22,11 +22,18 @@ const theme = createTheme({
         },
         background: {
             grey: '#F4F4F6',
+            white: '#FFF',
         },
     },
     typography: {
+        fontFamily:
+            '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         h1: {
             fontSize: 46,
+            fontWeight: 700,
+        },
+        h2: {
+            fontSize: 32,
             fontWeight: 700,
         },
         h4: {
@@ -99,6 +106,13 @@ const theme = createTheme({
                 },
                 sizeSmall: {
                     height: 36,
+                },
+            },
+        },
+        MuiBottomNavigationAction: {
+            styleOverrides: {
+                root: {
+                    minWidth: 'unset',
                 },
             },
         },

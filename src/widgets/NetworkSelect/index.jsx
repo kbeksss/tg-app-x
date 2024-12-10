@@ -1,52 +1,54 @@
-import React from 'react'
-import {
-    Avatar,
-    FormControl,
-    MenuItem,
-    Select,
-    Stack,
-    Typography,
-} from '@mui/material'
-import {networks} from "@_mock/networks.js";
+import React, { useMemo, useState } from 'react'
+import { Button } from '@mui/material'
+import { networks } from '@_mock/networks.js'
+import { Search, SwipeableDialog } from '@shared/ui'
+import NetworkItems from '@widgets/NetworkSelect/ui/NetworkItems.jsx'
 
-const NetworkSelect = ({ network, setNetwork, displayEmpty = true }) => {
+const NetworkSelect = ({
+    isDrawerOpen,
+    toggleDrawer,
+    setDrawerHeight,
+    network,
+    setNetwork,
+    children,
+}) => {
+    const [searchValue, setSearchValue] = useState('')
+
+    const filteredNetworks = useMemo(() => {
+        return networks.filter((network) =>
+            network.label.toLowerCase().includes(searchValue.toLowerCase())
+        )
+    }, [searchValue, networks])
+    const onSelected = () => {
+        toggleDrawer(false)()
+        setSearchValue('')
+    }
     return (
-        <FormControl
-            fullWidth
-            sx={{
-                backgroundColor: 'background.grey',
-                borderRadius: '16px',
-                my: 2,
-                height: 54,
-            }}>
-            <Select
-                fullWidth
-                sx={{
-                    borderRadius: '16px',
-                    height: '100%',
-                    color: '#707579',
-                    fieldset: { border: 'none' },
-                }}
-                id='network-select'
-                value={network}
-                displayEmpty={displayEmpty}
-                onChange={(e) => setNetwork(e.target.value)}>
-                {displayEmpty && <MenuItem value={''}>Select network</MenuItem>}
-                {networks.map((network) => (
-                    <MenuItem value={network.value} key={network.value}>
-                        <Stack
-                            spacing={1}
-                            direction={'row'}
-                            alignItems={'center'}>
-                            <Avatar src={network.icon} />
-                            <Typography>{network.label}</Typography>
-                        </Stack>
-                    </MenuItem>
-                ))}
-            </Select>
-        </FormControl>
+        <>
+            {children}
+            <SwipeableDialog
+                contentHeight
+                setDrawerHeight={setDrawerHeight}
+                bgColor={'background.paper'}
+                toggleDrawer={toggleDrawer}
+                isDrawerOpen={isDrawerOpen}
+                label={'Select Network'}>
+                <Search value={searchValue} setValue={setSearchValue} />
+                <NetworkItems
+                    selectedCb={onSelected}
+                    selectedNetwork={network}
+                    setNetwork={setNetwork}
+                    networks={filteredNetworks}
+                />
+                <Button
+                    onClick={() => setNetwork('')}
+                    variant={'contained'}
+                    fullWidth>
+                    Reset
+                </Button>
+            </SwipeableDialog>
+        </>
     )
 }
-
 
 export default NetworkSelect

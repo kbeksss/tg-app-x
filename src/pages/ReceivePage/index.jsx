@@ -6,7 +6,7 @@ import { useTg } from '@shared/hooks/useTg.js'
 const ReceivePage = () => {
     useTg({ backButtonVisible: true })
     return (
-        <Box sx={{ pt: 1, pb: 15 }}>
+        <Box sx={{ pt: 4, pb: 15 }}>
             <Receive />
         </Box>
     )

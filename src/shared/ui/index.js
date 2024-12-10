@@ -6,3 +6,8 @@ export { default as Switch } from './Switch'
 export { default as NestedAvatars } from './NestedAvatars'
 export { default as Search } from './Search'
 export { default as LoadingElement } from './LoadingElement'
+export {
+    default as SwipeableDialog,
+    useSwipeableDialog,
+} from './SwipeableDialog'
+export { default as Edge } from './Edge'

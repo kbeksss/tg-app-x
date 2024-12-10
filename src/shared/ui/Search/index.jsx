@@ -19,16 +19,18 @@ const Search = ({ value, setValue }) => {
                     ),
                     endAdornment: (
                         <InputAdornment position={'end'}>
-                            <Iconify icon={'mdi:microphone'} />
+                            <Iconify icon={'mdi:microphone'} width={22} />
                         </InputAdornment>
                     ),
                 },
             }}
             sx={{
                 '& .MuiOutlinedInput-root': {
-                    background: '#F4F4F6',
                     height: 42,
-                    borderRadius: '16px',
+                    borderRadius: '30px',
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                    borderRadius: '30px',
                 },
             }}
         />

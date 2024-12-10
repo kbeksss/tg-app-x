@@ -28,7 +28,7 @@ const TokenItem = ({
                 borderRadius: '16px',
                 px: 2,
                 py: '14px',
-                backgroundColor: 'background.grey',
+                backgroundColor: 'background.white',
             }}>
             <Grid container spacing={2}>
                 <Grid container size='auto' alignItems={'center'}>
@@ -39,38 +39,36 @@ const TokenItem = ({
                         <LoadingElement isLoading={isLoading}>
                             <Typography
                                 sx={{ pr: 0.5 }}
-                                fontSize={17}
                                 textTransform={'uppercase'}
-                                fontWeight={500}
-                                component={'span'}>
+                                fontWeight={500}>
                                 {currencyCode}
-                            </Typography>
-                            <Typography
-                                color={'text.secondary'}
-                                variant={'body2'}
-                                component={'span'}>
-                                {currencyName}
                             </Typography>
                         </LoadingElement>
                     </Box>
                     <LoadingElement isLoading={isLoading} width={70}>
-                        <Typography fontSize={15} color={'primary.main'}>
-                            ${floatAmountToString(currencyPrice)}
+                        <Typography color={'text.secondary'} fontSize={15}>
+                            {currencyName}
                         </Typography>
                     </LoadingElement>
                 </Grid>
                 <Grid size='grow'>
-                    <LoadingElement isLoading={isLoading} width={50} sx={{marginLeft: 'auto'}}>
+                    <LoadingElement
+                        isLoading={isLoading}
+                        width={50}
+                        sx={{ marginLeft: 'auto' }}>
                         <Typography
                             textTransform={'uppercase'}
                             fontWeight={500}
                             align={'right'}>
-                            {floatAmountToString(amountInWallet)} {currencyCode}
+                            {floatAmountToString(amountInWallet)}
                         </Typography>
                     </LoadingElement>
-                    <LoadingElement isLoading={isLoading} width={50} sx={{marginLeft: 'auto'}}>
+                    <LoadingElement
+                        isLoading={isLoading}
+                        width={50}
+                        sx={{ marginLeft: 'auto' }}>
                         <Typography fontSize={15} align={'right'}>
-                            ${floatAmountToString(balanceInDollars)}
+                            &#8776; ${floatAmountToString(balanceInDollars)}
                         </Typography>
                     </LoadingElement>
                 </Grid>

@@ -1,14 +1,15 @@
 import React, { useMemo, useState } from 'react'
-import { Box, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Chip, Stack, Typography } from '@mui/material'
 import { NetworkSelect } from '@widgets'
 
-import { QRCode } from '@shared/ui/index.js'
+import { Iconify, QRCode, useSwipeableDialog } from '@shared/ui/index.js'
 import BottomActions from './ui/BottomActions'
 import { networks } from '@_mock/networks.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services'
 
 const Receive = () => {
+    const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const { data } = useFetchAccountPortfolioQuery()
     const account = useSelector((state) => state.account)
     const [network, setNetwork] = useState(networks[0].value)
@@ -26,15 +27,64 @@ const Receive = () => {
         return net.image
     }, [data, network])
 
+    const networkObj = useMemo(() => {
+        return networks.find((n) => n.value === network)
+    }, [network])
+
     return (
         <Box>
             <Stack alignItems={'center'}>
-                <Box sx={{ minWidth: 250 }}>
+                <Box sx={{ py: 2 }}>
                     <NetworkSelect
                         network={network}
                         setNetwork={setNetwork}
-                        displayEmpty={false}
-                    />
+                        isDrawerOpen={isDrawerOpen}
+                        toggleDrawer={toggleDrawer}
+                        setDrawerHeight={setDrawerHeight}>
+                        <Box
+                            onClick={toggleDrawer(true)}
+                            sx={{
+                                px: '14px',
+                                py: '9px',
+                                backgroundColor: 'background.grey',
+                                borderRadius: 24,
+                            }}>
+                            <Stack
+                                spacing={1}
+                                direction={'row'}
+                                alignItems={'center'}>
+                                {networkObj ? (
+                                    <>
+                                        <Avatar
+                                            sx={{ width: 20, height: 20 }}
+                                            src={networkObj.icon}
+                                        />
+                                        <Typography>
+                                            {networkObj.symbol}
+                                        </Typography>
+                                        <Chip
+                                            sx={{
+                                                backgroundColor:
+                                                    'background.white',
+                                            }}
+                                            size={'small'}
+                                            label={networkObj.label}
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <Typography variant={'body2'}>
+                                            Select a network
+                                        </Typography>
+                                    </>
+                                )}
+                                <Iconify
+                                    width={11}
+                                    icon={'simple-line-icons:arrow-down'}
+                                />
+                            </Stack>
+                        </Box>
+                    </NetworkSelect>
                 </Box>
             </Stack>
             {account && (

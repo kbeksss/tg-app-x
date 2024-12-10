@@ -1,12 +1,12 @@
 export const networks = [
     {
-        label: 'SOL Solana',
+        label: 'Solana',
         symbol: 'SOL',
         value: 'SOLANA',
         icon: '/assets/icons/network/solana.png',
     },
     {
-        label: 'ETH Etherium',
+        label: 'Etherium',
         symbol: 'ETH',
         value: 'ETHEREUM',
         icon: '/assets/icons/network/eth-icon.png',

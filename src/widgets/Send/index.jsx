@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
 import { NetworkSelect } from '@widgets'
 import { networks } from '@_mock/networks'
-import { BottomButton, Iconify } from '@shared/ui'
+import { BottomButton, Iconify, useSwipeableDialog } from '@shared/ui'
 import { floatAmountToString, notify } from '@shared/utils/functions'
 import SendConfirmDialog from '@widgets/Send/ui/SendConfirmDialog.jsx'
 import { paths } from '@pages/paths.js'
@@ -16,8 +16,10 @@ import {
     useSendEthereumMutation,
     useSendSolanaMutation,
 } from '@shared/api/services/index.js'
+import SendForm from './ui/SendForm.jsx'
 
 const Send = () => {
+    const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sendEthereum] = useSendEthereumMutation()
     const [sendSolana] = useSendSolanaMutation()
     const { tg } = useTg()
@@ -100,12 +102,16 @@ const Send = () => {
             <Stack alignItems='center'>
                 <Box sx={{ minWidth: 250, pb: 2 }}>
                     <NetworkSelect
+                        toggleDrawer={toggleDrawer}
+                        setDrawerHeight={setDrawerHeight}
+                        isDrawerOpen={isDrawerOpen}
                         network={network}
-                        setNetwork={setNetwork}
-                        displayEmpty={false}
-                    />
+                        setNetwork={setNetwork}>
+                        <div>Network</div>
+                    </NetworkSelect>
                 </Box>
             </Stack>
+            {/*<SendForm />*/}
             <Stack spacing={3}>
                 <TextField
                     fullWidth

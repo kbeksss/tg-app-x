@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
                     borderTop: '0.5px solid #707579',
                     pt: 1,
                     right: 0,
+                    px: 1,
                 }}>
                 <BottomNavigation
                     showLabels
@@ -80,6 +81,26 @@ const Layout = ({ children }) => {
                         label={'Trade'}
                         value={'/trades'}
                         icon={<TokenTradesIcon />}
+                    />
+                    <BottomNavigationAction
+                        disableRipple
+                        sx={{
+                            fontSize: 12,
+                            '.MuiBottomNavigationAction-label.Mui-selected': {
+                                fontSize: 12,
+                            },
+                            '.MuiBottomNavigationAction-label': { mt: 1 },
+                        }}
+                        label={'News'}
+                        value={'/trades'}
+                        icon={
+                            <Iconify
+                                width={24}
+                                icon={
+                                    'material-symbols-light:news-outline-rounded'
+                                }
+                            />
+                        }
                     />
                     <BottomNavigationAction
                         disableRipple
