@@ -10,14 +10,21 @@ import { Iconify } from '@shared/ui'
 import { useCheckIphone } from '@shared/hooks/useCheckIphone.js'
 import { TokenTradesIcon } from '@shared/icons'
 import { paths } from '@pages/paths.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const Layout = ({ children }) => {
+    const { isDark } = useTg()
     const { isIphone } = useCheckIphone()
     const location = useLocation()
     const navigate = useNavigate()
     const [value, setValue] = useState(location.pathname || '/')
     return (
-        <Box sx={{ height: '100vh' }} className='page'>
+        <Box
+            sx={{
+                height: '100vh',
+                backgroundColor: isDark ? '#181818' : '#fff',
+            }}
+            className='page'>
             <Box sx={{ pb: '60px' }}>{children}</Box>
             <Paper
                 elevation={0}

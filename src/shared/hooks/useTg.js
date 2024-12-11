@@ -40,6 +40,7 @@ export function useTg(params) {
 
     return {
         tg,
+        isDark: tg?.colorScheme === 'dark',
         user: tg.initDataUnsafe?.user,
         closeTg,
         showTgBackButton: showBackButton,

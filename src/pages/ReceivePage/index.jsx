@@ -4,8 +4,7 @@ import { Receive } from '@widgets'
 import { useTg } from '@shared/hooks/useTg.js'
 
 const ReceivePage = () => {
-    const { tg } = useTg({ backButtonVisible: true })
-    console.log('tg', tg)
+    useTg({ backButtonVisible: true })
     return (
         <Box sx={{ pt: 4, pb: 15 }}>
             <Receive />
