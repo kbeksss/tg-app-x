@@ -1,9 +1,5 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import React, { useState } from 'react'
-
-const tg = window.Telegram.WebApp
-const themeParams = tg.themeParams
-const isDarkMode = tg.colorScheme === 'dark'
+import React from 'react'
 
 const themeSettings = {
     typography: {
@@ -133,38 +129,8 @@ const paletteSettings = {
     },
 }
 
-const lightTheme = createTheme({
-    ...themeSettings,
-    palette: paletteSettings,
-})
-
-const darkTheme = createTheme({
-    ...themeSettings,
-    palette: {
-        ...paletteSettings,
-        primary: { main: '#BFFE6E' },
-        background: {
-            grey: '#222222',
-            white: '#FFF',
-            black: '#000',
-        },
-    },
-})
+const theme = createTheme({ ...themeSettings, palette: paletteSettings })
 
 export const withMui = (component) => () => {
-    const tg = window.Telegram.WebApp
-    const isDarkMode = tg.colorScheme === 'dark'
-    const [theme, setTheme] = useState(isDarkMode ? darkTheme : lightTheme)
-
-    React.useEffect(() => {
-        const handleThemeChange = () => {
-            setTheme(tg.colorScheme === 'dark' ? darkTheme : lightTheme)
-        }
-
-        tg.onEvent('themeChanged', handleThemeChange)
-        return () => {
-            tg.offEvent('themeChanged', handleThemeChange)
-        }
-    }, [])
     return <ThemeProvider theme={theme}>{component()}</ThemeProvider>
 }
