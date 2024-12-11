@@ -10,12 +10,12 @@ const OperateItem = ({ icon, label, onClick }) => {
             <Avatar
                 sx={{
                     backgroundColor: isDark
-                        ? 'background.black'
+                        ? '#000'
                         : 'primary.main',
                 }}>
                 <Iconify icon={icon} />
             </Avatar>
-            <Typography color={isDark ? '#000' : 'primary.main'}>
+            <Typography color={isDark ? 'darkVersion.black' : 'primary.main'}>
                 {label}
             </Typography>
         </Stack>

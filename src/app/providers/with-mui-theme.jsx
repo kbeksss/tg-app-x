@@ -127,6 +127,13 @@ const paletteSettings = {
     error: {
         main: '#E53935',
     },
+    darkVersion: {
+        green: '#BFFE6E',
+        grey: '#222222',
+        lightGrey: '#2A2A2A',
+        black: '#000',
+        white: '#fff'
+    },
 }
 
 const theme = createTheme({ ...themeSettings, palette: paletteSettings })

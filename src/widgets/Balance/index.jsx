@@ -12,7 +12,7 @@ const Balance = ({ balance }) => {
                 sx={{
                     borderRadius: '20px',
                     backgroundColor: isDark
-                        ? 'primary.main'
+                        ? 'darkVersion.green'
                         : 'background.grey',
                     p: 2,
                 }}>
@@ -23,7 +23,9 @@ const Balance = ({ balance }) => {
                     <Iconify icon={'mdi:hide-outline'} />
                 </Stack>
                 <Typography variant={'h2'}>
-                    <span style={{ color: '#707579' }}>$ </span>
+                    <span style={{ color: isDark ? '#000' : '#707579' }}>
+                        ${' '}
+                    </span>
                     {balance}
                 </Typography>
                 <Divider sx={{ my: 2 }} />

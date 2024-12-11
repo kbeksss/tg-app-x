@@ -70,8 +70,11 @@ const Home = () => {
                                 sx={{
                                     px: '14px',
                                     py: '9px',
-                                    backgroundColor: 'background.grey',
+                                    backgroundColor: isDark
+                                        ? 'darkVersion.grey'
+                                        : 'background.grey',
                                     borderRadius: 24,
+                                    color: isDark ? '#fff' : 'unset',
                                 }}>
                                 <Stack
                                     spacing={1}
