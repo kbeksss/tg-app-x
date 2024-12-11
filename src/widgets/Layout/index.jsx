@@ -43,6 +43,7 @@ const Layout = ({ children }) => {
                     sx={{
                         pb: isIphone ? 2 : 1,
                         height: 'unset',
+                        backgroundColor: isDark ? 'background.grey': 'unset'
                     }}
                     onChange={(event, newValue) => {
                         setValue(newValue)
