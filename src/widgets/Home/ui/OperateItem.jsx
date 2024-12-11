@@ -15,7 +15,9 @@ const OperateItem = ({ icon, label, onClick }) => {
                 }}>
                 <Iconify icon={icon} />
             </Avatar>
-            <Typography color={'primary.main'}>{label}</Typography>
+            <Typography color={isDark ? '#000' : 'primary.main'}>
+                {label}
+            </Typography>
         </Stack>
     )
 }
