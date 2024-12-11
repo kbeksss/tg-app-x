@@ -8,8 +8,8 @@ const NestedAvatars = ({ avatar, secondaryAvatar }) => {
                 position: 'relative',
                 backgroundImage: `url(${avatar})`,
                 backgroundSize: 'cover',
-                width: 40,
-                height: 40,
+                width: 47,
+                height: 47,
                 borderRadius: '50%',
             }}>
             <Box
@@ -17,8 +17,8 @@ const NestedAvatars = ({ avatar, secondaryAvatar }) => {
                     position: 'absolute',
                     backgroundSize: 'cover',
                     backgroundImage: `url(${secondaryAvatar})`,
-                    width: 20,
-                    height: 20,
+                    width: 23,
+                    height: 23,
                     right: '-5px',
                     bottom: 0,
                     border: '1px solid #fff',

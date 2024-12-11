@@ -76,7 +76,7 @@ const TradeList = () => {
                     {transactions?.map((transaction, index) => (
                         <Box
                             key={index}
-                            sx={{ mb: 3 }}
+                            sx={{ mb: 2 }}
                             onClick={() =>
                                 navigate(`${paths.trade}/${transaction.hash}`)
                             }>

@@ -42,43 +42,53 @@ const Trade = () => {
     return (
         <Box>
             {trade ? (
-                <Box sx={{ px: 3 }}>
-                    <Grid2 alignItems={'center'} container spacing={2}>
-                        <Grid2 size={'auto'}>
-                            <NestedAvatars
-                                avatar={trade.Token.image}
-                                secondaryAvatar={network?.icon}
-                            />
-                        </Grid2>
-                        {trade.type === 'BUY' && (
-                            <Grid2 size={'grow'}>
-                                <Typography>Recommendation from</Typography>
-                                <Typography color={'primary'}>
-                                    <Link
-                                        sx={{ textDecoration: 'none' }}
-                                        href={`${paths.userProfile}/${trade?.kolId}`}>
-                                        {trade?.Kol?.username}
-                                    </Link>
-                                </Typography>
+                <Box sx={{ px: 2 }}>
+                    <Box
+                        sx={{
+                            backgroundColor: 'background.grey',
+                            p: 2,
+                            borderRadius: '16px',
+                        }}>
+                        <Grid2 alignItems={'center'} container spacing={2}>
+                            <Grid2 size={'auto'}>
+                                <NestedAvatars
+                                    avatar={trade.Token.image}
+                                    secondaryAvatar={network?.icon}
+                                />
                             </Grid2>
-                        )}
-                    </Grid2>
+                            {trade.type === 'BUY' && (
+                                <Grid2 size={'grow'}>
+                                    <Typography fontSize={17}>
+                                        Recommendation from
+                                    </Typography>
+                                    <Typography fontSize={17} color={'primary'}>
+                                        <Link
+                                            sx={{ textDecoration: 'none' }}
+                                            href={`${paths.userProfile}/${trade?.kolId}`}>
+                                            {trade?.Kol?.username}
+                                        </Link>
+                                    </Typography>
+                                </Grid2>
+                            )}
+                        </Grid2>
+                    </Box>
+
                     <Typography
                         sx={{
                             mt: 2,
                             color:
                                 trade.type === 'BUY'
-                                    ? 'success.main'
+                                    ? 'primary.main'
                                     : 'error.main',
                         }}
-                        variant={'h1'}>
+                        variant={'h2'}>
                         {trade.type === 'BUY' ? '+' : '-'}
                         {trade.amount} $
                         <span style={{ textTransform: 'uppercase' }}>
                             {trade.Token.symbol}
                         </span>
                     </Typography>
-                    <Typography color={'text.secondary'}>
+                    <Typography fontSize={17} color={'text.secondary'}>
                         {dayjs(trade.createdAt).format(
                             'DD.MM.YYYY [at] h:mm A'
                         )}
@@ -91,7 +101,7 @@ const Trade = () => {
                             py: 1.5,
                             backgroundColor: 'background.grey',
                         }}>
-                        <Typography variant={'body2'} color={'text.secondary'}>
+                        <Typography sx={{mb: '4px'}} fontSize={15} color={'text.secondary'}>
                             Status
                         </Typography>
                         <Stack direction={'row'} spacing={1}>
@@ -99,9 +109,9 @@ const Trade = () => {
                                 sx={{
                                     width: 24,
                                     height: 24,
-                                    backgroundColor: '#09AB75',
+                                    backgroundColor: 'primary.main',
                                 }}>
-                                <Iconify icon={'mdi:tick'} />
+                                <Iconify width={13} icon={'mdi:tick'} />
                             </Avatar>
                             <Typography>Successful</Typography>
                         </Stack>
