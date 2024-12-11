@@ -267,6 +267,7 @@ export const withMui = (component) => () => {
 
     React.useEffect(() => {
         const handleThemeChange = () => {
+            console.log('theme changed')
             const updatedTheme =
                 tg.colorScheme === 'dark' ? darkTheme : lightTheme
             document.body.dispatchEvent(
