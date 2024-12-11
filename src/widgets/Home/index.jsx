@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Avatar, Box,  Stack, Typography } from '@mui/material'
+import { Avatar, Box, Stack, Typography } from '@mui/material'
 import {
     Balance,
     NetworkSelect,
@@ -13,8 +13,10 @@ import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import SendConfirm from './ui/SendConfirm.jsx'
 import { Iconify, useSwipeableDialog } from '@shared/ui/index.js'
 import { networks } from '@_mock/networks.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const Home = () => {
+    const { isDark } = useTg()
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sellingToken, setSellingToken] = useState(null)
     const [sendingToken, setSendingToken] = useState(null)
@@ -48,7 +50,14 @@ const Home = () => {
                     direction={'row'}
                     alignItems={'center'}
                     justifyContent='space-between'>
-                    <ProfileImage width={40} />
+                    <ProfileImage
+                        icon={
+                            isDark
+                                ? '/assets/icons/utilities/user-icon-dark.png'
+                                : '/assets/icons/utilities/user-icon.png'
+                        }
+                        width={40}
+                    />
                     <Box sx={{ maxWidth: 200 }}>
                         <NetworkSelect
                             network={network}
