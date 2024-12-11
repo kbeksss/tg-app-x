@@ -28,7 +28,7 @@ const TokenItem = ({
                 borderRadius: '16px',
                 px: 2,
                 py: '14px',
-                backgroundColor: 'background.white',
+                backgroundColor: 'background.grey',
             }}>
             <Grid container spacing={2}>
                 <Grid container size='auto' alignItems={'center'}>
@@ -67,7 +67,7 @@ const TokenItem = ({
                         isLoading={isLoading}
                         width={50}
                         sx={{ marginLeft: 'auto' }}>
-                        <Typography fontSize={15} align={'right'}>
+                        <Typography variant={'body2'} color={'text.secondary'} align={'right'}>
                             &#8776; ${floatAmountToString(balanceInDollars)}
                         </Typography>
                     </LoadingElement>

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Avatar, Box, Chip, Stack, Typography } from '@mui/material'
+import { Avatar, Box,  Stack, Typography } from '@mui/material'
 import {
     Balance,
     NetworkSelect,
@@ -7,8 +7,6 @@ import {
     SellTokens,
     TokenList,
 } from '@widgets'
-import Operate from './ui/Operate'
-import { tokens } from '@_mock/currency.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'

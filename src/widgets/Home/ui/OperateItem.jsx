@@ -8,7 +8,7 @@ const OperateItem = ({ icon, label, onClick }) => {
             <Avatar sx={{ backgroundColor: 'primary.main' }}>
                 <Iconify icon={icon} />
             </Avatar>
-            <Typography>{label}</Typography>
+            <Typography color={'primary.main'}>{label}</Typography>
         </Stack>
     )
 }

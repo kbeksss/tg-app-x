@@ -8,7 +8,8 @@ const TokenList = ({ tokens, openDialog, tokensLoading }) => {
             sx={{
                 px: 2,
                 py: '20px',
-                backgroundColor: 'background.grey',
+                backgroundColor: 'background.white',
+                boxShadow: '0px -1px 10px -1px rgba(34, 60, 80, 0.2)',
                 borderRadius: '20px',
             }}>
             <Stack
