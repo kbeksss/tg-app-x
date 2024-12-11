@@ -2,14 +2,18 @@ import React from 'react'
 import { Box, Divider, Stack, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
 import Operate from '@widgets/Home/ui/Operate.jsx'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const Balance = ({ balance }) => {
+    const { isDark } = useTg()
     return (
         <Box sx={{ px: 2, py: 3 }}>
             <Box
                 sx={{
                     borderRadius: '20px',
-                    backgroundColor: 'background.grey',
+                    backgroundColor: isDark
+                        ? 'primary.main'
+                        : 'background.grey',
                     p: 2,
                 }}>
                 <Stack spacing={1} alignItems={'center'} direction={'row'}>

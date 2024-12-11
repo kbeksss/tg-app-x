@@ -140,7 +140,15 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
     ...themeSettings,
-    palette: { ...paletteSettings, primary: { main: '#BFFE6E' } },
+    palette: {
+        ...paletteSettings,
+        primary: { main: '#BFFE6E' },
+        background: {
+            grey: '#222222',
+            white: '#FFF',
+            black: '#000',
+        },
+    },
 })
 
 export const withMui = (component) => () => {
