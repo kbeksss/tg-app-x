@@ -13,10 +13,10 @@ import {
 import { useSelector } from 'react-redux'
 import { notify } from '@shared/utils/functions/index.js'
 import { ConfirmSubscribe } from '@features'
+import { ProfileInfo, SuccessDialog } from '@shared/ui'
 
 const UserProfile = () => {
     const navigate = useNavigate()
-
     const { id } = useParams()
     const [followUser, { isLoading: followLoading }] = useFollowUserMutation()
     const [unfollowUser, { isLoading: unfollowLoading }] =
@@ -28,6 +28,7 @@ const UserProfile = () => {
             ? !!user?.Followers.find((u) => u.accountId === account?.id)
             : false
     }, [user, account])
+    const [successOpen, setSuccessOpen] = useState(false)
     const [isConfirmSubscribe, setIsConfirmSubscribe] = useState(false)
     const toggleSubscribe = async () => {
         isSubscribed
@@ -41,7 +42,7 @@ const UserProfile = () => {
             return
         }
         setIsConfirmSubscribe(false)
-        navigate(`${paths.userSubscribeSuccess}/${id}`)
+        setSuccessOpen(true)
     }
     return (
         <Box>
@@ -72,6 +73,16 @@ const UserProfile = () => {
                 onConfirm={onConfirmSubscribe}
                 open={isConfirmSubscribe}
                 onClose={() => setIsConfirmSubscribe(false)}
+            />
+            <SuccessDialog
+                open={successOpen}
+                onClose={() => setSuccessOpen(false)}
+                title={'Successfully subcribed'}
+                text={
+                    'You have successfully subscribed to https://x.com/WatcherGuru'
+                }
+                actionLabel={'Okay'}
+                action={() => setSuccessOpen(false)}
             />
         </Box>
     )

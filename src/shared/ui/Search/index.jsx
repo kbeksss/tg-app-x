@@ -29,8 +29,14 @@ const Search = ({ value, setValue }) => {
                     height: 42,
                     borderRadius: '30px',
                 },
+                '& .MuiInputBase-root': {
+                    backgroundColor: 'background.grey',
+                },
                 '& .MuiOutlinedInput-notchedOutline': {
                     borderRadius: '30px',
+                },
+                '& fieldset': {
+                    border: 'none',
                 },
             }}
         />

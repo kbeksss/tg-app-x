@@ -19,10 +19,14 @@ const theme = createTheme({
         text: {
             secondary: '#707579',
             dark: '#757575',
+            light: '#FFF',
         },
         background: {
             grey: '#F4F4F6',
             white: '#FFF',
+        },
+        error: {
+            main: '#E53935',
         },
     },
     typography: {
@@ -59,10 +63,9 @@ const theme = createTheme({
         MuiDialogTitle: {
             styleOverrides: {
                 root: {
-                    fontSize: 16,
+                    fontSize: 24,
                     fontWeight: 600,
-                    paddingTop: 36,
-                    textAlign: 'center',
+                    padding: '18px 0 9px 16px',
                 },
             },
         },
@@ -76,9 +79,8 @@ const theme = createTheme({
         MuiDialogContentText: {
             styleOverrides: {
                 root: {
-                    textAlign: 'center',
                     fontSize: 14,
-                    color: '#000',
+                    color: '#707579',
                 },
             },
         },
@@ -113,6 +115,17 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     minWidth: 'unset',
+                },
+            },
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    '& .MuiInputBase-inputSizeSmall': {
+                        boxSizing: 'border-box',
+                        height: 42,
+                        // padding: '0 8px',
+                    },
                 },
             },
         },

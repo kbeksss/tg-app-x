@@ -78,9 +78,16 @@ const Layout = ({ children }) => {
                             },
                             '.MuiBottomNavigationAction-label': { mt: 1 },
                         }}
-                        label={'Trade'}
-                        value={'/trades'}
-                        icon={<TokenTradesIcon />}
+                        label={'News'}
+                        value={'/news'}
+                        icon={
+                            <Iconify
+                                width={24}
+                                icon={
+                                    'material-symbols-light:news-outline-rounded'
+                                }
+                            />
+                        }
                     />
                     <BottomNavigationAction
                         disableRipple
@@ -91,17 +98,11 @@ const Layout = ({ children }) => {
                             },
                             '.MuiBottomNavigationAction-label': { mt: 1 },
                         }}
-                        label={'News'}
+                        label={'Trade'}
                         value={'/trades'}
-                        icon={
-                            <Iconify
-                                width={24}
-                                icon={
-                                    'material-symbols-light:news-outline-rounded'
-                                }
-                            />
-                        }
+                        icon={<TokenTradesIcon />}
                     />
+
                     <BottomNavigationAction
                         disableRipple
                         sx={{

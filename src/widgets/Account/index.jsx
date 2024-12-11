@@ -1,10 +1,8 @@
 import React from 'react'
-import { Box, Stack } from '@mui/material'
-import { ProfileImage } from '@widgets'
+import { Box, Stack, Typography } from '@mui/material'
 import SettingsItem from './ui/SettingsItem.jsx'
-import { BottomButton } from '@shared/ui'
+import { BottomButton, Iconify, ProfileInfo } from '@shared/ui'
 import { useNavigate } from 'react-router-dom'
-import { networks } from '@_mock/networks.js'
 import { paths } from '@pages/paths.js'
 import { useSelector } from 'react-redux'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
@@ -19,12 +17,17 @@ const Account = () => {
         portfolio: data?.portfolio,
     })
     return (
-        <Box>
-            <ProfileImage
-                icon={'/assets/icons/utilities/user-icon.png'}
-                label={account?.username}
+        <Box sx={{ px: 2 }}>
+            <ProfileInfo
+                avatar={'/assets/icons/utilities/user-icon.png'}
+                name={account?.name}
+                username={account?.username}
+                editable
             />
-            <Box sx={{ px: 2, py: 3 }}>
+            <Box sx={{ pt: 3 }}>
+                <Typography sx={{ mb: 1 }} fontWeight={500}>
+                    Network details
+                </Typography>
                 <Stack spacing={1}>
                     {networkPortfolios?.map((network, index) => (
                         <SettingsItem
@@ -38,6 +41,27 @@ const Account = () => {
                             icon={network.image}
                         />
                     ))}
+                </Stack>
+            </Box>
+            <Box sx={{ pt: 3 }}>
+                <Typography sx={{ mb: 1 }} fontWeight={500}>
+                    Help and support
+                </Typography>
+                <Stack spacing={1}>
+                    <SettingsItem
+                        label={'Delete account'}
+                        icon={
+                            <Stack
+                                sx={{ height: 40 }}
+                                justifyContent={'center'}
+                                alignItems={'center'}>
+                                <Iconify
+                                    sx={{ color: 'text.secondary' }}
+                                    icon={'ph:trash-bold'}
+                                />
+                            </Stack>
+                        }
+                    />
                 </Stack>
             </Box>
             <BottomButton

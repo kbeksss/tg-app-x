@@ -47,14 +47,12 @@ const NetworkSettingsPage = () => {
         )
     }, [account, networkSymbol])
     const toggleSumbit = useCallback(async () => {
-        console.log('aa')
         return networkSymbol === 'ETH'
             ? await toggleEthereumTrade()
             : await toggleSolanaTrade()
     }, [networkSymbol])
     const configUpdateSubmit = useCallback(
         async (value) => {
-            console.log('bb')
             return networkSymbol === 'ETH'
                 ? await postEthereumConfig({ value })
                 : await postSolanaConfig({ value })

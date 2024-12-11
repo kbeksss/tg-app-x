@@ -13,8 +13,12 @@ const SettingsItem = ({ icon, label, onClick }) => {
                 backgroundColor: 'background.grey',
             }}>
             <Grid2 alignItems={'center'} spacing={2} container>
-                <Grid2 size={'auto'}>
-                    <Avatar sx={{ width: 40 }} src={icon} />
+                <Grid2 size={'auto'} container alignItems={'center'}>
+                    {typeof icon === 'string' ? (
+                        <Avatar sx={{ width: 40 }} src={icon} />
+                    ) : (
+                        icon
+                    )}
                 </Grid2>
                 <Grid2 size={'grow'}>
                     <Typography>{label}</Typography>
@@ -22,7 +26,7 @@ const SettingsItem = ({ icon, label, onClick }) => {
                 <Grid2 size={2} container justifyContent={'end'}>
                     <Iconify
                         sx={{ color: 'text.secondary' }}
-                        icon={'material-symbols:arrow-forward-ios-rounded'}
+                        icon={'icon-park-outline:right'}
                     />
                 </Grid2>
             </Grid2>

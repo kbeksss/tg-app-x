@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Box, Button, InputAdornment, Stack, TextField } from '@mui/material'
-import { NetworkSelect } from '@widgets'
+import { Box } from '@mui/material'
 import { networks } from '@_mock/networks'
-import { BottomButton, Iconify, useSwipeableDialog } from '@shared/ui'
+import { BottomButton } from '@shared/ui'
 import { floatAmountToString, notify } from '@shared/utils/functions'
 import SendConfirmDialog from '@widgets/Send/ui/SendConfirmDialog.jsx'
 import { paths } from '@pages/paths.js'
@@ -19,7 +18,6 @@ import {
 import SendForm from './ui/SendForm.jsx'
 
 const Send = () => {
-    const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sendEthereum] = useSendEthereumMutation()
     const [sendSolana] = useSendSolanaMutation()
     const { tg } = useTg()
@@ -30,6 +28,10 @@ const Send = () => {
     const [sum, setSum] = useState('')
     const networkSymbol = useMemo(
         () => networks.find((net) => net.value === network).symbol,
+        [network]
+    )
+    const networkObj = useMemo(
+        () => networks.find((net) => net.value === network),
         [network]
     )
     const sendConfirmOpen = () => {
@@ -62,7 +64,7 @@ const Send = () => {
             address: `${receiverAddress.slice(0, 10)}***${receiverAddress.slice(-15)}`,
         })
     }
-    const showQr = () => {
+    const scan = () => {
         try {
             tg?.showScanQrPopup({ text: 'Scan the address QR' })
         } catch (e) {
@@ -99,59 +101,15 @@ const Send = () => {
     }, [networkPortfolio])
     return (
         <Box sx={{ px: 2, pt: 3 }}>
-            <Stack alignItems='center'>
-                <Box sx={{ minWidth: 250, pb: 2 }}>
-                    <NetworkSelect
-                        toggleDrawer={toggleDrawer}
-                        setDrawerHeight={setDrawerHeight}
-                        isDrawerOpen={isDrawerOpen}
-                        network={network}
-                        setNetwork={setNetwork}>
-                        <div>Network</div>
-                    </NetworkSelect>
-                </Box>
-            </Stack>
-            {/*<SendForm />*/}
-            <Stack spacing={3}>
-                <TextField
-                    fullWidth
-                    value={receiverAddress}
-                    onChange={(e) => setReceiverAddress(e.target.value)}
-                    label={'Address'}
-                    slotProps={{
-                        input: {
-                            endAdornment: (
-                                <InputAdornment
-                                    onClick={showQr}
-                                    position='start'>
-                                    <Button
-                                        sx={{ fontSize: 14 }}
-                                        endIcon={
-                                            <Iconify icon={'uil:qrcode-scan'} />
-                                        }>
-                                        Scan
-                                    </Button>
-                                </InputAdornment>
-                            ),
-                        },
-                    }}
-                />
-                <TextField
-                    label={'Sum'}
-                    value={sum}
-                    disabled
-                    type={'number'}
-                    slotProps={{
-                        input: {
-                            endAdornment: (
-                                <InputAdornment position='start'>
-                                    {networkSymbol}
-                                </InputAdornment>
-                            ),
-                        },
-                    }}
-                />
-            </Stack>
+            <SendForm
+                sumValue={sum}
+                scan={scan}
+                networkObj={networkObj}
+                network={network}
+                setNetwork={setNetwork}
+                receiverAddress={receiverAddress}
+                setReceiverAddress={setReceiverAddress}
+            />
             <SendConfirmDialog
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}

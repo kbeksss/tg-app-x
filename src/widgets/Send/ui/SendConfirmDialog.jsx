@@ -9,6 +9,7 @@ import {
     Stack,
     Typography,
 } from '@mui/material'
+import { InfoRows } from '@shared/ui'
 
 const SendConfirmDialog = ({ open, onClose, total, address, onConfirm }) => {
     return (
@@ -19,16 +20,12 @@ const SendConfirmDialog = ({ open, onClose, total, address, onConfirm }) => {
                     You are transferring funds to another wallet, check the
                     transfer amount and address
                 </DialogContentText>
-                <Stack spacing={2}>
-                    <Stack spacing={0.5}>
-                        <Typography color={'text.dark'}>Total</Typography>
-                        <Typography>{total}</Typography>
-                    </Stack>
-                    <Stack spacing={0.5}>
-                        <Typography color={'text.dark'}>Address</Typography>
-                        <Typography>{address}</Typography>
-                    </Stack>
-                </Stack>
+                <InfoRows
+                    rows={[
+                        { label: 'Total', value: total },
+                        { label: 'Address', value: address },
+                    ]}
+                />
                 <Stack sx={{ mt: 2 }} spacing={1}>
                     <Button onClick={onConfirm} variant={'contained'}>
                         Confirm

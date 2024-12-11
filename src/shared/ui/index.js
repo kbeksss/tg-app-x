@@ -11,3 +11,7 @@ export {
     useSwipeableDialog,
 } from './SwipeableDialog'
 export { default as Edge } from './Edge'
+export { default as InfoPlate } from './InfoPlate'
+export { default as InfoRows } from './InfoRows'
+export { default as ProfileInfo } from './ProfileInfo'
+export { default as SuccessDialog } from './SuccessDialog'

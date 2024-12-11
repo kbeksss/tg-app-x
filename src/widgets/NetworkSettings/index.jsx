@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react'
 import {
+    Avatar,
     Box,
     Button,
+    Grid2,
     InputAdornment,
     Stack,
     TextField,
@@ -46,12 +48,25 @@ const NetworkSettings = ({
         notify({ type: 'success', msg: 'Changes successfully updated' })
     }
     return (
-        <Box>
-            <ProfileImage
-                label={`Setting up ${network.symbol} trading`}
-                icon={network.image}
-            />
-            <Box sx={{ px: 2, py: 3 }}>
+        <Box sx={{ px: 2 }}>
+            <Box
+                sx={{
+                    borderRadius: '16px',
+                    p: 2,
+                    backgroundColor: 'background.grey',
+                }}>
+                <Grid2 alignItems={'center'} container spacing={1.5}>
+                    <Grid2 size={'auto'}>
+                        <Avatar src={network.image} />
+                    </Grid2>
+                    <Grid2 size={'grow'}>
+                        <Typography fontWeight={500}>
+                            Setting up {network.symbol} for trading
+                        </Typography>
+                    </Grid2>
+                </Grid2>
+            </Box>
+            <Box sx={{ py: 3 }}>
                 <Stack spacing={2}>
                     <Box
                         sx={{
