@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
                     bottom: 0,
                     left: 0,
                     borderTop: '0.5px solid #707579',
-                    backgroundColor: isDark ? 'background.grey': '#fff'
+                    backgroundColor: isDark ? 'background.grey': '#fff',
                     pt: 1,
                     right: 0,
                     px: 1,
