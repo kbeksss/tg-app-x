@@ -135,7 +135,7 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
     palette: {
         primary: {
-            main: 'green',
+            main: '#000',
         },
         success: {
             main: '#31D158',
