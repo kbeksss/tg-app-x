@@ -33,6 +33,7 @@ const Layout = ({ children }) => {
                     bottom: 0,
                     left: 0,
                     borderTop: '0.5px solid #707579',
+                    backgroundColor: isDark ? 'background.grey': '#fff'
                     pt: 1,
                     right: 0,
                     px: 1,
@@ -43,7 +44,7 @@ const Layout = ({ children }) => {
                     sx={{
                         pb: isIphone ? 2 : 1,
                         height: 'unset',
-                        backgroundColor: isDark ? 'background.grey': 'unset'
+                        backgroundColor: isDark ? 'background.grey': '#fff'
                     }}
                     onChange={(event, newValue) => {
                         setValue(newValue)
