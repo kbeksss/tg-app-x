@@ -1,5 +1,5 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import React from 'react'
+import React, { useState } from 'react'
 
 const tg = window.Telegram.WebApp
 const themeParams = tg.themeParams
@@ -262,17 +262,12 @@ const darkTheme = createTheme({
 export const withMui = (component) => () => {
     const tg = window.Telegram.WebApp
     const isDarkMode = tg.colorScheme === 'dark'
-
-    const theme = isDarkMode ? darkTheme : lightTheme
+    const [theme, setTheme] = useState(isDarkMode ? darkTheme : lightTheme)
 
     React.useEffect(() => {
         const handleThemeChange = () => {
             console.log('theme changed', tg.colorScheme)
-            const updatedTheme =
-                tg.colorScheme === 'dark' ? darkTheme : lightTheme
-            document.body.dispatchEvent(
-                new CustomEvent('theme-updated', { detail: updatedTheme })
-            )
+            setTheme(tg.colorScheme === 'dark' ? darkTheme : lightTheme)
         }
 
         tg.onEvent('themeChanged', handleThemeChange)
