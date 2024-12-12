@@ -9,8 +9,10 @@ import {
     useUnfollowUserMutation,
 } from '@shared/api/services/index.js'
 import { notify } from '@shared/utils/functions'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const UsersList = ({ search, myList }) => {
+    const { isDark } = useTg()
     const { data, isLoading: listLoading } = useFetchUsersQuery({
         myKol: myList,
         search,
@@ -38,7 +40,13 @@ const UsersList = ({ search, myList }) => {
                 <Divider
                     variant={'inset'}
                     component={'div'}
-                    sx={{ width: 'calc(100% - 66px)', ml: 'auto!important' }}
+                    sx={{
+                        borderColor: isDark
+                            ? 'rgba(255,255,255,0.3)'
+                            : 'rgba(0,0,0,0.3)',
+                        width: 'calc(100% - 66px)',
+                        ml: 'auto!important',
+                    }}
                 />
             }>
             {data?.kols.map((user) => (
@@ -65,11 +73,19 @@ const UsersList = ({ search, myList }) => {
                 <Box sx={{ px: 5 }}>
                     <Stack direction={'row'} justifyContent={'center'}>
                         <img
-                            src='/assets/icons/utilities/not-found.png'
+                            src={
+                                isDark
+                                    ? '/assets/icons/utilities/not-found-green.png'
+                                    : '/assets/icons/utilities/not-found.png'
+                            }
                             alt=''
                         />
                     </Stack>
-                    <Typography sx={{ mb: 1 }} align={'center'} variant={'h5'}>
+                    <Typography
+                        color={isDark ? 'white' : 'black'}
+                        sx={{ mb: 1 }}
+                        align={'center'}
+                        variant={'h5'}>
                         Nothing was found :(
                     </Typography>
                     <Typography align={'center'} color={'text.secondary'}>
@@ -78,7 +94,11 @@ const UsersList = ({ search, myList }) => {
                 </Box>
             ) : (
                 <Box sx={{ px: 5 }}>
-                    <Typography sx={{ mb: 1 }} align={'center'} variant={'h5'}>
+                    <Typography
+                        color={isDark ? 'white' : 'black'}
+                        sx={{ mb: 1 }}
+                        align={'center'}
+                        variant={'h5'}>
                         No Subscriptions Yet!
                     </Typography>
                     <Typography align={'center'} color={'text.secondary'}>

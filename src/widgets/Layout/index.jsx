@@ -47,6 +47,9 @@ const Layout = ({ children }) => {
                         backgroundColor: isDark
                             ? 'darkVersion.lightGrey'
                             : '#fff',
+                        '& .Mui-selected': {
+                            color: isDark ? 'darkVersion.green' : 'primary',
+                        },
                     }}
                     onChange={(event, newValue) => {
                         setValue(newValue)
