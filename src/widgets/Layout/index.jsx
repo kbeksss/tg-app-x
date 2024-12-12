@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
                             ? 'darkVersion.lightGrey'
                             : '#fff',
                         '& .Mui-selected': {
-                            color: isDark ? 'darkVersion.green' : 'primary',
+                            color: isDark ? 'darkVersion.green !important' : 'primary',
                         },
                     }}
                     onChange={(event, newValue) => {
