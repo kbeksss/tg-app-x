@@ -7,8 +7,10 @@ import { paths } from '@pages/paths.js'
 import { useSelector } from 'react-redux'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const Account = () => {
+    const { isDark } = useTg()
     const navigate = useNavigate()
     const account = useSelector((state) => state.account)
     const { data } = useFetchAccountPortfolioQuery()
@@ -25,7 +27,10 @@ const Account = () => {
                 editable
             />
             <Box sx={{ pt: 3 }}>
-                <Typography sx={{ mb: 1 }} fontWeight={500}>
+                <Typography
+                    color={isDark ? 'white' : 'black'}
+                    sx={{ mb: 1 }}
+                    fontWeight={500}>
                     Network details
                 </Typography>
                 <Stack spacing={1}>
@@ -44,7 +49,10 @@ const Account = () => {
                 </Stack>
             </Box>
             <Box sx={{ pt: 3 }}>
-                <Typography sx={{ mb: 1 }} fontWeight={500}>
+                <Typography
+                    color={isDark ? 'white' : 'black'}
+                    sx={{ mb: 1 }}
+                    fontWeight={500}>
                     Help and support
                 </Typography>
                 <Stack spacing={1}>

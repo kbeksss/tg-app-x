@@ -12,6 +12,7 @@ import {
 import { ProfileImage } from '@widgets'
 import { BottomButton, Switch } from '@shared/ui'
 import { notify } from '@shared/utils/functions/index.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const NetworkSettings = ({
     network,
@@ -20,6 +21,7 @@ const NetworkSettings = ({
     toggleSumbit,
     configUpdateSubmit,
 }) => {
+    const { isDark } = useTg()
     const [checked, setChecked] = useState(networkCheckedInitial)
     const [configValue, setConfigValue] = useState(configValueInitial)
 
@@ -53,14 +55,18 @@ const NetworkSettings = ({
                 sx={{
                     borderRadius: '16px',
                     p: 2,
-                    backgroundColor: 'background.grey',
+                    backgroundColor: isDark
+                        ? 'darkVersion.lightGrey'
+                        : 'background.grey',
                 }}>
                 <Grid2 alignItems={'center'} container spacing={1.5}>
                     <Grid2 size={'auto'}>
                         <Avatar src={network.image} />
                     </Grid2>
                     <Grid2 size={'grow'}>
-                        <Typography fontWeight={500}>
+                        <Typography
+                            color={isDark ? 'white' : 'black'}
+                            fontWeight={500}>
                             Setting up {network.symbol} for trading
                         </Typography>
                     </Grid2>
@@ -73,20 +79,26 @@ const NetworkSettings = ({
                             py: '14px',
                             px: 2,
                             borderRadius: '16px',
-                            backgroundColor: 'background.grey',
+                            backgroundColor: isDark
+                                ? 'darkVersion.lightGrey'
+                                : 'background.grey',
                         }}>
                         <Stack
                             direction={'row'}
                             alignItems={'center'}
                             justifyContent={'space-between'}>
-                            <Typography>Trade ERC20 tokens</Typography>
+                            <Typography color={isDark ? 'white' : 'dark'}>
+                                Trade ERC20 tokens
+                            </Typography>
                             <Switch checked={checked} onChange={handleChange} />
                         </Stack>
                     </Box>
                     {checked && (
                         <>
                             <Box sx={{}}>
-                                <Typography fontWeight={600}>
+                                <Typography
+                                    color={isDark ? 'white' : 'black'}
+                                    fontWeight={600}>
                                     Trading bot settings:
                                 </Typography>
                                 <Typography
@@ -98,12 +110,28 @@ const NetworkSettings = ({
                             <TextField
                                 type={'number'}
                                 value={configValue}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        color: isDark ? 'white' : 'black',
+                                        '& fieldset': {
+                                            borderColor: isDark
+                                                ? 'rgba(255,255,255,5) !important'
+                                                : 'unset',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: isDark
+                                                ? 'rgba(255,255,255,0.5) !important'
+                                                : 'unset',
+                                        },
+                                    },
+                                }}
                                 onChange={handleConfigValueChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='start'>
-                                                <Typography>
+                                                <Typography
+                                                    color={'text.secondary'}>
                                                     {network.symbol}
                                                 </Typography>
                                             </InputAdornment>
