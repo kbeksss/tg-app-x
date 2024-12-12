@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Grid2, Typography } from '@mui/material'
 import { Iconify, NestedAvatars } from '@shared/ui'
 import dayjs from 'dayjs'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const TradeItem = ({
     tokenIcon,
@@ -11,11 +12,14 @@ const TradeItem = ({
     amount,
     type,
 }) => {
+    const { isDark } = useTg()
     return (
         <Box
             sx={{
                 borderRadius: '16px',
-                backgroundColor: 'background.grey',
+                backgroundColor: isDark
+                    ? 'darkVersion.lightGrey'
+                    : 'background.grey',
                 p: 2,
             }}>
             <Grid2 container spacing={2} alignItems={'center'}>
@@ -28,6 +32,7 @@ const TradeItem = ({
                 <Grid2 size={'grow'}>
                     <Box>
                         <Typography
+                            color={isDark ? 'white' : 'black'}
                             component={'span'}
                             textTransform={'uppercase'}>
                             {tokenCode} /{' '}

@@ -20,8 +20,10 @@ import { networks } from '@_mock/networks.js'
 import { SellTokens } from '@widgets'
 import { useParams } from 'react-router'
 import { paths } from '@pages/paths.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const Trade = () => {
+    const { isDark } = useTg()
     const { id: tradeHash } = useParams()
     const [sellingToken, setSellingToken] = useState(null)
     const { data: trade } = useFetchTransactionQuery({ hash: tradeHash })
@@ -45,7 +47,9 @@ const Trade = () => {
                 <Box sx={{ px: 2 }}>
                     <Box
                         sx={{
-                            backgroundColor: 'background.grey',
+                            backgroundColor: isDark
+                                ? 'darkVersion.lightGrey'
+                                : 'background.grey',
                             p: 2,
                             borderRadius: '16px',
                         }}>
@@ -58,12 +62,19 @@ const Trade = () => {
                             </Grid2>
                             {trade.type === 'BUY' && (
                                 <Grid2 size={'grow'}>
-                                    <Typography fontSize={17}>
+                                    <Typography
+                                        color={isDark ? 'white' : 'black'}
+                                        fontSize={17}>
                                         Recommendation from
                                     </Typography>
-                                    <Typography fontSize={17} color={'primary'}>
+                                    <Typography fontSize={17}>
                                         <Link
-                                            sx={{ textDecoration: 'none' }}
+                                            sx={{
+                                                textDecoration: 'none',
+                                                color: isDark
+                                                    ? 'darkVersion.green'
+                                                    : 'primary',
+                                            }}
                                             href={`${paths.userProfile}/${trade?.kolId}`}>
                                             {trade?.Kol?.username}
                                         </Link>
@@ -77,9 +88,11 @@ const Trade = () => {
                         sx={{
                             mt: 2,
                             color:
-                                trade.type === 'BUY'
-                                    ? 'primary.main'
-                                    : 'error.main',
+                                trade.type !== 'BUY'
+                                    ? 'error.main'
+                                    : isDark
+                                      ? 'darkVersion.green'
+                                      : 'primary.main',
                         }}
                         variant={'h2'}>
                         {trade.type === 'BUY' ? '+' : '-'}
@@ -99,9 +112,14 @@ const Trade = () => {
                             borderRadius: '16px',
                             px: 2,
                             py: 1.5,
-                            backgroundColor: 'background.grey',
+                            backgroundColor: isDark
+                                ? 'darkVersion.lightGrey'
+                                : 'background.grey',
                         }}>
-                        <Typography sx={{mb: '4px'}} fontSize={15} color={'text.secondary'}>
+                        <Typography
+                            sx={{ mb: '4px' }}
+                            fontSize={15}
+                            color={'text.secondary'}>
                             Status
                         </Typography>
                         <Stack direction={'row'} spacing={1}>
@@ -109,15 +127,24 @@ const Trade = () => {
                                 sx={{
                                     width: 24,
                                     height: 24,
-                                    backgroundColor: 'primary.main',
+                                    backgroundColor: isDark
+                                        ? 'darkVersion.green'
+                                        : 'primary.main',
+                                    color: isDark ? 'black' : 'white',
                                 }}>
                                 <Iconify width={13} icon={'mdi:tick'} />
                             </Avatar>
-                            <Typography>Successful</Typography>
+                            <Typography color={isDark ? 'white' : 'black'}>
+                                Successful
+                            </Typography>
                         </Stack>
                     </Box>
                     <Button
-                        sx={{ mt: 3, border: '1px dashed #707579' }}
+                        sx={{
+                            mt: 3,
+                            border: '1px dashed #707579',
+                            color: isDark ? 'darkVersion.green' : 'primary',
+                        }}
                         fullWidth
                         variant={'outlined'}
                         component='a'
