@@ -14,8 +14,10 @@ import { useSelector } from 'react-redux'
 import { notify } from '@shared/utils/functions/index.js'
 import { ConfirmSubscribe } from '@features'
 import { ProfileInfo, SuccessDialog } from '@shared/ui'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const UserProfile = () => {
+    const { isDark } = useTg()
     const navigate = useNavigate()
     const { id } = useParams()
     const [followUser, { isLoading: followLoading }] = useFollowUserMutation()
@@ -58,9 +60,11 @@ const UserProfile = () => {
             )}
 
             <Box sx={{ px: 2, pt: 3 }}>
-                <Typography variant={'h6'}>Latest recommendations</Typography>
+                <Typography variant={'h6'} color={isDark ? 'white' : 'black'}>
+                    Latest recommendations
+                </Typography>
             </Box>
-            <Divider sx={{ mt: 1, mb: 3, borderColor: 'rgba(0,0,0,0.3)' }} />
+            <Divider sx={{ mt: 1, mb: 3, borderColor: isDark ? 'rgba(255,255,255,0.3)':'rgba(0,0,0,0.3)' }} />
             <Box sx={{ px: 2 }}>
                 {user && (
                     <Recommendations

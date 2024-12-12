@@ -25,7 +25,8 @@ const ProfileInfo = ({ name, username, avatar, editable }) => {
                         {name}
                     </Typography>
                     <Typography color={isDark ? 'white' : 'black'}>
-                        @{username}
+                        {editable && '@'}
+                        {username}
                     </Typography>
                 </Grid2>
                 {editable && (
