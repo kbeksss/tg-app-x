@@ -132,7 +132,8 @@ const paletteSettings = {
         grey: '#222222',
         lightGrey: '#2A2A2A',
         black: '#000',
-        white: '#fff'
+        lightBlack: '#181818',
+        white: '#fff',
     },
 }
 

@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import { Box, Button } from '@mui/material'
 import { useCheckIphone } from '@shared/hooks/useCheckIphone.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const BottomButton = ({
     label,
@@ -9,6 +10,7 @@ const BottomButton = ({
     disabled,
     color = 'primary',
 }) => {
+    const { isDark } = useTg()
     const isIphone = useCheckIphone()
     const bottomPosition = useMemo(() => {
         return withToolbar ? '70px' : '10px'
@@ -26,6 +28,10 @@ const BottomButton = ({
             <Button
                 disabled={disabled}
                 fullWidth
+                sx={{
+                    backgroundColor: isDark ? 'darkVersion.green' : 'primary',
+                    color: isDark ? 'black' : 'white',
+                }}
                 color={color}
                 variant={'contained'}
                 onClick={onClick}>

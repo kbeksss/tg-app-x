@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { networks } from '@_mock/networks.js'
 import { Search, SwipeableDialog } from '@shared/ui'
 import NetworkItems from '@widgets/NetworkSelect/ui/NetworkItems.jsx'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const NetworkSelect = ({
     isDrawerOpen,
@@ -12,6 +13,7 @@ const NetworkSelect = ({
     setNetwork,
     children,
 }) => {
+    const { isDark } = useTg()
     const [searchValue, setSearchValue] = useState('')
 
     const filteredNetworks = useMemo(() => {
@@ -29,23 +31,30 @@ const NetworkSelect = ({
             <SwipeableDialog
                 contentHeight
                 setDrawerHeight={setDrawerHeight}
-                bgColor={'background.paper'}
                 toggleDrawer={toggleDrawer}
                 isDrawerOpen={isDrawerOpen}
                 label={'Select Network'}>
-                <Search value={searchValue} setValue={setSearchValue} />
-                <NetworkItems
-                    selectedCb={onSelected}
-                    selectedNetwork={network}
-                    setNetwork={setNetwork}
-                    networks={filteredNetworks}
-                />
-                <Button
-                    onClick={() => setNetwork('')}
-                    variant={'contained'}
-                    fullWidth>
-                    Reset
-                </Button>
+                <Box sx={{ pt: '14px' }}>
+                    <Search value={searchValue} setValue={setSearchValue} />
+                    <NetworkItems
+                        selectedCb={onSelected}
+                        selectedNetwork={network}
+                        setNetwork={setNetwork}
+                        networks={filteredNetworks}
+                    />
+                    <Button
+                        onClick={() => setNetwork('')}
+                        sx={{
+                            backgroundColor: isDark
+                                ? 'darkVersion.green'
+                                : 'primary',
+                            color: isDark ? 'black' : 'white',
+                        }}
+                        variant={'contained'}
+                        fullWidth>
+                        Reset
+                    </Button>
+                </Box>
             </SwipeableDialog>
         </>
     )

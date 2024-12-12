@@ -9,6 +9,7 @@ import {
     Typography,
 } from '@mui/material'
 import { Edge, Iconify } from '@shared/ui'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const useSwipeableDialog = ({ initialHalf } = { initialHalf: '55vh' }) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -30,13 +31,13 @@ const SwipeableDialog = ({
     toggleDrawer,
     children,
     initialHalf = '55vh',
-    bgColor,
     onCloseFunc,
     contentHeight = false,
     setDrawerHeight,
     drawerHeight,
     label,
 }) => {
+    const { isDark } = useTg()
     const handleSwipeUp = () => {
         setDrawerHeight('94vh')
     }
@@ -57,7 +58,9 @@ const SwipeableDialog = ({
                 PaperProps={{
                     sx: {
                         height: contentHeight ? 'unset' : drawerHeight,
-                        backgroundColor: bgColor || 'background.default',
+                        backgroundColor: isDark
+                            ? 'darkVersion.lightBlack'
+                            : 'background.paper',
                         transition: 'height 0.3s ease-in-out',
                     },
                 }}>
@@ -81,6 +84,7 @@ const SwipeableDialog = ({
                     <Box sx={{ py: 1, position: 'relative' }}>
                         <Typography
                             variant={'h6'}
+                            color={isDark && 'darkVersion.white'}
                             sx={{ fontSize: 16 }}
                             align={'center'}>
                             {label}
@@ -102,7 +106,7 @@ const SwipeableDialog = ({
                                     width: 28,
                                     height: 28,
                                 }}>
-                                <Iconify icon={'iconamoon:close-bold'} />
+                                <Iconify color={isDark && 'darkVersion.white'} icon={'iconamoon:close-bold'} />
                             </IconButton>
                         </Box>
                     </Box>

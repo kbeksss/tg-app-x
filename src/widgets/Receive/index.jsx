@@ -7,6 +7,7 @@ import BottomActions from './ui/BottomActions'
 import { networks } from '@_mock/networks.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const Receive = () => {
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
@@ -30,6 +31,7 @@ const Receive = () => {
     const networkObj = useMemo(() => {
         return networks.find((n) => n.value === network)
     }, [network])
+    const { isDark } = useTg()
 
     return (
         <Box>
@@ -94,7 +96,7 @@ const Receive = () => {
                             p: '10px',
                             maxWidth: 250,
                             borderRadius: '16px',
-                            border: '1px solid rgba(0, 0, 0, 0.05)',
+                            border: `1px solid ${isDark ? '#707579' : 'rgba(0, 0, 0, 0.05)'}`,
                         }}>
                         <QRCode
                             value={address}
@@ -109,6 +111,7 @@ const Receive = () => {
                         <Typography
                             sx={{ wordWrap: 'break-word', mt: 2 }}
                             variant={'body2'}
+                            color={isDark ? 'white' : 'unset'}
                             align={'center'}>
                             {address}
                         </Typography>

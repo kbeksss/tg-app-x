@@ -12,6 +12,7 @@ import {
 import { Iconify, InfoPlate, useSwipeableDialog } from '@shared/ui'
 import { NetworkSelect } from '@widgets'
 import { networks } from '@_mock/networks.js'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const SendForm = ({
     sumValue,
@@ -22,12 +23,15 @@ const SendForm = ({
     receiverAddress,
     setReceiverAddress,
 }) => {
+    const { isDark } = useTg()
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     return (
         <Box
             sx={{
                 borderRadius: '20px',
-                backgroundColor: 'background.grey',
+                backgroundColor: isDark
+                    ? 'darkVersion.lightGrey'
+                    : 'background.grey',
                 py: 2,
                 px: '6px',
             }}>
@@ -98,6 +102,7 @@ const SInputLabel = styled(Typography)`
 `
 
 const FieldRow = ({ label, value, adornment, onClick, onChange }) => {
+    const { isDark } = useTg()
     return (
         <Box sx={{ mb: 2 }} onClick={onClick}>
             <SInputLabel color={'text.secondary'} variant={'subtitle2'}>
@@ -109,10 +114,13 @@ const FieldRow = ({ label, value, adornment, onClick, onChange }) => {
                 size={'small'}
                 sx={{
                     '& .MuiInputBase-root': {
-                        backgroundColor: 'background.white',
+                        backgroundColor: isDark
+                            ? 'darkVersion.lightBlack'
+                            : 'background.white',
                         borderRadius: '15px',
                         fontSize: 12,
                         pr: '3px',
+                        color: isDark ? 'white' : 'unset',
                     },
                 }}
                 fullWidth

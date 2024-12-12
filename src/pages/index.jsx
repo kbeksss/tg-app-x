@@ -18,7 +18,8 @@ import { useAppInit } from '@shared/hooks/useAppInit.jsx'
 import { useTg } from '@shared/hooks/useTg.js'
 import { useFetchAccountQuery } from '@shared/api/services'
 import Follows from '@pages/Follows'
-import NonFollows from '@pages/NonFollows/index.jsx'
+import NonFollows from '@pages/NonFollows'
+import NewsPage from '@pages/NewsPage'
 
 export const Routing = () => {
     const { tg } = useTg()
@@ -37,6 +38,7 @@ export const Routing = () => {
                     <Route path={paths.users} element={<Follows />} />
                     <Route path={paths.newUsers} element={<NonFollows />} />
                     <Route path={paths.trades} element={<TradesPage />} />
+                    <Route path={paths.news} element={<NewsPage />} />
                     <Route
                         path={`${paths.trade}/:id`}
                         element={<TradePage />}

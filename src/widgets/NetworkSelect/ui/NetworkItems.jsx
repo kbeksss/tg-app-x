@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Box, Grid2, Stack, Typography } from '@mui/material'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const NetworkItems = ({
     networks,
@@ -30,6 +31,7 @@ const NetworkItems = ({
 }
 
 const NetworkItem = ({ symbol, label, icon, selected, onClick }) => {
+    const { isDark } = useTg()
     return (
         <Box
             onClick={onClick}
@@ -37,7 +39,11 @@ const NetworkItem = ({ symbol, label, icon, selected, onClick }) => {
                 mx: -2,
                 px: 2,
                 py: 1,
-                backgroundColor: selected ? 'background.grey' : 'transparent',
+                backgroundColor: !selected
+                    ? 'transparent'
+                    : isDark
+                      ? 'black'
+                      : 'background.grey',
                 borderRadius: 2,
             }}>
             <Grid2 container spacing={1} alignItems={'center'}>
@@ -46,7 +52,10 @@ const NetworkItem = ({ symbol, label, icon, selected, onClick }) => {
                 </Grid2>
                 <Grid2>
                     <Box>
-                        <Typography>{symbol}</Typography>
+                        <Typography
+                            color={isDark ? 'darkVersion.white' : 'black'}>
+                            {symbol}
+                        </Typography>
                         <Typography
                             color={'text.secondary'}
                             sx={{ textTransform: 'capitalize' }}>

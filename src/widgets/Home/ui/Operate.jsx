@@ -7,7 +7,7 @@ import { paths } from '@pages/paths.js'
 const Operate = () => {
     const navigate = useNavigate()
     return (
-        <Stack spacing={3} direction={'row'} justifyContent={'center'}>
+        <Stack spacing={8} direction={'row'} justifyContent={'center'}>
             <OperateItem
                 onClick={() => navigate(paths.receive)}
                 icon={'hugeicons:download-01'}
