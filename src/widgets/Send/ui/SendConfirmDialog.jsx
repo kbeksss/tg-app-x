@@ -10,10 +10,22 @@ import {
     Typography,
 } from '@mui/material'
 import { InfoRows } from '@shared/ui'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const SendConfirmDialog = ({ open, onClose, total, address, onConfirm }) => {
+    const { isDark } = useTg()
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog
+            PaperProps={{
+                sx: (theme) => ({
+                    backgroundColor: isDark
+                        ? theme.palette?.darkVersion?.lightBlack
+                        : 'background.paper',
+                    color: isDark ? 'white' : 'unset',
+                }),
+            }}
+            open={open}
+            onClose={onClose}>
             <DialogTitle>Do you confirm?</DialogTitle>
             <DialogContent>
                 <DialogContentText sx={{ pb: 4 }}>
@@ -27,10 +39,26 @@ const SendConfirmDialog = ({ open, onClose, total, address, onConfirm }) => {
                     ]}
                 />
                 <Stack sx={{ mt: 2 }} spacing={1}>
-                    <Button onClick={onConfirm} variant={'contained'}>
+                    <Button
+                        sx={{
+                            backgroundColor: isDark
+                                ? 'darkVersion.green'
+                                : 'primary',
+                            color: isDark ? 'black' : 'white',
+                        }}
+                        onClick={onConfirm}
+                        variant={'contained'}>
                         Confirm
                     </Button>
-                    <Button onClick={onClose} variant={'outlined'}>
+                    <Button
+                        sx={{
+                            backgroundColor: isDark
+                                ? 'darkVersion.lightGrey'
+                                : 'unset',
+                            color: isDark ? 'white' : 'primary',
+                        }}
+                        onClick={onClose}
+                        variant={isDark ? 'contained' : 'outlined'}>
                         No
                     </Button>
                 </Stack>
