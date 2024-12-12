@@ -21,6 +21,10 @@
             tg.expand()
             tg.setHeaderColor('#FFF')
             tg.disableVerticalSwipes()
+            let isDark = tg.colorScheme === 'dark'
+            if (isDark) {
+                document.getElementById('root').style.background = '#181818'
+            }
         </script>
     </body>
 </html>
