@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Stack, Typography } from '@mui/material'
 import SettingsItem from './ui/SettingsItem.jsx'
-import { BottomButton, Iconify, ProfileInfo } from '@shared/ui'
+import { BottomButton, Iconify, ProfileInfo, Switch } from '@shared/ui'
 import { useNavigate } from 'react-router-dom'
 import { paths } from '@pages/paths.js'
 import { useSelector } from 'react-redux'
@@ -18,6 +18,7 @@ const Account = () => {
         wallets: account?.Wallets,
         portfolio: data?.portfolio,
     })
+
     return (
         <Box sx={{ px: 2 }}>
             <ProfileInfo
@@ -46,6 +47,31 @@ const Account = () => {
                             icon={network.image}
                         />
                     ))}
+                </Stack>
+            </Box>
+            <Box sx={{ pt: 3 }}>
+                <Typography
+                    color={isDark ? 'white' : 'black'}
+                    sx={{ mb: 1 }}
+                    fontWeight={500}>
+                    Decoration
+                </Typography>
+                <Stack spacing={1}>
+                    <SettingsItem
+                        label={'Dark theme'}
+                        switchComponent={<Switch checked={isDark} />}
+                        icon={
+                            <Stack
+                                sx={{ height: 40 }}
+                                justifyContent={'center'}
+                                alignItems={'center'}>
+                                <Iconify
+                                    sx={{ color: 'text.secondary' }}
+                                    icon={'bytesize:moon'}
+                                />
+                            </Stack>
+                        }
+                    />
                 </Stack>
             </Box>
             <Box sx={{ pt: 3 }}>

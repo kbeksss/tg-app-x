@@ -1,10 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { onBackButtonClick } from '@telegram-apps/sdk'
+import { COLOR_THEME } from '@shared/config.js'
 
 const tg = window.Telegram.WebApp
 
 export function useTg(params) {
+    const [isDark, setIsDark] = useState(
+        localStorage.getItem(COLOR_THEME) || tg?.colorScheme || window.darkTheme
+    )
     const navigate = useNavigate()
     const closeTg = () => {
         tg.close()
@@ -41,7 +45,7 @@ export function useTg(params) {
     return {
         tg,
         // isDark: tg?.colorScheme === 'dark',
-        isDark: tg?.colorScheme === 'dark' || window.darkTheme,
+        isDark: isDark === 'dark',
         user: tg.initDataUnsafe?.user,
         closeTg,
         showTgBackButton: showBackButton,

@@ -3,7 +3,7 @@ import { Avatar, Box, Grid2, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
 import { useTg } from '@shared/hooks/useTg.js'
 
-const SettingsItem = ({ icon, label, onClick }) => {
+const SettingsItem = ({ icon, label, onClick, switchComponent }) => {
     const { isDark } = useTg()
     return (
         <Box
@@ -30,10 +30,12 @@ const SettingsItem = ({ icon, label, onClick }) => {
                     </Typography>
                 </Grid2>
                 <Grid2 size={2} container justifyContent={'end'}>
-                    <Iconify
-                        sx={{ color: 'text.secondary' }}
-                        icon={'icon-park-outline:right'}
-                    />
+                    {switchComponent || (
+                        <Iconify
+                            sx={{ color: 'text.secondary' }}
+                            icon={'icon-park-outline:right'}
+                        />
+                    )}
                 </Grid2>
             </Grid2>
         </Box>
