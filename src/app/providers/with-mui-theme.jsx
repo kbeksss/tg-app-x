@@ -13,6 +13,10 @@ const themeSettings = {
             fontSize: 32,
             fontWeight: 700,
         },
+        h3: {
+            fontSize: 30,
+            fontWeight: 700,
+        },
         h4: {
             fontSize: 24,
             fontWeight: 600,

@@ -60,7 +60,7 @@ const Trade = () => {
                                     secondaryAvatar={network?.icon}
                                 />
                             </Grid2>
-                            {trade.type === 'BUY' && (
+                            {trade.type === 'BUY' ? (
                                 <Grid2 size={'grow'}>
                                     <Typography
                                         color={isDark ? 'white' : 'black'}
@@ -80,6 +80,13 @@ const Trade = () => {
                                         </Link>
                                     </Typography>
                                 </Grid2>
+                            ) : (
+                                <Typography
+                                    textTransform={'uppercase'}
+                                    color={'error.main'}
+                                    variant={'h3'}>
+                                    Sell
+                                </Typography>
                             )}
                         </Grid2>
                     </Box>
@@ -95,11 +102,20 @@ const Trade = () => {
                                       : 'primary.main',
                         }}
                         variant={'h2'}>
-                        {trade.type === 'BUY' ? '+' : '-'}
-                        {trade.amount} $
-                        <span style={{ textTransform: 'uppercase' }}>
+                        <Box
+                            component={'span'}
+                            sx={{ fontSize: 56, wordWrap: 'break-word' }}>
+                            {trade.type === 'BUY' ? '+' : '-'}
+                            {trade.amount}{' '}
+                        </Box>
+                        <Box component={'span'} sx={{ fontSize: 46 }}>
+                            $
+                        </Box>
+                        <Box
+                            component={'span'}
+                            sx={{ textTransform: 'uppercase', fontSize: 36 }}>
                             {trade.Token.symbol}
-                        </span>
+                        </Box>
                     </Typography>
                     <Typography fontSize={17} color={'text.secondary'}>
                         {dayjs(trade.createdAt).format(
