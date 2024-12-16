@@ -90,7 +90,7 @@ const SendForm = ({
             </NetworkSelect>
 
             <FieldRow value={sumValue} label={'Sum'} />
-            <InfoPlate />
+            <InfoPlate text={`Use only ${network} network`} />
         </Box>
     )
 }

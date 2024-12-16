@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import { useTg } from '@shared/hooks/useTg.js'
 
-const InfoPlate = () => {
+const InfoPlate = ({ text }) => {
     const { isDark } = useTg()
     return (
         <Box
@@ -23,8 +23,11 @@ const InfoPlate = () => {
                 color={'error.main'}>
                 Warning!
             </Typography>
-            <Typography fontWeight={500} fontSize={12} color={isDark ? 'white' : 'black'}>
-                Use only TRON network
+            <Typography
+                fontWeight={500}
+                fontSize={12}
+                color={isDark ? 'white' : 'black'}>
+                {text}
             </Typography>
             <Box
                 sx={{

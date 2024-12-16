@@ -20,7 +20,7 @@ import SendForm from './ui/SendForm.jsx'
 const Send = () => {
     const [sendEthereum] = useSendEthereumMutation()
     const [sendSolana] = useSendSolanaMutation()
-    const { tg } = useTg()
+    const { tg } = useTg({ backButtonVisible: true })
     const { navigateWithParams } = useQueryParams()
     const [dialogOpen, setDialogOpen] = useState(false)
     const [network, setNetwork] = useState(networks[0].value)

@@ -84,7 +84,7 @@ const SwipeableDialog = ({
                     <Box sx={{ py: 1, position: 'relative' }}>
                         <Typography
                             variant={'h6'}
-                            color={isDark && 'darkVersion.white'}
+                            color={isDark ? 'darkVersion.white' : 'black'}
                             sx={{ fontSize: 16 }}
                             align={'center'}>
                             {label}
@@ -106,7 +106,12 @@ const SwipeableDialog = ({
                                     width: 28,
                                     height: 28,
                                 }}>
-                                <Iconify color={isDark && 'darkVersion.white'} icon={'iconamoon:close-bold'} />
+                                <Iconify
+                                    sx={{
+                                        color: isDark && 'darkVersion.white',
+                                    }}
+                                    icon={'iconamoon:close-bold'}
+                                />
                             </IconButton>
                         </Box>
                     </Box>
