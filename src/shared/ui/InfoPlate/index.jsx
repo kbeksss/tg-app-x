@@ -1,7 +1,9 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
+import { useTg } from '@shared/hooks/useTg.js'
 
 const InfoPlate = () => {
+    const { isDark } = useTg()
     return (
         <Box
             sx={(theme) => ({
@@ -11,17 +13,19 @@ const InfoPlate = () => {
                 border: `1px solid ${theme.palette.error.main}`,
                 position: 'relative',
                 overflow: 'hidden',
-                background:
-                    'linear-gradient(90deg, rgba(55,27,26,1) 0%, rgba(4,4,4,1) 100%)',
+                background: isDark
+                    ? 'linear-gradient(90deg, rgba(55,27,26,1) 0%, rgba(4,4,4,1) 100%)'
+                    : 'white',
             })}>
-
             <Typography
                 variant={'subtitle2'}
                 textTransform={'uppercase'}
                 color={'error.main'}>
                 Warning!
             </Typography>
-            <Typography fontSize={12}>Use only TRON network</Typography>
+            <Typography fontWeight={500} fontSize={12} color={isDark ? 'white' : 'black'}>
+                Use only TRON network
+            </Typography>
             <Box
                 sx={{
                     position: 'absolute',
