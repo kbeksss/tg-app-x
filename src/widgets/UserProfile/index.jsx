@@ -64,7 +64,15 @@ const UserProfile = () => {
                     Latest recommendations
                 </Typography>
             </Box>
-            <Divider sx={{ mt: 1, mb: 3, borderColor: isDark ? 'rgba(255,255,255,0.3)':'rgba(0,0,0,0.3)' }} />
+            <Divider
+                sx={{
+                    mt: 1,
+                    mb: 3,
+                    borderColor: isDark
+                        ? 'rgba(255,255,255,0.3)'
+                        : 'rgba(0,0,0,0.3)',
+                }}
+            />
             <Box sx={{ px: 2 }}>
                 {user && (
                     <Recommendations
@@ -82,9 +90,7 @@ const UserProfile = () => {
                 open={successOpen}
                 onClose={() => setSuccessOpen(false)}
                 title={'Successfully subcribed'}
-                text={
-                    'You have successfully subscribed to https://x.com/WatcherGuru'
-                }
+                text={`You have successfully subscribed to https://x.com/${user?.username}`}
                 actionLabel={'Okay'}
                 action={() => setSuccessOpen(false)}
             />

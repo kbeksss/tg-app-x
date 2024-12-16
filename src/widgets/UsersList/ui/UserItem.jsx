@@ -3,21 +3,40 @@ import { Box, Button, Grid2, Typography } from '@mui/material'
 import { ProfileImage } from '@widgets'
 import { ConfirmSubscribe } from '@features'
 import { useTg } from '@shared/hooks/useTg.js'
+import { notify } from '@shared/utils/functions/index.js'
+import {SuccessDialog} from "@shared/ui/index.js";
 
 const UserItem = ({
+    unfollowUser,
+    followUser,
+    id,
     username,
     subscribed,
     onClick,
     image,
-    onFollow,
-    onUnfollow,
     buttonDisabled,
 }) => {
-    const { isDark } = useTg()
     const [isConfirmSubscribe, setIsConfirmSubscribe] = useState(false)
+    const [successOpen, setSuccessOpen] = useState(false)
+    const onUnfollowUser = async () => {
+        const { error } = await unfollowUser({ id })
+        if (error) {
+            notify({ type: 'error', msg: "Couldn't unfollow" })
+        }
+    }
+    const onFollowUser = async () => {
+        const { error } = await followUser({ id })
+        if (error) {
+            notify({ type: 'error', msg: "Couldn't unfollow" })
+            return
+        }
+        setIsConfirmSubscribe(false)
+        setSuccessOpen(true)
+    }
+    const { isDark } = useTg()
     const onButtonClick = (e) => {
         e.stopPropagation()
-        subscribed ? onUnfollow() : setIsConfirmSubscribe(true)
+        subscribed ? onUnfollowUser() : setIsConfirmSubscribe(true)
     }
     const subscribeColors = useMemo(() => {
         if (isDark) {
@@ -54,9 +73,17 @@ const UserItem = ({
                     </Grid2>
                 </Grid2>
             </Box>
+            <SuccessDialog
+                open={successOpen}
+                onClose={() => setSuccessOpen(false)}
+                title={'Successfully subscribed'}
+                text={`You have successfully subscribed to https://x.com/${username}`}
+                actionLabel={'Okay'}
+                action={() => setSuccessOpen(false)}
+            />
             <ConfirmSubscribe
                 username={username}
-                onConfirm={onFollow}
+                onConfirm={onFollowUser}
                 open={isConfirmSubscribe}
                 onClose={() => setIsConfirmSubscribe(false)}
             />

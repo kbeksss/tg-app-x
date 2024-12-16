@@ -19,8 +19,6 @@ const Account = () => {
         portfolio: data?.portfolio,
     })
 
-    const [checked, setChecked] = useState(false)
-
     return (
         <Box sx={{ px: 2 }}>
             <ProfileInfo

@@ -20,18 +20,6 @@ const UsersList = ({ search, myList }) => {
     const [followUser, { isLoading: followLoading }] = useFollowUserMutation()
     const [unfollowUser, { isLoading: unfollowLoading }] =
         useUnfollowUserMutation()
-    const onUnfollowUser = async (id) => {
-        const { error } = await unfollowUser({ id })
-        if (error) {
-            notify({ type: 'error', msg: "Couldn't unfollow" })
-        }
-    }
-    const onFollowUser = async (id) => {
-        const { error } = await followUser({ id })
-        if (error) {
-            notify({ type: 'error', msg: "Couldn't unfollow" })
-        }
-    }
     const navigate = useNavigate()
     return !!data?.kols?.length ? (
         <Stack
@@ -52,6 +40,9 @@ const UsersList = ({ search, myList }) => {
             {data?.kols.map((user) => (
                 <UserItem
                     key={user.id}
+                    id={user.id}
+                    followUser={followUser}
+                    unfollowUser={unfollowUser}
                     image={user.image}
                     onClick={() => navigate(`${paths.userProfile}/${user.id}`)}
                     subscribed={myList}
@@ -59,8 +50,6 @@ const UsersList = ({ search, myList }) => {
                         followLoading || unfollowLoading || listLoading
                     }
                     username={user.username}
-                    onUnfollow={() => onUnfollowUser(user.id)}
-                    onFollow={() => onFollowUser(user.id)}
                 />
             ))}
         </Stack>
