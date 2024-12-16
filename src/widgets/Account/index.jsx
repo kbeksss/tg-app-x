@@ -19,6 +19,8 @@ const Account = () => {
         portfolio: data?.portfolio,
     })
 
+    const [checked, setChecked] = useState(false)
+
     return (
         <Box sx={{ px: 2 }}>
             <ProfileInfo
@@ -59,7 +61,7 @@ const Account = () => {
                 <Stack spacing={1}>
                     <SettingsItem
                         label={'Dark theme'}
-                        switchComponent={<Switch checked={isDark} />}
+                        switchComponent={<Switch disabled checked={isDark} />}
                         icon={
                             <Stack
                                 sx={{ height: 40 }}
