@@ -13,7 +13,7 @@ const NonFollows = () => {
                 <Search value={searchQuery} setValue={setSearchQuery} />
             </Box>
             <Box sx={{ pt: 2, flexGrow: 1, overflow: 'auto' }}>
-                <UsersList search={searchQuery} />
+                <UsersList search={searchQuery} myList={false} />
             </Box>
         </Stack>
     )
