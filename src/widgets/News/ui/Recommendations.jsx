@@ -6,8 +6,9 @@ const Recommendations = ({ recommendations }) => {
     return (
         <Box sx={{ px: 2, overflowX: 'auto' }}>
             <Stack direction={'row'} spacing={2}>
-                {recommendations.map((item) => (
+                {recommendations.map((item, index) => (
                     <RecommendationItem
+                        key={index}
                         author={item.author}
                         text={item.text}
                         date={item.date}

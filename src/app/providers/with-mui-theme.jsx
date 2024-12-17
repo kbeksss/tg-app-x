@@ -106,6 +106,32 @@ const themeSettings = {
                 },
             },
         },
+        MuiTabs: {
+            styleOverrides: {
+                root: {
+                    '& .MuiTabs-indicator': {
+                        display: 'none',
+                    },
+                },
+            },
+        },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    minHeight: 33,
+                    marginRight: '8px',
+                    color: 'gray',
+                    fontWeight: 'bold',
+                    textTransform: 'none',
+                    borderRadius: '10px',
+                    backgroundColor: '#F4F4F6',
+                    '&.Mui-selected': {
+                        color: 'white',
+                        backgroundColor: '#007AFF',
+                    },
+                },
+            },
+        },
     },
 }
 

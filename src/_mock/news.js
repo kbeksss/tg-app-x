@@ -54,3 +54,42 @@ export const _newsRecommendations = [
         date: '2024-11-10'
     }
 ];
+
+
+export const _news = [
+    {
+        author: 'cz_binance',
+        date: '2024-11-10',
+        text: 'Working on a large project, I was thinking about potential features and tools that could be added to Figma. Подписывайте колокольчики и ставьте подписки :)',
+        avatarUrl: 'https://example.com/avatars/sputnik.png',
+        img: 'https://example.com/images/project-figma.png',
+    },
+    {
+        author: 'tech_guru',
+        date: '2024-12-01',
+        text: 'Just launched our new app! 🚀 It’s packed with AI-powered tools to help designers be more efficient. Check it out!',
+        avatarUrl: 'https://example.com/avatars/techguru.png',
+        img: 'https://example.com/images/app-launch.png',
+    },
+    {
+        author: 'market_watcher',
+        date: '2024-11-28',
+        text: 'Stock markets are showing mixed signals this week. Key resistance levels to watch: 330.45 and 273.94. 📈 Stay cautious, investors.',
+        avatarUrl: 'https://example.com/avatars/marketwatcher.png',
+        img: 'https://example.com/images/market-analysis.png',
+    },
+    {
+        author: 'creative_minds',
+        date: '2024-12-15',
+        text: 'Exploring bold typography trends for 2025. Fonts like Helvetica Now and SF Pro Display are leading the way. What’s your go-to font this year?',
+        avatarUrl: 'https://example.com/avatars/creativeminds.png',
+        img: 'https://example.com/images/typography-trends.png',
+    },
+    {
+        author: 'daily_travel',
+        date: '2024-12-18',
+        text: 'Visited Kyoto this week and was amazed by the autumn leaves. 🍁 The colors are surreal, and the temples offer such peace.',
+        avatarUrl: 'https://example.com/avatars/dailytravel.png',
+        img: 'https://example.com/images/kyoto-leaves.png',
+    }
+];
