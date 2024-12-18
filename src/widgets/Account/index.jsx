@@ -31,7 +31,7 @@ const Account = () => {
             />
             <Box sx={{ pt: 3 }}>
                 <Typography
-                    color={isDark ? 'white' : 'black'}
+                    color={'text.primary'}
                     sx={{ mb: 1 }}
                     fontWeight={500}>
                     Network details
@@ -53,7 +53,7 @@ const Account = () => {
             </Box>
             <Box sx={{ pt: 3 }}>
                 <Typography
-                    color={isDark ? 'white' : 'black'}
+                    color={'text.primary'}
                     sx={{ mb: 1 }}
                     fontWeight={500}>
                     Decoration
@@ -83,7 +83,7 @@ const Account = () => {
             </Box>
             <Box sx={{ pt: 3 }}>
                 <Typography
-                    color={isDark ? 'white' : 'black'}
+                    color={'text.primary'}
                     sx={{ mb: 1 }}
                     fontWeight={500}>
                     Help and support

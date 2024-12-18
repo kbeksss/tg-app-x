@@ -1,10 +1,8 @@
 import React from 'react'
 import { Avatar, Box, Grid2, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const SettingsItem = ({ icon, label, onClick, switchComponent }) => {
-    const { isDark } = useTg()
     return (
         <Box
             onClick={onClick}
@@ -12,9 +10,7 @@ const SettingsItem = ({ icon, label, onClick, switchComponent }) => {
                 borderRadius: '16px',
                 py: '14px',
                 px: 2,
-                backgroundColor: isDark
-                    ? 'darkVersion.lightGrey'
-                    : 'background.grey',
+                backgroundColor: 'background.grey',
             }}>
             <Grid2 alignItems={'center'} spacing={2} container>
                 <Grid2 size={'auto'} container alignItems={'center'}>
@@ -25,7 +21,7 @@ const SettingsItem = ({ icon, label, onClick, switchComponent }) => {
                     )}
                 </Grid2>
                 <Grid2 size={'grow'}>
-                    <Typography color={isDark ? 'white' : 'black'}>
+                    <Typography color={'text.primary'}>
                         {label}
                     </Typography>
                 </Grid2>
