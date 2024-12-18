@@ -14,9 +14,11 @@ import SendConfirm from './ui/SendConfirm.jsx'
 import { Iconify, useSwipeableDialog } from '@shared/ui/index.js'
 import { networks } from '@_mock/networks.js'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Home = () => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
+    console.log('is', isDarkMode)
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sellingToken, setSellingToken] = useState(null)
     const [sendingToken, setSendingToken] = useState(null)
@@ -52,7 +54,7 @@ const Home = () => {
                     justifyContent='space-between'>
                     <ProfileImage
                         icon={
-                            isDark
+                            isDarkMode
                                 ? '/assets/icons/utilities/user-icon-dark.png'
                                 : '/assets/icons/utilities/user-icon.png'
                         }
@@ -70,11 +72,11 @@ const Home = () => {
                                 sx={{
                                     px: '14px',
                                     py: '9px',
-                                    backgroundColor: isDark
+                                    backgroundColor: isDarkMode
                                         ? 'darkVersion.grey'
                                         : 'background.grey',
                                     borderRadius: 24,
-                                    color: isDark ? '#fff' : 'unset',
+                                    color: isDarkMode ? '#fff' : 'unset',
                                 }}>
                                 <Stack
                                     spacing={1}
