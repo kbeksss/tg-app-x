@@ -20,10 +20,10 @@ import { networks } from '@_mock/networks.js'
 import { SellTokens } from '@widgets'
 import { useParams } from 'react-router'
 import { paths } from '@pages/paths.js'
-import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Trade = () => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     const { id: tradeHash } = useParams()
     const [sellingToken, setSellingToken] = useState(null)
     const { data: trade } = useFetchTransactionQuery({ hash: tradeHash })
@@ -47,9 +47,7 @@ const Trade = () => {
                 <Box sx={{ px: 2 }}>
                     <Box
                         sx={{
-                            backgroundColor: isDark
-                                ? 'darkVersion.lightGrey'
-                                : 'background.grey',
+                            backgroundColor: 'background.grey',
                             p: 2,
                             borderRadius: '16px',
                         }}>
@@ -63,7 +61,7 @@ const Trade = () => {
                             {trade.type === 'BUY' ? (
                                 <Grid2 size={'grow'}>
                                     <Typography
-                                        color={isDark ? 'white' : 'black'}
+                                        color={'text.primary'}
                                         fontSize={17}>
                                         Recommendation from
                                     </Typography>
@@ -71,9 +69,7 @@ const Trade = () => {
                                         <Link
                                             sx={{
                                                 textDecoration: 'none',
-                                                color: isDark
-                                                    ? 'darkVersion.green'
-                                                    : 'primary',
+                                                color: 'primary.main',
                                             }}
                                             href={`${paths.userProfile}/${trade?.kolId}`}>
                                             {trade?.Kol?.username}
@@ -97,9 +93,7 @@ const Trade = () => {
                             color:
                                 trade.type !== 'BUY'
                                     ? 'error.main'
-                                    : isDark
-                                      ? 'darkVersion.green'
-                                      : 'primary.main',
+                                    : 'primary.main',
                         }}
                         variant={'h2'}>
                         <Box
@@ -128,9 +122,7 @@ const Trade = () => {
                             borderRadius: '16px',
                             px: 2,
                             py: 1.5,
-                            backgroundColor: isDark
-                                ? 'darkVersion.lightGrey'
-                                : 'background.grey',
+                            backgroundColor: 'background.grey',
                         }}>
                         <Typography
                             sx={{ mb: '4px' }}
@@ -143,14 +135,12 @@ const Trade = () => {
                                 sx={{
                                     width: 24,
                                     height: 24,
-                                    backgroundColor: isDark
-                                        ? 'darkVersion.green'
-                                        : 'primary.main',
-                                    color: isDark ? 'black' : 'white',
+                                    backgroundColor: 'primary.main',
+                                    color: isDarkMode ? 'black' : 'white',
                                 }}>
                                 <Iconify width={13} icon={'mdi:tick'} />
                             </Avatar>
-                            <Typography color={isDark ? 'white' : 'black'}>
+                            <Typography color={'text.primary'}>
                                 Successful
                             </Typography>
                         </Stack>
@@ -159,7 +149,7 @@ const Trade = () => {
                         sx={{
                             mt: 3,
                             border: '1px dashed #707579',
-                            color: isDark ? 'darkVersion.green' : 'primary',
+                            color: 'primary.main',
                         }}
                         fullWidth
                         variant={'outlined'}

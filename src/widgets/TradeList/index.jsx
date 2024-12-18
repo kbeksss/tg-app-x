@@ -64,7 +64,10 @@ const TradeList = () => {
                     justifyContent={'center'}
                     alignItems={'center'}
                     sx={{ height: '100%', px: 5 }}>
-                    <Typography align={'center'} variant={'h5'}>
+                    <Typography
+                        color={'text.primary'}
+                        align={'center'}
+                        variant={'h5'}>
                         No Transactions :(
                     </Typography>
                     <Typography color={'text.secondary'} align={'center'}>
