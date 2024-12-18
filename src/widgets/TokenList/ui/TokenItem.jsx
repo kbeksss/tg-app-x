@@ -11,6 +11,7 @@ import { floatAmountToString } from '@shared/utils/functions'
 import { networks } from '@_mock/networks.js'
 import { LoadingElement } from '@shared/ui'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const TokenItem = ({
     currencyCode,
@@ -22,7 +23,6 @@ const TokenItem = ({
     icon,
     isLoading,
 }) => {
-    const { isDark } = useTg()
     return (
         <Box
             onClick={openDialog}
@@ -30,9 +30,7 @@ const TokenItem = ({
                 borderRadius: '16px',
                 px: 2,
                 py: '14px',
-                backgroundColor: isDark
-                    ? 'darkVersion.lightGrey'
-                    : 'background.grey',
+                backgroundColor: 'background.grey',
             }}>
             <Grid container spacing={2}>
                 <Grid container size='auto' alignItems={'center'}>
@@ -44,7 +42,7 @@ const TokenItem = ({
                             <Typography
                                 sx={{ pr: 0.5 }}
                                 textTransform={'uppercase'}
-                                color={isDark ? 'darkVersion.white' : 'unset'}
+                                color={'text.primary'}
                                 fontWeight={500}>
                                 {currencyCode}
                             </Typography>
@@ -64,7 +62,7 @@ const TokenItem = ({
                         <Typography
                             textTransform={'uppercase'}
                             fontWeight={500}
-                            color={isDark ? 'darkVersion.white' : 'unset'}
+                            color={'text.primary'}
                             align={'right'}>
                             {floatAmountToString(amountInWallet)}
                         </Typography>
