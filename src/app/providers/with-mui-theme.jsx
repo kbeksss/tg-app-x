@@ -208,6 +208,10 @@ export const ThemeProviderContext = ({ children }) => {
 
     const toggleTheme = () => {
         setThemeMode((prev) => (prev === 'light' ? 'dark' : 'light'))
+        document.getElementById('root').style.background = isDark
+            ? '#181818'
+            : '#fff'
+        tg.setHeaderColor(isDark ? '#181818' : '#fff')
     }
 
     const theme = useMemo(
