@@ -10,9 +10,10 @@ import {
 } from '@shared/api/services/index.js'
 import { notify } from '@shared/utils/functions'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const UsersList = ({ search, myList }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     const { data, isLoading: listLoading } = useFetchUsersQuery({
         myKol: myList,
         search,
@@ -29,9 +30,8 @@ const UsersList = ({ search, myList }) => {
                     variant={'inset'}
                     component={'div'}
                     sx={{
-                        borderColor: isDark
-                            ? 'rgba(255,255,255,0.3)'
-                            : 'rgba(0,0,0,0.3)',
+                        borderColor: 'text.primary',
+                        opacity: 0.3,
                         width: 'calc(100% - 66px)',
                         ml: 'auto!important',
                     }}
@@ -63,7 +63,7 @@ const UsersList = ({ search, myList }) => {
                     <Stack direction={'row'} justifyContent={'center'}>
                         <img
                             src={
-                                isDark
+                                isDarkMode
                                     ? '/assets/icons/utilities/not-found-green.png'
                                     : '/assets/icons/utilities/not-found.png'
                             }
@@ -71,7 +71,7 @@ const UsersList = ({ search, myList }) => {
                         />
                     </Stack>
                     <Typography
-                        color={isDark ? 'white' : 'black'}
+                        color={'text.primary'}
                         sx={{ mb: 1 }}
                         align={'center'}
                         variant={'h5'}>
@@ -84,7 +84,7 @@ const UsersList = ({ search, myList }) => {
             ) : (
                 <Box sx={{ px: 5 }}>
                     <Typography
-                        color={isDark ? 'white' : 'black'}
+                        color={'text.primary'}
                         sx={{ mb: 1 }}
                         align={'center'}
                         variant={'h5'}>

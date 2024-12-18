@@ -225,7 +225,7 @@ export const ThemeProviderContext = ({ children }) => {
                         main: '#31D158',
                     },
                     secondary: {
-                        main: '#F4F4F6',
+                        main: isDarkMode ? '#2A2A2A' : '#F4F4F6',
                     },
                     text: {
                         primary: isDarkMode ? '#fff' : '#000',

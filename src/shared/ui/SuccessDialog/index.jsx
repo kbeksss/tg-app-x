@@ -13,9 +13,9 @@ const SuccessDialog = ({ open, onClose, title, text, actionLabel, action }) => {
     return (
         <Dialog
             PaperProps={{
+                elevation: 0,
                 sx: (theme) => ({
                     position: 'relative',
-                    border: `1px solid ${theme.palette.primary.main}`,
                     overflow: 'visible',
                 }),
             }}
@@ -31,7 +31,7 @@ const SuccessDialog = ({ open, onClose, title, text, actionLabel, action }) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     border: `2px solid ${theme.palette.primary.main}`,
-                    backgroundColor: 'background.white',
+                    backgroundColor: 'background.paper',
                     position: 'absolute',
                     left: '50%',
                     transform: 'translate(-50%)',

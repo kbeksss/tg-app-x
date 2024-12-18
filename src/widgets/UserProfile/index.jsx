@@ -4,7 +4,6 @@ import UserInfo from './ui/UserInfo.jsx'
 import { Recommendations } from '@widgets'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
-import { paths } from '@pages/paths.js'
 import {
     useFetchUserQuery,
     useFollowUserMutation,
@@ -13,11 +12,9 @@ import {
 import { useSelector } from 'react-redux'
 import { notify } from '@shared/utils/functions/index.js'
 import { ConfirmSubscribe } from '@features'
-import { ProfileInfo, SuccessDialog } from '@shared/ui'
-import { useTg } from '@shared/hooks/useTg.js'
+import { SuccessDialog } from '@shared/ui'
 
 const UserProfile = () => {
-    const { isDark } = useTg()
     const navigate = useNavigate()
     const { id } = useParams()
     const [followUser, { isLoading: followLoading }] = useFollowUserMutation()
@@ -60,7 +57,7 @@ const UserProfile = () => {
             )}
 
             <Box sx={{ px: 2, pt: 3 }}>
-                <Typography variant={'h6'} color={isDark ? 'white' : 'black'}>
+                <Typography variant={'h6'} color={'text.primary'}>
                     Latest recommendations
                 </Typography>
             </Box>
@@ -68,9 +65,8 @@ const UserProfile = () => {
                 sx={{
                     mt: 1,
                     mb: 3,
-                    borderColor: isDark
-                        ? 'rgba(255,255,255,0.3)'
-                        : 'rgba(0,0,0,0.3)',
+                    opacity: 0.3,
+                    borderColor: 'text.primary',
                 }}
             />
             <Box sx={{ px: 2 }}>
@@ -89,7 +85,7 @@ const UserProfile = () => {
             <SuccessDialog
                 open={successOpen}
                 onClose={() => setSuccessOpen(false)}
-                title={'Successfully subcribed'}
+                title={'Successfully subscribed'}
                 text={`You have successfully subscribed to https://x.com/${user?.username}`}
                 actionLabel={'Okay'}
                 action={() => setSuccessOpen(false)}

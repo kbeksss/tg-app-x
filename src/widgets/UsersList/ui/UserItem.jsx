@@ -4,7 +4,8 @@ import { ProfileImage } from '@widgets'
 import { ConfirmSubscribe } from '@features'
 import { useTg } from '@shared/hooks/useTg.js'
 import { notify } from '@shared/utils/functions/index.js'
-import {SuccessDialog} from "@shared/ui/index.js";
+import { SuccessDialog } from '@shared/ui/index.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const UserItem = ({
     unfollowUser,
@@ -33,22 +34,10 @@ const UserItem = ({
         setIsConfirmSubscribe(false)
         setSuccessOpen(true)
     }
-    const { isDark } = useTg()
     const onButtonClick = (e) => {
         e.stopPropagation()
         subscribed ? onUnfollowUser() : setIsConfirmSubscribe(true)
     }
-    const subscribeColors = useMemo(() => {
-        if (isDark) {
-            return subscribed
-                ? { backgroundColor: 'darkVersion.lightGrey', color: 'white' }
-                : { backgroundColor: 'darkVersion.green', color: 'black' }
-        } else {
-            return subscribed
-                ? { backgroundColor: 'secondary.main', color: 'text.secondary' }
-                : { backgroundColor: 'primary.main', color: 'white' }
-        }
-    }, [subscribed])
     return (
         <>
             <Box onClick={onClick}>
@@ -57,14 +46,14 @@ const UserItem = ({
                         <ProfileImage icon={image} width={50} />
                     </Grid2>
                     <Grid2 size={'grow'}>
-                        <Typography color={isDark ? 'white' : 'black'}>
+                        <Typography color={'text.primary'}>
                             {username}
                         </Typography>
                     </Grid2>
                     <Grid2 size={5} container justifyContent={'end'}>
                         <Button
-                            sx={subscribeColors}
                             size={'small'}
+                            color={subscribed ? 'secondary' : 'primary'}
                             disabled={buttonDisabled}
                             onClick={onButtonClick}
                             variant={'contained'}>

@@ -6,10 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { useIntersectionObserver, useQuery } from '@siberiacancode/reactuse'
 import { axiosScraperRequest } from '@shared/api/xhr'
 import { SCRAPER_TWEETS_URL } from '@shared/api/services/constants.js'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const Recommendations = ({ avatarImg, username }) => {
-    const { isDark } = useTg()
     const navigate = useNavigate()
     const [tweets, setTweets] = useState([])
     const [offset, setOffset] = useState(0)
@@ -60,9 +58,7 @@ const Recommendations = ({ avatarImg, username }) => {
                         src='/assets/icons/utilities/no-posts.png'
                         alt=''
                     />
-                    <Typography
-                        color={isDark ? 'white' : 'black'}
-                        variant={'h5'}>
+                    <Typography color={'text.primary'} variant={'h5'}>
                         Nothing Yet :(
                     </Typography>
                     <Typography color={'text.secondary'}>

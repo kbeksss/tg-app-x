@@ -14,15 +14,14 @@ const ConfirmSubscribe = ({ open, onClose, onConfirm, username }) => {
     return (
         <Dialog
             PaperProps={{
-                sx: (theme) => ({
-                    backgroundColor: isDark
-                        ? theme.palette?.darkVersion?.lightBlack
-                        : 'background.paper',
-                }),
+                elevation: 0,
+                sx: {
+                    backgroundColor: 'background.paper',
+                },
             }}
             open={open}
             onClose={onClose}>
-            <DialogTitle color={isDark ? 'white' : 'dark'}>
+            <DialogTitle color={'text.primary'}>
                 Are you sure you want to subscribe {username}?
             </DialogTitle>
             <DialogContent>
@@ -32,26 +31,18 @@ const ConfirmSubscribe = ({ open, onClose, onConfirm, username }) => {
                 </DialogContentText>
                 <Stack sx={{ mt: 4 }} spacing={1}>
                     <Button
-                        sx={{
-                            backgroundColor: isDark
-                                ? 'darkVersion.green'
-                                : 'primary',
-                            color: isDark ? 'black' : 'white',
-                        }}
+                        color={'primary'}
                         variant={'contained'}
                         onClick={onConfirm}>
                         Confirm
                     </Button>
                     <Button
                         sx={{
-                            backgroundColor: isDark
-                                ? 'darkVersion.lightGrey'
-                                : 'unset',
                             mb: 1,
-                            color: isDark ? 'white' : 'primary',
                         }}
+                        color={'secondary'}
                         onClick={onClose}
-                        variant={isDark ? 'contained' : 'outlined'}>
+                        variant={'contained'}>
                         No
                     </Button>
                 </Stack>

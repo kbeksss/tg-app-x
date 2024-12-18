@@ -3,16 +3,17 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { Avatar, Box, Grid2, Typography } from '@mui/material'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 dayjs.extend(relativeTime)
 
 const RecItem = ({ image, author, date, text }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     return (
         <Box
             sx={{
                 borderRadius: '10px',
                 p: '10px',
-                border: isDark
+                border: isDarkMode
                     ? '1px solid rgba(255,255,255,0.3)'
                     : '1px solid rgba(0,0,0,0.3)',
             }}>
@@ -21,9 +22,7 @@ const RecItem = ({ image, author, date, text }) => {
                     <Avatar src={image} />
                 </Grid2>
                 <Grid2>
-                    <Typography
-                        color={isDark ? 'white' : 'black'}
-                        fontWeight={500}>
+                    <Typography color={'text.primary'} fontWeight={500}>
                         {author}
                     </Typography>
                     <Typography variant={'body2'} color={'text.secondary'}>
@@ -32,7 +31,7 @@ const RecItem = ({ image, author, date, text }) => {
                 </Grid2>
             </Grid2>
             <Typography
-                color={isDark ? 'white' : 'black'}
+                color={'text.primary'}
                 sx={{ mt: 2, wordWrap: 'break-word' }}>
                 {text}
             </Typography>

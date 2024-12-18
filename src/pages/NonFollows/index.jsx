@@ -8,11 +8,11 @@ const NonFollows = () => {
     const [searchQuery, setSearchQuery] = useState('')
     useTg({ backButtonVisible: true })
     return (
-        <Stack sx={{ pt: 2, px: 2, pb: 2, height: '100vh' }}>
-            <Box sx={{ pb: 2 }}>
+        <Stack sx={{ pt: 2, pb: 2, height: '100vh' }}>
+            <Box sx={{ pb: 2, px: 2 }}>
                 <Search value={searchQuery} setValue={setSearchQuery} />
             </Box>
-            <Box sx={{ pt: 2, flexGrow: 1, overflow: 'auto' }}>
+            <Box sx={{ pt: 2, px: 2, flexGrow: 1, overflow: 'auto' }}>
                 <UsersList search={searchQuery} myList={false} />
             </Box>
         </Stack>
