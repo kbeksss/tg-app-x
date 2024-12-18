@@ -2,20 +2,19 @@ import React from 'react'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const OperateItem = ({ icon, label, onClick }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     return (
         <Stack onClick={onClick} alignItems={'center'}>
             <Avatar
                 sx={{
-                    backgroundColor: isDark
-                        ? '#000'
-                        : 'primary.main',
+                    backgroundColor: isDarkMode ? '#000' : 'primary.main',
                 }}>
-                <Iconify icon={icon} />
+                <Iconify sx={{ color: '#fff' }} icon={icon} />
             </Avatar>
-            <Typography color={isDark ? 'darkVersion.black' : 'primary.main'}>
+            <Typography color={isDarkMode ? '#000' : 'primary.main'}>
                 {label}
             </Typography>
         </Stack>

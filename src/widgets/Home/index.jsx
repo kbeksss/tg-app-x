@@ -18,7 +18,6 @@ import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Home = () => {
     const { isDarkMode } = useThemeContext()
-    console.log('is', isDarkMode)
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sellingToken, setSellingToken] = useState(null)
     const [sendingToken, setSendingToken] = useState(null)
@@ -72,11 +71,9 @@ const Home = () => {
                                 sx={{
                                     px: '14px',
                                     py: '9px',
-                                    backgroundColor: isDarkMode
-                                        ? 'darkVersion.grey'
-                                        : 'background.grey',
+                                    backgroundColor: 'background.grey',
                                     borderRadius: 24,
-                                    color: isDarkMode ? '#fff' : 'unset',
+                                    color: 'text.primary',
                                 }}>
                                 <Stack
                                     spacing={1}

@@ -189,7 +189,12 @@ export const ThemeProviderContext = ({ children }) => {
     useEffect(() => {
         const tg = window.Telegram.WebApp
         const updateTheme = () => {
-            setThemeMode(tg.colorScheme === 'dark' ? 'dark' : 'light')
+            const isDark = tg.colorScheme === 'dark'
+            setThemeMode(isDark ? 'dark' : 'light')
+            document.getElementById('root').style.background = isDark
+                ? '#181818'
+                : '#fff'
+            tg.setHeaderColor(isDark ? '#181818' : '#fff')
         }
 
         updateTheme()
@@ -220,14 +225,15 @@ export const ThemeProviderContext = ({ children }) => {
                         main: '#F4F4F6',
                     },
                     text: {
-                        primary: '#000',
+                        primary: isDarkMode ? '#fff' : '#000',
                         secondary: '#707579',
                         dark: '#757575',
                         light: '#FFF',
                     },
                     background: {
-                        grey: '#F4F4F6',
+                        grey: isDarkMode ? '#2A2A2A' : '#F4F4F6',
                         white: '#FFF',
+                        dark: '#222222'
                     },
                     error: {
                         main: '#E53935',

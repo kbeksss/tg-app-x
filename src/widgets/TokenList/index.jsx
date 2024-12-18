@@ -2,16 +2,17 @@ import React from 'react'
 import { Box, Stack, Typography } from '@mui/material'
 import TokenItem from '@widgets/TokenList/ui/TokenItem.jsx'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const TokenList = ({ tokens, openDialog, tokensLoading }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     return (
         <Box
             sx={{
                 px: 2,
                 py: '20px',
-                backgroundColor: isDark
-                    ? 'darkVersion.grey'
+                backgroundColor: isDarkMode
+                    ? 'background.dark'
                     : 'background.white',
                 boxShadow: '0px -1px 10px -1px rgba(34, 60, 80, 0.2)',
                 borderRadius: '20px',
@@ -20,12 +21,12 @@ const TokenList = ({ tokens, openDialog, tokensLoading }) => {
                 sx={{ mb: 2 }}
                 direction={'row'}
                 justifyContent={'space-between'}>
-                <Typography fontWeight={500} color={isDark ? 'darkVersion.white' : 'unset'}>
+                <Typography fontWeight={500} color={'text.primary'}>
                     Assets
                 </Typography>
                 <Typography
                     fontWeight={500}
-                    color={isDark ? 'darkVersion.green' : 'primary.main'}>
+                    color={'primary.main'}>
                     View all
                 </Typography>
             </Stack>

@@ -3,17 +3,18 @@ import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 import { Iconify } from '@shared/ui'
 import Operate from '@widgets/Home/ui/Operate.jsx'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Balance = ({ balance }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     const [balanceShown, setBalanceShown] = useState(false)
     return (
         <Box sx={{ px: 2, py: 3 }}>
             <Box
                 sx={{
                     borderRadius: '20px',
-                    backgroundColor: isDark
-                        ? 'darkVersion.green'
+                    backgroundColor: isDarkMode
+                        ? 'primary.main'
                         : 'background.grey',
                     p: 2,
                 }}>
@@ -31,12 +32,7 @@ const Balance = ({ balance }) => {
                     />
                 </Stack>
                 <Typography variant={'h2'}>
-                    <span style={{ color: isDark ? '#000' : '#707579' }}>
-                        ${' '}
-                    </span>
-                    <span style={{ verticalAlign: 'middle' }}>
-                        {balanceShown ? balance : '******'}
-                    </span>
+                    $ {balanceShown ? balance : '******'}
                 </Typography>
                 <Divider sx={{ my: 2 }} />
                 <Box>

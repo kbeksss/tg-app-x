@@ -8,8 +8,10 @@ import { useSelector } from 'react-redux'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Account = () => {
+    const { isDarkMode, toggleTheme } = useThemeContext()
     const { isDark } = useTg()
     const navigate = useNavigate()
     const account = useSelector((state) => state.account)
@@ -59,7 +61,12 @@ const Account = () => {
                 <Stack spacing={1}>
                     <SettingsItem
                         label={'Dark theme'}
-                        switchComponent={<Switch disabled checked={isDark} />}
+                        switchComponent={
+                            <Switch
+                                onChange={toggleTheme}
+                                checked={isDarkMode}
+                            />
+                        }
                         icon={
                             <Stack
                                 sx={{ height: 40 }}
