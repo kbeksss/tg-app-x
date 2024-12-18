@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
     Box,
-    Button,
-    Input,
     InputAdornment,
     styled,
     TextField,
@@ -11,8 +9,7 @@ import {
 } from '@mui/material'
 import { Iconify, InfoPlate, useSwipeableDialog } from '@shared/ui'
 import { NetworkSelect } from '@widgets'
-import { networks } from '@_mock/networks.js'
-import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const SendForm = ({
     sumValue,
@@ -23,15 +20,12 @@ const SendForm = ({
     receiverAddress,
     setReceiverAddress,
 }) => {
-    const { isDark } = useTg()
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     return (
         <Box
             sx={{
                 borderRadius: '20px',
-                backgroundColor: isDark
-                    ? 'darkVersion.lightGrey'
-                    : 'background.grey',
+                backgroundColor: 'background.grey',
                 py: 2,
                 px: '6px',
             }}>
@@ -102,7 +96,7 @@ const SInputLabel = styled(Typography)`
 `
 
 const FieldRow = ({ label, value, adornment, onClick, onChange }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     return (
         <Box sx={{ mb: 2 }} onClick={onClick}>
             <SInputLabel color={'text.secondary'} variant={'subtitle2'}>
@@ -114,13 +108,13 @@ const FieldRow = ({ label, value, adornment, onClick, onChange }) => {
                 size={'small'}
                 sx={{
                     '& .MuiInputBase-root': {
-                        backgroundColor: isDark
-                            ? 'darkVersion.lightBlack'
+                        backgroundColor: isDarkMode
+                            ? 'background.lightBlack'
                             : 'background.white',
                         borderRadius: '15px',
                         fontSize: 12,
                         pr: '3px',
-                        color: isDark ? 'white' : 'unset',
+                        color: 'text.primary',
                     },
                 }}
                 fullWidth

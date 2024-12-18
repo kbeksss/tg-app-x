@@ -11,7 +11,7 @@ import { useCheckIphone } from '@shared/hooks/useCheckIphone.js'
 import { TokenTradesIcon } from '@shared/icons'
 import { paths } from '@pages/paths.js'
 import { useTg } from '@shared/hooks/useTg.js'
-import {useThemeContext} from "@app/providers/with-mui-theme.jsx";
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Layout = ({ children }) => {
     const { isDarkMode } = useThemeContext()
@@ -23,7 +23,9 @@ const Layout = ({ children }) => {
         <Box
             sx={{
                 height: '100vh',
-                backgroundColor: isDarkMode ? '#181818' : '#fff',
+                backgroundColor: isDarkMode
+                    ? 'background.lightBlack'
+                    : 'background.white',
             }}
             className='page'>
             <Box sx={{ pb: '60px' }}>{children}</Box>
@@ -33,7 +35,9 @@ const Layout = ({ children }) => {
                     position: 'fixed',
                     bottom: 0,
                     left: 0,
-                    backgroundColor: isDarkMode ? 'darkVersion.lightGrey' : '#fff',
+                    backgroundColor: isDarkMode
+                        ? 'darkVersion.lightGrey'
+                        : '#fff',
                     pt: 1,
                     right: 0,
                     px: 1,
@@ -49,7 +53,9 @@ const Layout = ({ children }) => {
                             ? 'darkVersion.lightGrey'
                             : '#fff',
                         '& .Mui-selected': {
-                            color: isDarkMode ? '#BFFE6E !important' : 'primary',
+                            color: isDarkMode
+                                ? '#BFFE6E !important'
+                                : 'primary',
                         },
                     }}
                     onChange={(event, newValue) => {

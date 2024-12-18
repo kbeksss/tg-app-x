@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const InfoPlate = ({ text }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     return (
         <Box
             sx={(theme) => ({
@@ -13,7 +13,7 @@ const InfoPlate = ({ text }) => {
                 border: `1px solid ${theme.palette.error.main}`,
                 position: 'relative',
                 overflow: 'hidden',
-                background: isDark
+                background: isDarkMode
                     ? 'linear-gradient(90deg, rgba(55,27,26,1) 0%, rgba(4,4,4,1) 100%)'
                     : 'white',
             })}>
@@ -23,10 +23,7 @@ const InfoPlate = ({ text }) => {
                 color={'error.main'}>
                 Warning!
             </Typography>
-            <Typography
-                fontWeight={500}
-                fontSize={12}
-                color={isDark ? 'white' : 'black'}>
+            <Typography fontWeight={500} fontSize={12} color={'text.primary'}>
                 {text}
             </Typography>
             <Box

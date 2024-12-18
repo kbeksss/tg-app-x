@@ -15,9 +15,7 @@ const BottomActions = ({ copyValue }) => {
             <Button
                 fullWidth
                 sx={{
-                    backgroundColor: isDark ? 'darkVersion.green' : 'primary',
                     mb: 1,
-                    color: isDark ? 'black' : 'white',
                 }}
                 onClick={() => copyToClipboard(copyValue)}
                 variant={'contained'}>

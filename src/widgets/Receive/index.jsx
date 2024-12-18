@@ -8,6 +8,7 @@ import { networks } from '@_mock/networks.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Receive = () => {
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
@@ -32,6 +33,7 @@ const Receive = () => {
         return networks.find((n) => n.value === network)
     }, [network])
     const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
 
     return (
         <Box>
@@ -61,13 +63,14 @@ const Receive = () => {
                                             sx={{ width: 20, height: 20 }}
                                             src={networkObj.icon}
                                         />
-                                        <Typography>
+                                        <Typography color={'text.primary'}>
                                             {networkObj.symbol}
                                         </Typography>
                                         <Chip
                                             sx={{
-                                                backgroundColor:
-                                                    'background.white',
+                                                backgroundColor: isDarkMode
+                                                    ? 'background.dark'
+                                                    : 'background.white',
                                             }}
                                             size={'small'}
                                             label={networkObj.label}
@@ -82,6 +85,7 @@ const Receive = () => {
                                 )}
                                 <Iconify
                                     width={11}
+                                    color={'text.primary'}
                                     icon={'simple-line-icons:arrow-down'}
                                 />
                             </Stack>
@@ -96,7 +100,7 @@ const Receive = () => {
                             p: '10px',
                             maxWidth: 250,
                             borderRadius: '16px',
-                            border: `1px solid ${isDark ? '#707579' : 'rgba(0, 0, 0, 0.05)'}`,
+                            border: `1px solid ${isDarkMode ? '#707579' : 'rgba(0, 0, 0, 0.05)'}`,
                         }}>
                         <QRCode
                             value={address}
@@ -111,7 +115,7 @@ const Receive = () => {
                         <Typography
                             sx={{ wordWrap: 'break-word', mt: 2 }}
                             variant={'body2'}
-                            color={isDark ? 'white' : 'unset'}
+                            color={'text.primary'}
                             align={'center'}>
                             {address}
                         </Typography>
