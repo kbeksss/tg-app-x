@@ -238,6 +238,7 @@ export const ThemeProviderContext = ({ children }) => {
                         white: '#FFF',
                         dark: '#222222',
                         lightBlack: '#181818',
+                        paper: isDarkMode ? '#181818' : '#fff',
                     },
                     error: {
                         main: '#E53935',

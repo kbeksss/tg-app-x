@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import {
     Box,
-    Button,
     Grid,
     IconButton,
     Stack,
@@ -9,7 +8,6 @@ import {
     Typography,
 } from '@mui/material'
 import { Edge, Iconify } from '@shared/ui'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const useSwipeableDialog = ({ initialHalf } = { initialHalf: '55vh' }) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -37,7 +35,6 @@ const SwipeableDialog = ({
     drawerHeight,
     label,
 }) => {
-    const { isDark } = useTg()
     const handleSwipeUp = () => {
         setDrawerHeight('94vh')
     }
@@ -56,11 +53,10 @@ const SwipeableDialog = ({
                 disableSwipeToOpen
                 swipeAreaWidth={30}
                 PaperProps={{
+                    elevation: 0,
                     sx: {
                         height: contentHeight ? 'unset' : drawerHeight,
-                        backgroundColor: isDark
-                            ? 'darkVersion.lightBlack'
-                            : 'background.paper',
+                        backgroundColor: 'background.paper',
                         transition: 'height 0.3s ease-in-out',
                     },
                 }}>
@@ -84,7 +80,7 @@ const SwipeableDialog = ({
                     <Box sx={{ py: 1, position: 'relative' }}>
                         <Typography
                             variant={'h6'}
-                            color={isDark ? 'darkVersion.white' : 'black'}
+                            color={'text.primary'}
                             sx={{ fontSize: 16 }}
                             align={'center'}>
                             {label}
@@ -108,7 +104,7 @@ const SwipeableDialog = ({
                                 }}>
                                 <Iconify
                                     sx={{
-                                        color: isDark && 'darkVersion.white',
+                                        color: 'text.primary',
                                     }}
                                     icon={'iconamoon:close-bold'}
                                 />

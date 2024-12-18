@@ -31,7 +31,6 @@ const NetworkItems = ({
 }
 
 const NetworkItem = ({ symbol, label, icon, selected, onClick }) => {
-    const { isDark } = useTg()
     return (
         <Box
             onClick={onClick}
@@ -39,11 +38,7 @@ const NetworkItem = ({ symbol, label, icon, selected, onClick }) => {
                 mx: -2,
                 px: 2,
                 py: 1,
-                backgroundColor: !selected
-                    ? 'transparent'
-                    : isDark
-                      ? 'black'
-                      : 'background.grey',
+                backgroundColor: !selected ? 'transparent' : 'background.grey',
                 borderRadius: 2,
             }}>
             <Grid2 container spacing={1} alignItems={'center'}>
@@ -52,10 +47,7 @@ const NetworkItem = ({ symbol, label, icon, selected, onClick }) => {
                 </Grid2>
                 <Grid2>
                     <Box>
-                        <Typography
-                            color={isDark ? 'darkVersion.white' : 'black'}>
-                            {symbol}
-                        </Typography>
+                        <Typography color={'text.primary'}>{symbol}</Typography>
                         <Typography
                             color={'text.secondary'}
                             sx={{ textTransform: 'capitalize' }}>

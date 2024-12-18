@@ -1,10 +1,8 @@
 import React from 'react'
-import { Box, InputAdornment, TextField } from '@mui/material'
+import { InputAdornment, TextField } from '@mui/material'
 import { Iconify } from '@shared/ui'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const Search = ({ value, setValue }) => {
-    const { isDark } = useTg()
     return (
         <TextField
             fullWidth
@@ -25,7 +23,7 @@ const Search = ({ value, setValue }) => {
                     endAdornment: (
                         <InputAdornment position={'end'}>
                             <Iconify
-                                color={isDark ? 'darkVersion.white' : 'black'}
+                                color={'text.primary'}
                                 icon={'mdi:microphone'}
                                 width={22}
                             />
@@ -40,9 +38,7 @@ const Search = ({ value, setValue }) => {
                     borderRadius: '30px',
                 },
                 '& .MuiInputBase-root': {
-                    backgroundColor: isDark
-                        ? 'darkVersion.grey'
-                        : 'background.grey',
+                    backgroundColor: 'background.grey',
                 },
                 '& .MuiOutlinedInput-notchedOutline': {
                     borderRadius: '30px',

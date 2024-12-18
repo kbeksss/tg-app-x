@@ -44,12 +44,6 @@ const NetworkSelect = ({
                     />
                     <Button
                         onClick={() => setNetwork('')}
-                        sx={{
-                            backgroundColor: isDark
-                                ? 'darkVersion.green'
-                                : 'primary',
-                            color: isDark ? 'black' : 'white',
-                        }}
                         variant={'contained'}
                         fullWidth>
                         Reset
