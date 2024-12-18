@@ -84,6 +84,7 @@ const themeSettings = {
                     fontSize: 17,
                 },
                 sizeSmall: {
+                    fontSize: 14,
                     height: 36,
                 },
             },

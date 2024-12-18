@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Box, Tab, Tabs } from '@mui/material'
 import { TabPanel } from '@shared/ui'
+import { _news } from '@_mock/news.js'
+import NewsItem from './NewsItem.jsx'
 
 const NewsSection = () => {
     const [value, setValue] = useState(0)
@@ -17,7 +19,16 @@ const NewsSection = () => {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                for you
+                {_news.map((item, index) => (
+                    <NewsItem
+                        key={index}
+                        date={item.date}
+                        text={item.text}
+                        img={item.img}
+                        author={item.author}
+                        avatarUrl={item.avatarUrl}
+                    />
+                ))}
             </TabPanel>
             <TabPanel value={value} index={1}>
                 popular
