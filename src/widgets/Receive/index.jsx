@@ -7,7 +7,6 @@ import BottomActions from './ui/BottomActions'
 import { networks } from '@_mock/networks.js'
 import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services'
-import { useTg } from '@shared/hooks/useTg.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Receive = () => {
@@ -32,7 +31,6 @@ const Receive = () => {
     const networkObj = useMemo(() => {
         return networks.find((n) => n.value === network)
     }, [network])
-    const { isDark } = useTg()
     const { isDarkMode } = useThemeContext()
 
     return (

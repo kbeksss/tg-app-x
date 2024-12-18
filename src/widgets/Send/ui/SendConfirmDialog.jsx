@@ -1,28 +1,22 @@
 import React from 'react'
 import {
-    Box,
     Button,
     Dialog,
     DialogContent,
     DialogContentText,
     DialogTitle,
     Stack,
-    Typography,
 } from '@mui/material'
 import { InfoRows } from '@shared/ui'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const SendConfirmDialog = ({ open, onClose, total, address, onConfirm }) => {
-    const { isDark } = useTg()
     return (
         <Dialog
             PaperProps={{
-                sx: (theme) => ({
-                    backgroundColor: isDark
-                        ? theme.palette?.darkVersion?.lightBlack
-                        : 'background.paper',
-                    color: isDark ? 'white' : 'unset',
-                }),
+                elevation: 0,
+                sx: {
+                    color: 'text.primary',
+                },
             }}
             open={open}
             onClose={onClose}>
@@ -39,26 +33,13 @@ const SendConfirmDialog = ({ open, onClose, total, address, onConfirm }) => {
                     ]}
                 />
                 <Stack sx={{ mt: 2 }} spacing={1}>
-                    <Button
-                        sx={{
-                            backgroundColor: isDark
-                                ? 'darkVersion.green'
-                                : 'primary',
-                            color: isDark ? 'black' : 'white',
-                        }}
-                        onClick={onConfirm}
-                        variant={'contained'}>
+                    <Button onClick={onConfirm} variant={'contained'}>
                         Confirm
                     </Button>
                     <Button
-                        sx={{
-                            backgroundColor: isDark
-                                ? 'darkVersion.lightGrey'
-                                : 'unset',
-                            color: isDark ? 'white' : 'primary',
-                        }}
+                        color={'secondary'}
                         onClick={onClose}
-                        variant={isDark ? 'contained' : 'outlined'}>
+                        variant={'contained'}>
                         No
                     </Button>
                 </Stack>

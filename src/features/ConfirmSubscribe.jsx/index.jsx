@@ -7,10 +7,8 @@ import {
     DialogTitle,
     Stack,
 } from '@mui/material'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const ConfirmSubscribe = ({ open, onClose, onConfirm, username }) => {
-    const { isDark } = useTg()
     return (
         <Dialog
             PaperProps={{

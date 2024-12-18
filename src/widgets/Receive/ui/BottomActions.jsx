@@ -2,10 +2,8 @@ import React from 'react'
 import { Box, Button } from '@mui/material'
 import { copyToClipboard, notify } from '@shared/utils/functions'
 import { shareURL } from '@telegram-apps/sdk'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const BottomActions = ({ copyValue }) => {
-    const { isDark } = useTg()
     const handleShare = () => {
         shareURL('My address:', copyValue)
         notify({ type: 'success', msg: t('REFERRAL_SEND_SUCCESS') })
@@ -23,13 +21,12 @@ const BottomActions = ({ copyValue }) => {
             </Button>
             <Button
                 sx={{
-                    backgroundColor: isDark ? 'darkVersion.lightGrey' : 'unset',
                     mb: 1,
-                    color: isDark ? 'white' : 'primary',
                 }}
                 onClick={handleShare}
                 fullWidth
-                variant={isDark ? 'contained' : 'outlined'}>
+                color={'secondary'}
+                variant={'contained'}>
                 Share
             </Button>
         </Box>

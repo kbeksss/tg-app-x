@@ -7,12 +7,10 @@ import { paths } from '@pages/paths.js'
 import { useSelector } from 'react-redux'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
-import { useTg } from '@shared/hooks/useTg.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Account = () => {
     const { isDarkMode, toggleTheme } = useThemeContext()
-    const { isDark } = useTg()
     const navigate = useNavigate()
     const account = useSelector((state) => state.account)
     const { data } = useFetchAccountPortfolioQuery()
