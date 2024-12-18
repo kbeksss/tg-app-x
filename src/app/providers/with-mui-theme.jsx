@@ -337,14 +337,20 @@ export const ThemeProviderContext = ({ children }) => {
                             root: {
                                 minHeight: 33,
                                 marginRight: '8px',
-                                color: 'gray',
+                                color: isDarkMode
+                                    ? '#707579'
+                                    : 'rgba(0,0,0,0.5)',
                                 fontWeight: 'bold',
                                 textTransform: 'none',
                                 borderRadius: '10px',
-                                backgroundColor: '#F4F4F6',
+                                backgroundColor: isDarkMode
+                                    ? '#2A2A2A'
+                                    : '#F4F4F6',
                                 '&.Mui-selected': {
-                                    color: 'white',
-                                    backgroundColor: '#007AFF',
+                                    color: isDarkMode ? 'black' : 'white',
+                                    backgroundColor: isDarkMode
+                                        ? '#FFF'
+                                        : '#007AFF',
                                 },
                             },
                         },

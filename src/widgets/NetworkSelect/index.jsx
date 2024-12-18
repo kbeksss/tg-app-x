@@ -3,7 +3,6 @@ import { Box, Button } from '@mui/material'
 import { networks } from '@_mock/networks.js'
 import { Search, SwipeableDialog } from '@shared/ui'
 import NetworkItems from '@widgets/NetworkSelect/ui/NetworkItems.jsx'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const NetworkSelect = ({
     isDrawerOpen,
@@ -13,7 +12,6 @@ const NetworkSelect = ({
     setNetwork,
     children,
 }) => {
-    const { isDark } = useTg()
     const [searchValue, setSearchValue] = useState('')
 
     const filteredNetworks = useMemo(() => {

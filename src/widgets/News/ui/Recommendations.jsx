@@ -1,6 +1,5 @@
 import React from 'react'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const Recommendations = ({ recommendations }) => {
     return (
@@ -21,17 +20,14 @@ const Recommendations = ({ recommendations }) => {
 }
 
 const RecommendationItem = ({ author, text, avatar, date }) => {
-    const { isDark } = useTg()
     return (
         <Box
             sx={{
                 p: 2,
                 minWidth: 320,
                 borderRadius: '16px',
-                backgroundColor: isDark
-                    ? 'darkVersion.lightGrey'
-                    : 'background.grey',
-                color: isDark ? 'white' : 'black',
+                backgroundColor: 'background.grey',
+                color: 'text.primary',
             }}>
             <Stack direction={'row'} spacing={1.5}>
                 <Avatar src={avatar} sx={{ width: 24, height: 24 }} />

@@ -6,7 +6,6 @@ import { COLOR_THEME } from '@shared/config.js'
 const tg = window.Telegram.WebApp
 
 export function useTg(params) {
-    const [isDark, setIsDark] = useState(window.darkTheme || tg?.colorScheme)
     const navigate = useNavigate()
     const closeTg = () => {
         tg.close()
@@ -42,8 +41,6 @@ export function useTg(params) {
 
     return {
         tg,
-        // isDark: tg?.colorScheme === 'dark',
-        isDark: isDark === 'dark',
         user: tg.initDataUnsafe?.user,
         closeTg,
         showTgBackButton: showBackButton,
