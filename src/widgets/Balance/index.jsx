@@ -34,7 +34,14 @@ const Balance = ({ balance }) => {
                 <Typography variant={'h2'}>
                     $ {balanceShown ? balance : '******'}
                 </Typography>
-                <Divider sx={{ my: 2 }} />
+                <Divider
+                    sx={{
+                        my: 2,
+                        borderColor: '#000',
+                        opacity: 0.1,
+                        borderWidth: '1px',
+                    }}
+                />
                 <Box>
                     <Operate />
                 </Box>

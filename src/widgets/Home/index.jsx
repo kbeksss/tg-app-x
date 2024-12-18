@@ -13,7 +13,6 @@ import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import SendConfirm from './ui/SendConfirm.jsx'
 import { Iconify, useSwipeableDialog } from '@shared/ui/index.js'
 import { networks } from '@_mock/networks.js'
-import { useTg } from '@shared/hooks/useTg.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Home = () => {
