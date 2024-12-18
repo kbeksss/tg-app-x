@@ -13,6 +13,7 @@ import { ProfileImage } from '@widgets'
 import { BottomButton, Switch } from '@shared/ui'
 import { notify } from '@shared/utils/functions/index.js'
 import { useTg } from '@shared/hooks/useTg.js'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const NetworkSettings = ({
     network,
@@ -21,7 +22,7 @@ const NetworkSettings = ({
     toggleSumbit,
     configUpdateSubmit,
 }) => {
-    const { isDark } = useTg()
+    const { isDarkMode } = useThemeContext()
     const [checked, setChecked] = useState(networkCheckedInitial)
     const [configValue, setConfigValue] = useState(configValueInitial)
 
@@ -55,18 +56,14 @@ const NetworkSettings = ({
                 sx={{
                     borderRadius: '16px',
                     p: 2,
-                    backgroundColor: isDark
-                        ? 'darkVersion.lightGrey'
-                        : 'background.grey',
+                    backgroundColor: 'background.grey',
                 }}>
                 <Grid2 alignItems={'center'} container spacing={1.5}>
                     <Grid2 size={'auto'}>
                         <Avatar src={network.image} />
                     </Grid2>
                     <Grid2 size={'grow'}>
-                        <Typography
-                            color={isDark ? 'white' : 'black'}
-                            fontWeight={500}>
+                        <Typography color={'text.primary'} fontWeight={500}>
                             Setting up {network.symbol} for trading
                         </Typography>
                     </Grid2>
@@ -79,15 +76,13 @@ const NetworkSettings = ({
                             py: '14px',
                             px: 2,
                             borderRadius: '16px',
-                            backgroundColor: isDark
-                                ? 'darkVersion.lightGrey'
-                                : 'background.grey',
+                            backgroundColor: 'background.grey',
                         }}>
                         <Stack
                             direction={'row'}
                             alignItems={'center'}
                             justifyContent={'space-between'}>
-                            <Typography color={isDark ? 'white' : 'dark'}>
+                            <Typography color={'text.primary'}>
                                 Trade ERC20 tokens
                             </Typography>
                             <Switch checked={checked} onChange={handleChange} />
@@ -97,7 +92,7 @@ const NetworkSettings = ({
                         <>
                             <Box sx={{}}>
                                 <Typography
-                                    color={isDark ? 'white' : 'black'}
+                                    color={'text.primary'}
                                     fontWeight={600}>
                                     Trading bot settings:
                                 </Typography>
@@ -112,14 +107,14 @@ const NetworkSettings = ({
                                 value={configValue}
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
-                                        color: isDark ? 'white' : 'black',
+                                        color: 'text.primary',
                                         '& fieldset': {
-                                            borderColor: isDark
-                                                ? 'rgba(255,255,255,5) !important'
+                                            borderColor: isDarkMode
+                                                ? 'rgba(255,255,255,0.5) !important'
                                                 : 'unset',
                                         },
                                         '&:hover fieldset': {
-                                            borderColor: isDark
+                                            borderColor: isDarkMode
                                                 ? 'rgba(255,255,255,0.5) !important'
                                                 : 'unset',
                                         },
