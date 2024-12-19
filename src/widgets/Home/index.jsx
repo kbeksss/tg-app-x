@@ -53,6 +53,19 @@ const Home = () => {
     return (
         <Box sx={{ py: 1.5 }}>
             <Box sx={{ px: 2 }}>
+                <Box>safeAreaInset-{tg?.safeAreaInset.top}</Box>
+                <Box>safeAreaInset-{tg?.safeAreaInset.bottom}</Box>
+                <Box>safeAreaInset-{tg?.safeAreaInset.left}</Box>
+                <Box>safeAreaInset-{tg?.safeAreaInset.right}</Box>
+
+                <Box>contentSafeAreaInset-{tg?.contentSafeAreaInset.top}</Box>
+                <Box>
+                    contentSafeAreaInset-{tg?.contentSafeAreaInset.bottom}
+                </Box>
+                <Box>contentSafeAreaInset-{tg?.contentSafeAreaInset.left}</Box>
+                <Box>contentSafeAreaInset-{tg?.contentSafeAreaInset.right}</Box>
+                <Box>isFullscreen-{tg?.isFullscreen.toString()}</Box>
+                <Box>isActive-{tg?.isActive.toString()}</Box>
                 <Stack
                     direction={'row'}
                     alignItems={'center'}
