@@ -27,10 +27,10 @@ const Layout = ({ children }) => {
                 backgroundColor: isDarkMode
                     ? 'background.lightBlack'
                     : 'background.white',
-                pt: `var(--tg-content-safe-area-inset-top)px`,
-                pb: `var(--tg-content-safe-area-inset-bottom)px`,
-                pl: `var(--tg-content-safe-area-inset-left)px`,
-                pr: `var(--tg-content-safe-area-inset-right)px`,
+                pt: 'var(--tg-content-safe-area-inset-top)',
+                pb: 'var(--tg-content-safe-area-inset-bottom)',
+                pl: 'var(--tg-content-safe-area-inset-left)',
+                pr: 'var(--tg-content-safe-area-inset-right)',
             }}
             className='page'>
             <Box sx={{ pb: '60px' }}>{children}</Box>
