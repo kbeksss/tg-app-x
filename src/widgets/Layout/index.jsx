@@ -14,8 +14,8 @@ import { useTg } from '@shared/hooks/useTg.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const Layout = ({ children }) => {
-    const { tg } = useTg()
-    const { isDarkMode, contentSafeArea } = useThemeContext()
+    useTg()
+    const { isDarkMode } = useThemeContext()
     const { isIphone } = useCheckIphone()
     const location = useLocation()
     const navigate = useNavigate()
@@ -27,10 +27,10 @@ const Layout = ({ children }) => {
                 backgroundColor: isDarkMode
                     ? 'background.lightBlack'
                     : 'background.white',
-                pt: `${contentSafeArea.top}px`,
-                pb: `${contentSafeArea.bottom}px`,
-                pl: `${contentSafeArea.left}px`,
-                pr: `${contentSafeArea.right}px`,
+                pt: `var(--tg-content-safe-area-inset-top)px`,
+                pb: `var(--tg-content-safe-area-inset-bottom)px`,
+                pl: `var(--tg-content-safe-area-inset-left)px`,
+                pr: `var(--tg-content-safe-area-inset-right)px`,
             }}
             className='page'>
             <Box sx={{ pb: '60px' }}>{children}</Box>

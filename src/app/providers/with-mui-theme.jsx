@@ -42,12 +42,6 @@ export const useThemeContext = () => useContext(ThemeContext)
 export const ThemeProviderContext = ({ children }) => {
     const [themeMode, setThemeMode] = useState('light')
     const [isFullScreen, setIsFullScreen] = useState(false)
-    const [contentSafeArea, setContentSafeArea] = useState({
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-    })
     const isDarkMode = useMemo(() => themeMode === 'dark', [themeMode])
     useEffect(() => {
         const tg = window.Telegram.WebApp
@@ -63,21 +57,14 @@ export const ThemeProviderContext = ({ children }) => {
         const updateFullScreen = () => {
             setIsFullScreen(tg.isFullscreen)
         }
-        const updateContentSafeArea = (event) => {
-            console.log('event', event)
-            console.log('tg', tg)
-            setContentSafeArea(tg.contentSafeAreaInset)
-        }
 
         updateTheme()
         tg.onEvent('themeChanged', updateTheme)
         tg.onEvent('fullscreenChanged', updateFullScreen)
-        tg.onEvent('contentSafeAreaChanged', updateContentSafeArea)
 
         return () => {
             tg.offEvent('themeChanged', updateTheme)
             tg.offEvent('fullscreenChanged', updateFullScreen)
-            tg.offEvent('contentSafeAreaChanged', updateContentSafeArea)
         }
     }, [])
 
@@ -237,13 +224,7 @@ export const ThemeProviderContext = ({ children }) => {
 
     return (
         <ThemeContext.Provider
-            value={{
-                themeMode,
-                toggleTheme,
-                isFullScreen,
-                isDarkMode,
-                contentSafeArea,
-            }}>
+            value={{ themeMode, toggleTheme, isFullScreen, isDarkMode }}>
             <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </ThemeContext.Provider>
     )
