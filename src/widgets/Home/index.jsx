@@ -18,6 +18,7 @@ import { useTg } from '@shared/hooks/useTg.js'
 
 const Home = () => {
     const { tg } = useTg()
+    console.log('log')
     console.log('safeAreaInset', tg.safeAreaInset)
     console.log('contentSafeAreaInset', tg.contentSafeAreaInset)
     console.log('isActive', tg.isActive)
