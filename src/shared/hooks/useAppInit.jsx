@@ -9,7 +9,6 @@ export const useAppInit = () => {
     const [login] = useLoginMutation()
     useEffect(() => {
         tg.ready()
-        tg.requestFullscreen();
         localStorage.setItem(COLOR_THEME, tg?.colorScheme)
     }, [])
     useEffect(() => {
