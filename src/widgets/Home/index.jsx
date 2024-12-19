@@ -14,15 +14,8 @@ import SendConfirm from './ui/SendConfirm.jsx'
 import { Iconify, useSwipeableDialog } from '@shared/ui'
 import { networks } from '@_mock/networks.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
-import { useTg } from '@shared/hooks/useTg.js'
 
 const Home = () => {
-    const { tg } = useTg()
-    console.log('log')
-    console.log('safeAreaInset', tg.safeAreaInset)
-    console.log('contentSafeAreaInset', tg.contentSafeAreaInset)
-    console.log('isActive', tg.isActive)
-    console.log('isFullscreen', tg.isFullscreen)
     const { isDarkMode } = useThemeContext()
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sellingToken, setSellingToken] = useState(null)
@@ -53,19 +46,6 @@ const Home = () => {
     return (
         <Box sx={{ py: 1.5 }}>
             <Box sx={{ px: 2 }}>
-                <Box>safeAreaInset-{tg?.safeAreaInset.top}</Box>
-                <Box>safeAreaInset-{tg?.safeAreaInset.bottom}</Box>
-                <Box>safeAreaInset-{tg?.safeAreaInset.left}</Box>
-                <Box>safeAreaInset-{tg?.safeAreaInset.right}</Box>
-
-                <Box>contentSafeAreaInset-{tg?.contentSafeAreaInset.top}</Box>
-                <Box>
-                    contentSafeAreaInset-{tg?.contentSafeAreaInset.bottom}
-                </Box>
-                <Box>contentSafeAreaInset-{tg?.contentSafeAreaInset.left}</Box>
-                <Box>contentSafeAreaInset-{tg?.contentSafeAreaInset.right}</Box>
-                <Box>isFullscreen-{tg?.isFullscreen.toString()}</Box>
-                <Box>isActive-{tg?.isActive.toString()}</Box>
                 <Stack
                     direction={'row'}
                     alignItems={'center'}

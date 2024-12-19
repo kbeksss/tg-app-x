@@ -9,11 +9,7 @@ import { paths } from '@pages/paths.js'
 const Follows = () => {
     const navigate = useNavigate()
     const [searchQuery, setSearchQuery] = useState('')
-    const { tg } = useTg({ backButtonVisible: true })
-    console.log('safeAreaInset', tg.safeAreaInset)
-    console.log('contentSafeAreaInset', tg.contentSafeAreaInset)
-    console.log('isActive', tg.isActive)
-    console.log('isFullscreen', tg.isFullscreen)
+    useTg({ backButtonVisible: true })
     return (
         <Stack sx={{ pt: 2, height: '100vh' }}>
             <Box sx={{ pb: 2, px: 2 }}>
