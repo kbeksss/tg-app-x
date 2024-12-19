@@ -65,6 +65,7 @@ export const ThemeProviderContext = ({ children }) => {
         }
         const updateContentSafeArea = (event) => {
             console.log('event', event)
+            console.log('tg', tg)
             setContentSafeArea(tg.contentSafeAreaInset)
         }
 
