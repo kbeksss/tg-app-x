@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import { useFetchAccountPortfolioQuery } from '@shared/api/services/index.js'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import SendConfirm from './ui/SendConfirm.jsx'
-import { Iconify, useSwipeableDialog } from '@shared/ui/index.js'
+import { Iconify, useSwipeableDialog } from '@shared/ui'
 import { networks } from '@_mock/networks.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
@@ -89,11 +89,9 @@ const Home = () => {
                                             </Typography>
                                         </>
                                     ) : (
-                                        <>
-                                            <Typography variant={'body2'}>
-                                                Select a network
-                                            </Typography>
-                                        </>
+                                        <Typography variant={'body2'}>
+                                            Select a network
+                                        </Typography>
                                     )}
                                     <Iconify
                                         width={11}

@@ -9,7 +9,9 @@ import { paths } from '@pages/paths.js'
 const Follows = () => {
     const navigate = useNavigate()
     const [searchQuery, setSearchQuery] = useState('')
-    useTg({ backButtonVisible: true })
+    const { tg } = useTg({ backButtonVisible: true })
+    console.log('safeAreaInset', tg.safeAreaInset)
+    console.log('contentSafeAreaInset', tg.contentSafeAreaInset)
     return (
         <Stack sx={{ pt: 2, height: '100vh' }}>
             <Box sx={{ pb: 2, px: 2 }}>
