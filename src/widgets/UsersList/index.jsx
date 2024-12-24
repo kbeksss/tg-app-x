@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Divider, Stack, Typography } from '@mui/material'
 import UserItem from './ui/UserItem'
 import { useNavigate } from 'react-router-dom'
@@ -11,6 +11,7 @@ import {
 import { notify } from '@shared/utils/functions'
 import { useTg } from '@shared/hooks/useTg.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
+import { UserSubscribe } from '@widgets'
 
 const UsersList = ({ search, myList }) => {
     const { isDarkMode } = useThemeContext()
@@ -22,6 +23,11 @@ const UsersList = ({ search, myList }) => {
     const [unfollowUser, { isLoading: unfollowLoading }] =
         useUnfollowUserMutation()
     const navigate = useNavigate()
+    const [isSubscribing, setIsSubscribing] = useState(false)
+    const [followingUser, setFollowingUser] = useState(null)
+    useEffect(() => {
+        setIsSubscribing(!!followingUser)
+    }, [followingUser])
     return !!data?.kols?.length ? (
         <Stack
             spacing={2}
@@ -41,17 +47,23 @@ const UsersList = ({ search, myList }) => {
                 <UserItem
                     key={user.id}
                     id={user.id}
+                    user={user}
                     followUser={followUser}
                     unfollowUser={unfollowUser}
-                    image={user.image}
                     onClick={() => navigate(`${paths.userProfile}/${user.id}`)}
                     subscribed={myList}
                     buttonDisabled={
                         followLoading || unfollowLoading || listLoading
                     }
-                    username={user.username}
+                    setFollowingUser={setFollowingUser}
                 />
             ))}
+            <UserSubscribe
+                user={followingUser}
+                followUser={followUser}
+                isSubscribing={isSubscribing}
+                setIsSubscribing={setIsSubscribing}
+            />
         </Stack>
     ) : (
         <Stack

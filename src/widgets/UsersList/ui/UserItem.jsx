@@ -1,53 +1,37 @@
-import React, { useMemo, useState } from 'react'
+import React from 'react'
 import { Box, Button, Grid2, Typography } from '@mui/material'
 import { ProfileImage } from '@widgets'
-import { ConfirmSubscribe } from '@features'
-import { useTg } from '@shared/hooks/useTg.js'
 import { notify } from '@shared/utils/functions/index.js'
-import { SuccessDialog } from '@shared/ui/index.js'
-import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const UserItem = ({
     unfollowUser,
-    followUser,
+    setFollowingUser,
+    user,
     id,
-    username,
     subscribed,
     onClick,
-    image,
     buttonDisabled,
 }) => {
-    const [isConfirmSubscribe, setIsConfirmSubscribe] = useState(false)
-    const [successOpen, setSuccessOpen] = useState(false)
     const onUnfollowUser = async () => {
         const { error } = await unfollowUser({ id })
         if (error) {
             notify({ type: 'error', msg: "Couldn't unfollow" })
         }
     }
-    const onFollowUser = async () => {
-        const { error } = await followUser({ id })
-        if (error) {
-            notify({ type: 'error', msg: "Couldn't unfollow" })
-            return
-        }
-        setIsConfirmSubscribe(false)
-        setSuccessOpen(true)
-    }
     const onButtonClick = (e) => {
         e.stopPropagation()
-        subscribed ? onUnfollowUser() : setIsConfirmSubscribe(true)
+        subscribed ? onUnfollowUser() : setFollowingUser(user)
     }
     return (
         <>
             <Box onClick={onClick}>
                 <Grid2 spacing={2} container alignItems={'center'}>
                     <Grid2 size={'auto'}>
-                        <ProfileImage icon={image} width={50} />
+                        <ProfileImage icon={user.image} width={50} />
                     </Grid2>
                     <Grid2 size={'grow'}>
                         <Typography color={'text.primary'}>
-                            {username}
+                            {user.username}
                         </Typography>
                     </Grid2>
                     <Grid2 size={5} container justifyContent={'end'}>
@@ -62,20 +46,6 @@ const UserItem = ({
                     </Grid2>
                 </Grid2>
             </Box>
-            <SuccessDialog
-                open={successOpen}
-                onClose={() => setSuccessOpen(false)}
-                title={'Successfully subscribed'}
-                text={`You have successfully subscribed to https://x.com/${username}`}
-                actionLabel={'Okay'}
-                action={() => setSuccessOpen(false)}
-            />
-            <ConfirmSubscribe
-                username={username}
-                onConfirm={onFollowUser}
-                open={isConfirmSubscribe}
-                onClose={() => setIsConfirmSubscribe(false)}
-            />
         </>
     )
 }
