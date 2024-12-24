@@ -35,7 +35,15 @@ const SellTokens = ({ open, onClose, sellingToken }) => {
         onClose()
     }
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog
+            PaperProps={{
+                elevation: 0,
+                sx: {
+                    backgroundColor: 'background.paper',
+                },
+            }}
+            open={open}
+            onClose={onClose}>
             <DialogTitle>Sell confirmation:</DialogTitle>
             <DialogContent>
                 <DialogContentText>

@@ -13,7 +13,15 @@ import { paths } from '@pages/paths.js'
 const SendConfirm = ({ open, onClose, sendingToken }) => {
     const navigate = useNavigate()
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog
+            PaperProps={{
+                elevation: 0,
+                sx: {
+                    backgroundColor: 'background.paper',
+                },
+            }}
+            open={open}
+            onClose={onClose}>
             <DialogTitle>{sendingToken?.name}</DialogTitle>
             <DialogContent>
                 <DialogContentText>
