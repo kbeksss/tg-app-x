@@ -10,12 +10,16 @@ const QRCode = ({ value, qrImage }) => {
         qrCode.current = new QRCodeStyling({
             width: 300,
             height: 300,
+            margin: 10,
             dotsOptions: {
-                color: '#000',
+                color: '#fff',
                 type: 'rounded',
             },
             cornersSquareOptions: {
                 type: 'extra-rounded',
+            },
+            backgroundOptions: {
+                color: '#181818',
             },
             imageOptions: {
                 crossOrigin: 'anonymous',
@@ -54,8 +58,8 @@ const QRCode = ({ value, qrImage }) => {
                 sx={{
                     position: 'absolute',
                     top: '50%',
-                    width: 48,
-                    height: 48,
+                    width: 65,
+                    height: 65,
                     transform: 'translateY(-50%)',
                 }}>
                 {qrImage}
