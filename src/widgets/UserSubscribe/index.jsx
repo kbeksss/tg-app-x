@@ -40,6 +40,7 @@ const UserSubscribe = ({
                 onClose={() => setSubscribeSettings(false)}
                 avatar={user?.avatar}
                 onSave={onSave}
+                username={user?.username}
             />
             <SuccessDialog
                 open={successOpen}
