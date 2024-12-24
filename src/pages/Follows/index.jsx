@@ -11,11 +11,11 @@ const Follows = () => {
     const [searchQuery, setSearchQuery] = useState('')
     useTg({ backButtonVisible: true })
     return (
-        <Stack sx={{ pt: 2, height: '100vh' }}>
+        <Stack sx={{ pt: 2, pb: 2, height: 'calc(100vh - 62px)' }}>
             <Box sx={{ pb: 2, px: 2 }}>
                 <Search value={searchQuery} setValue={setSearchQuery} />
             </Box>
-            <Box sx={{ pt: 2, flexGrow: 1, overflow: 'auto', px: 2 }}>
+            <Box sx={{ pt: 2, pb: '100px', flexGrow: 1, overflow: 'auto', px: 2 }}>
                 <UsersList search={searchQuery} myList />
             </Box>
             <BottomButton
