@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { Box } from '@mui/material'
 import QRCodeStyling from 'qr-code-styling'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const QRCode = ({ value, qrImage }) => {
     const qrCode = useRef(null)
     const ref = useRef(null)
+    const { isDarkMode } = useThemeContext()
 
     useEffect(() => {
         qrCode.current = new QRCodeStyling({
@@ -12,14 +14,14 @@ const QRCode = ({ value, qrImage }) => {
             height: 300,
             margin: 10,
             dotsOptions: {
-                color: '#fff',
+                color: isDarkMode ? '#fff' : '#181818',
                 type: 'rounded',
             },
             cornersSquareOptions: {
                 type: 'extra-rounded',
             },
             backgroundOptions: {
-                color: '#181818',
+                color: isDarkMode ? '#181818' : '#fff',
             },
             imageOptions: {
                 crossOrigin: 'anonymous',
