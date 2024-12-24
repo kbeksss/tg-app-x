@@ -16,9 +16,6 @@ const SendConfirm = ({ open, onClose, sendingToken }) => {
         <Dialog
             PaperProps={{
                 elevation: 0,
-                sx: {
-                    backgroundColor: 'background.paper',
-                },
             }}
             open={open}
             onClose={onClose}>

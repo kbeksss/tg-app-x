@@ -38,9 +38,6 @@ const SellTokens = ({ open, onClose, sellingToken }) => {
         <Dialog
             PaperProps={{
                 elevation: 0,
-                sx: {
-                    backgroundColor: 'background.paper',
-                },
             }}
             open={open}
             onClose={onClose}>

@@ -111,6 +111,9 @@ export const ThemeProviderContext = ({ children }) => {
                     MuiDialog: {
                         styleOverrides: {
                             paper: {
+                                backgroundColor: isDarkMode
+                                    ? '#181818'
+                                    : '#fff',
                                 borderRadius: '16px',
                             },
                         },

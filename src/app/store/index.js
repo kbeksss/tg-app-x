@@ -1,18 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { rootReducer } from './reducers'
-import { accountApi, authApi, usersApi } from '@shared/api/services'
-import { tweetsApi } from '@shared/api/services/tweetsService.js'
+import { baseApi } from '@shared/api/xhr'
 
 export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
-        }).concat(
-            authApi.middleware,
-            accountApi.middleware,
-            usersApi.middleware,
-            tweetsApi.middleware
-        ),
+        }).concat(baseApi.middleware),
 })
