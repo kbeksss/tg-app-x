@@ -128,5 +128,3 @@ async function test() {
     )
     console.log(balances)
 }
-
-test().then()
