@@ -39,7 +39,7 @@ const UserSubscribeSettings = ({ open, onClose, onSave, avatar, username }) => {
             }}
             fullWidth
             open={open}
-            scroll={'paper'}
+            scroll={'body'}
             onClose={onClose}>
             <DialogTitle color={'text.primary'}>Subscribe settings</DialogTitle>
             <DialogContent>
