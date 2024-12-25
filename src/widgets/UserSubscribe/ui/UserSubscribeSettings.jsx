@@ -36,6 +36,10 @@ const UserSubscribeSettings = ({ open, onClose, onSave, avatar, username }) => {
         <Dialog
             PaperProps={{
                 elevation: 0,
+                sx: {
+                    marginBottom: 'env(safe-area-inset-bottom)',
+                    marginTop: '10vh',
+                },
             }}
             disablePortal
             fullWidth
