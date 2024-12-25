@@ -37,6 +37,7 @@ const UserSubscribeSettings = ({ open, onClose, onSave, avatar, username }) => {
             PaperProps={{
                 elevation: 0,
             }}
+            disablePortal
             fullWidth
             open={open}
             scroll={'body'}
