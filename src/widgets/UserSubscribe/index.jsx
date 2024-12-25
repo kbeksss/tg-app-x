@@ -38,7 +38,7 @@ const UserSubscribe = ({
             <UserSubscribeSettings
                 open={subscribeSettingsOpen}
                 onClose={() => setSubscribeSettings(false)}
-                avatar={user?.avatar}
+                avatar={user?.image}
                 onSave={onSave}
                 username={user?.username}
             />
