@@ -13,10 +13,10 @@
             const tg = window.Telegram.WebApp
             tg.onEvent('viewportChanged', function () {
                 const newViewportHeight = tg.viewportHeight
-                // document.getElementById('root').style.height =
-                //     `${newViewportHeight + 35}px`
-                // document.getElementById('body').style.height =
-                //     `${newViewportHeight + 35}px`
+                document.getElementById('root').style.height =
+                    `${newViewportHeight + 35}px`
+                document.getElementById('body').style.height =
+                    `${newViewportHeight + 35}px`
             })
             tg.expand()
             tg.setHeaderColor('#FFF')
