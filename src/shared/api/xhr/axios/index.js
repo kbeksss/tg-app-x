@@ -30,9 +30,6 @@ const getInterceptorRequest = (baseUrl) => {
             return Promise.reject(error)
         }
     )
-    baseUrl.interceptors.request.use((config) => {
-        return config
-    })
 }
 
 const getInterceptorResponse = (baseUrl) => {
