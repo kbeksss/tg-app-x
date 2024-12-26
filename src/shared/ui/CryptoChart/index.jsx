@@ -2,9 +2,11 @@ import React, { useMemo } from 'react'
 import ReactApexChart from 'react-apexcharts'
 import dayjs from 'dayjs'
 import { customChartTooltip } from '@shared/utils/functions'
-import { useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
+import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
 const CryptoChart = ({ series, setCurrentInfo }) => {
+    const { isDarkMode } = useThemeContext()
     const theme = useTheme()
     const options = useMemo(
         () => ({
@@ -57,16 +59,26 @@ const CryptoChart = ({ series, setCurrentInfo }) => {
         [theme]
     )
     return series ? (
-        <ReactApexChart
-            type={'line'}
-            height={450}
-            options={options}
-            series={[
-                {
-                    data: series,
+        <Box
+            sx={{
+                '& .chart-tooltip': {
+                    borderRadius: '10px',
+                    p: 2,
+                    backgroundColor: 'primary.main',
+                    color: isDarkMode ? '#000' : '#fff',
                 },
-            ]}
-        />
+            }}>
+            <ReactApexChart
+                type={'line'}
+                height={450}
+                options={options}
+                series={[
+                    {
+                        data: series,
+                    },
+                ]}
+            />
+        </Box>
     ) : null
 }
 

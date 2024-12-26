@@ -55,6 +55,7 @@ const TokenInfo = () => {
                             mb: 1,
                             backgroundColor: 'background.grey',
                             borderRadius: 24,
+                            color: 'text.primary',
                         }}>
                         <Stack
                             spacing={1}
