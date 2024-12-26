@@ -1,3 +1,7 @@
 export const customChartTooltip = (price, fixed) => {
-    return `<div>$${Math.fround(price).toFixed(fixed)}</div>`
+    return `<div>$${amountToFixed(price, fixed)}</div>`
+}
+
+export const amountToFixed = (price, fixed) => {
+    return Math.fround(price).toFixed(fixed)
 }
