@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import { networks } from '@_mock/networks.js'
 import { amountToFixed } from '@shared/utils/functions/index.js'
+import TimeSettings from './ui/TimeSettings.jsx'
 
 const TokenInfo = () => {
     const { isDarkMode } = useThemeContext()
@@ -23,14 +24,14 @@ const TokenInfo = () => {
 
     const [days, setDays] = useState(365)
     const [coinId] = useState('ethereum')
-    // const {
-    //     data: chartData,
-    //     isLoading: isChartDataLoading,
-    //     isError: isChartDataError,
-    // } = useMarketChart({
-    //     id: coinId,
-    //     days: days,
-    // })
+    const {
+        data: chartData,
+        isLoading: isChartDataLoading,
+        isError: isChartDataError,
+    } = useMarketChart({
+        id: coinId,
+        days: days,
+    })
     return (
         <Box sx={{ position: 'relative' }}>
             <Box
@@ -104,8 +105,9 @@ const TokenInfo = () => {
             </Box>
             <CryptoChart
                 setCurrentInfo={setCurrentInfo}
-                series={tempData?.prices}
+                series={chartData?.prices}
             />
+            <TimeSettings activeDay={days} setActiveDay={setDays} />
         </Box>
     )
 }
