@@ -33,7 +33,8 @@ const Home = () => {
         portfolio: data?.portfolio,
         network,
     })
-    const openDialog = (token) => {
+    const onTokenClick = (token) => {
+        console.log('token', token)
         if (token.symbol === 'ETH' || token.symbol === 'SOL') {
             setSendingToken(token)
         } else {
@@ -105,7 +106,7 @@ const Home = () => {
             </Box>
             <Balance balance={totalBalance} />
             <TokenList
-                openDialog={openDialog}
+                onTokenClick={onTokenClick}
                 tokens={balances}
                 tokensLoading={tokensLoading}
             />

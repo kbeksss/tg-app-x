@@ -4,7 +4,7 @@ import TokenItem from '@widgets/TokenList/ui/TokenItem.jsx'
 import { useTg } from '@shared/hooks/useTg.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
-const TokenList = ({ tokens, openDialog, tokensLoading }) => {
+const TokenList = ({ tokens, onTokenClick, tokensLoading }) => {
     const { isDarkMode } = useThemeContext()
     return (
         <Box
@@ -42,7 +42,7 @@ const TokenList = ({ tokens, openDialog, tokensLoading }) => {
                     <TokenItem
                         key={token.id}
                         icon={token.image}
-                        openDialog={() => openDialog(token)}
+                        onTokenClick={() => onTokenClick(token)}
                         currencyCode={token.symbol}
                         currencyName={token.name}
                         amountInWallet={token.holdings}

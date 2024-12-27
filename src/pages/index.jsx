@@ -20,6 +20,7 @@ import { useFetchAccountQuery } from '@shared/api/services'
 import Follows from '@pages/Follows'
 import NonFollows from '@pages/NonFollows'
 import NewsPage from '@pages/NewsPage'
+import SellPage from '@pages/SellPage'
 
 export const Routing = () => {
     const { tg } = useTg()
@@ -50,6 +51,10 @@ export const Routing = () => {
                     />
                     <Route path={paths.receive} element={<ReceivePage />} />
                     <Route path={paths.send} element={<SendPage />} />
+                    <Route
+                        path={`${paths.sell}/:tokenId`}
+                        element={<SellPage />}
+                    />
                     <Route
                         path={paths.sendSuccess}
                         element={<PaymentSuccessPage />}

@@ -19,13 +19,13 @@ const TokenItem = ({
     currencyPrice,
     amountInWallet,
     balanceInDollars,
-    openDialog,
+    onTokenClick,
     icon,
     isLoading,
 }) => {
     return (
         <Box
-            onClick={openDialog}
+            onClick={onTokenClick}
             sx={{
                 borderRadius: '16px',
                 px: 2,

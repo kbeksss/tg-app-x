@@ -14,7 +14,7 @@ import { amountToFixed } from '@shared/utils/functions/index.js'
 import TimeSettings from './ui/TimeSettings.jsx'
 import PriceData from './ui/PriceData.jsx'
 
-const TokenInfo = () => {
+const TokenInfo = ({ coinId = 'bitcoin' }) => {
     const { isDarkMode } = useThemeContext()
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [network, setNetwork] = useState('SOLANA')
@@ -24,7 +24,6 @@ const TokenInfo = () => {
     const [currentInfo, setCurrentInfo] = useState(null)
     const [selectedInfo, setSelectedInfo] = useState(null)
     const [days, setDays] = useState(365)
-    const [coinId] = useState('jupiter')
     const {
         data: chartData,
         isLoading: isChartDataLoading,

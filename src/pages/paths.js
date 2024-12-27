@@ -10,6 +10,7 @@ export const paths = {
     exchange: '/exchange',
     exchangeSuccess: '/exchange-success',
     send: '/send',
+    sell: '/sell',
     sendSuccess: '/send-success',
     seedphrase: '/seedphrase',
     userProfile: '/user-profile',
