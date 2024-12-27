@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import CryptoChart from '@shared/ui/CryptoChart/index.jsx'
-import { useMarketChart } from '@features/TokenInfo/service.js'
+import { useCoinDetails, useMarketChart } from '@features/TokenInfo/service.js'
 import tempData from './temp.json'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { Iconify, useSwipeableDialog } from '@shared/ui/index.js'
@@ -12,6 +12,7 @@ import { useGetTokens } from '@shared/hooks/useGetTokens.js'
 import { networks } from '@_mock/networks.js'
 import { amountToFixed } from '@shared/utils/functions/index.js'
 import TimeSettings from './ui/TimeSettings.jsx'
+import PriceData from './ui/PriceData.jsx'
 
 const TokenInfo = () => {
     const { isDarkMode } = useThemeContext()
@@ -21,9 +22,9 @@ const TokenInfo = () => {
         return networks.find((n) => n.value === network)
     }, [network])
     const [currentInfo, setCurrentInfo] = useState(null)
-
+    const [selectedInfo, setSelectedInfo] = useState(null)
     const [days, setDays] = useState(365)
-    const [coinId] = useState('ethereum')
+    const [coinId] = useState('jupiter')
     const {
         data: chartData,
         isLoading: isChartDataLoading,
@@ -32,6 +33,10 @@ const TokenInfo = () => {
         id: coinId,
         days: days,
     })
+    const { data: details, isLoading: isDetailsLoading } = useCoinDetails({
+        id: coinId,
+    })
+    console.log('details', details)
     return (
         <Box sx={{ position: 'relative' }}>
             <Box
@@ -82,29 +87,10 @@ const TokenInfo = () => {
                         </Stack>
                     </Box>
                 </NetworkSelect>
-                <Stack direction={'row'} spacing={1.5}>
-                    <Typography
-                        sx={{ mb: 1 }}
-                        color='text.primary'
-                        variant={'h4'}>
-                        $98,600.20
-                    </Typography>
-                    {currentInfo && (
-                        <Box
-                            sx={{
-                                borderRadius: '10px',
-                                p: 1,
-                                backgroundColor: 'primary.main',
-                                color: isDarkMode ? '#000' : '#fff',
-                            }}>
-                            $ {amountToFixed(currentInfo[1], 4)}
-                        </Box>
-                    )}
-                </Stack>
-                <Typography color={'error'}>-$600.7 (-0.61%)</Typography>
+                <PriceData data={details?.[0]} />
             </Box>
             <CryptoChart
-                setCurrentInfo={setCurrentInfo}
+                setSelectedInfo={setSelectedInfo}
                 series={chartData?.prices}
             />
             <TimeSettings activeDay={days} setActiveDay={setDays} />

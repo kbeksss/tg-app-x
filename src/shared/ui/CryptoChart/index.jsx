@@ -5,7 +5,7 @@ import { customChartTooltip } from '@shared/utils/functions'
 import { Box, useTheme } from '@mui/material'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
 
-const CryptoChart = ({ series, setCurrentInfo }) => {
+const CryptoChart = ({ series, setSelectedInfo }) => {
     const { isDarkMode } = useThemeContext()
     const theme = useTheme()
     const options = useMemo(
@@ -42,7 +42,7 @@ const CryptoChart = ({ series, setCurrentInfo }) => {
                         w.globals.initialSeries[seriesIndex].data[
                             dataPointIndex
                         ]
-                    // setCurrentInfo(data)
+                    // setSelectedInfo(data)
                     return customChartTooltip(data[1], 4)
                 },
             },
