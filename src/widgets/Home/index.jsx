@@ -14,8 +14,11 @@ import SendConfirm from './ui/SendConfirm.jsx'
 import { Iconify, useSwipeableDialog } from '@shared/ui'
 import { networks } from '@_mock/networks.js'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
+import { useNavigate } from 'react-router-dom'
+import { paths } from '@pages/paths.js'
 
 const Home = () => {
+    const navigate = useNavigate()
     const { isDarkMode } = useThemeContext()
     const { isDrawerOpen, toggleDrawer, setDrawerHeight } = useSwipeableDialog()
     const [sellingToken, setSellingToken] = useState(null)
@@ -38,6 +41,7 @@ const Home = () => {
         if (token.symbol === 'ETH' || token.symbol === 'SOL') {
             setSendingToken(token)
         } else {
+            navigate(`${paths.sell}/${token.name.toLowerCase()}`)
             setSellingToken(token)
         }
     }
