@@ -42,7 +42,6 @@ const TokenItem = ({
                             <Typography
                                 sx={{ pr: 0.5 }}
                                 textTransform={'uppercase'}
-                                color={'text.primary'}
                                 fontWeight={500}>
                                 {currencyCode}
                             </Typography>
@@ -62,7 +61,6 @@ const TokenItem = ({
                         <Typography
                             textTransform={'uppercase'}
                             fontWeight={500}
-                            color={'text.primary'}
                             align={'right'}>
                             {floatAmountToString(amountInWallet)}
                         </Typography>

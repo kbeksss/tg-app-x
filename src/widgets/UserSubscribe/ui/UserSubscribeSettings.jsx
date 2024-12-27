@@ -53,7 +53,6 @@ const UserSubscribeSettings = ({ open, onClose, onSave, avatar, username }) => {
                             </Grid2>
                             <Grid2 size={8}>
                                 <Typography
-                                    color={'text.primary'}
                                     fontWeight={500}>
                                     Custom settings
                                 </Typography>
@@ -64,7 +63,6 @@ const UserSubscribeSettings = ({ open, onClose, onSave, avatar, username }) => {
                         <Grid2 spacing={1.5} container alignItems={'center'}>
                             <Grid2 size={'grow'}>
                                 <Typography
-                                    color={'text.primary'}
                                     fontWeight={500}>
                                     trade by {username}
                                 </Typography>
@@ -78,8 +76,7 @@ const UserSubscribeSettings = ({ open, onClose, onSave, avatar, username }) => {
                         <Stack spacing={2}>
                             <Box>
                                 <Typography
-                                    variant={'h6'}
-                                    color={'text.primary'}>
+                                    variant={'h6'}>
                                     Trading settings:
                                 </Typography>
                                 <Typography color={'text.secondary'}>

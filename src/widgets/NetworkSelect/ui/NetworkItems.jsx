@@ -47,7 +47,7 @@ const NetworkItem = ({ symbol, label, icon, selected, onClick }) => {
                 </Grid2>
                 <Grid2>
                     <Box>
-                        <Typography color={'text.primary'}>{symbol}</Typography>
+                        <Typography>{symbol}</Typography>
                         <Typography
                             color={'text.secondary'}
                             sx={{ textTransform: 'capitalize' }}>

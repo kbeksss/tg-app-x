@@ -6,7 +6,7 @@ const SectionLabel = ({ label }) => {
     return (
         <Box sx={{ mb: 1.5, px: 2 }}>
             <Stack direction={'row'} spacing={'6px'} alignItems={'center'}>
-                <Typography fontWeight={500} color={'text.primary'}>
+                <Typography fontWeight={500} >
                     {label}
                 </Typography>
                 <IconButton

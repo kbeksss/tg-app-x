@@ -83,7 +83,6 @@ const UsersList = ({ search, myList }) => {
                         />
                     </Stack>
                     <Typography
-                        color={'text.primary'}
                         sx={{ mb: 1 }}
                         align={'center'}
                         variant={'h5'}>
@@ -96,7 +95,6 @@ const UsersList = ({ search, myList }) => {
             ) : (
                 <Box sx={{ px: 5 }}>
                     <Typography
-                        color={'text.primary'}
                         sx={{ mb: 1 }}
                         align={'center'}
                         variant={'h5'}>

@@ -33,6 +33,9 @@ const typographySettings = {
     h6: {
         fontSize: 17,
     },
+    subtitle1: {
+        fontWeight: 500,
+    },
 }
 
 const ThemeContext = createContext()
@@ -217,6 +220,13 @@ export const ThemeProviderContext = ({ children }) => {
                                         ? '#FFF'
                                         : '#007AFF',
                                 },
+                            },
+                        },
+                    },
+                    MuiTypography: {
+                        styleOverrides: {
+                            root: {
+                                color: isDarkMode ? 'white' : 'black',
                             },
                         },
                     },

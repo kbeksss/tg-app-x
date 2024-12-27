@@ -21,12 +21,11 @@ const NewsItem = ({ author, date, text, avatarUrl, img }) => {
                         alignItems={'center'}>
                         <Avatar sx={{ width: 36, height: 36 }} />
                         <Box>
-                            <Typography fontWeight={500} color={'text.primary'}>
+                            <Typography fontWeight={500} >
                                 {author}
                             </Typography>
                             <Typography
                                 fontSize={12}
-                                color={'text.primary'}
                                 sx={{ opacity: 0.5 }}>
                                 {date}
                             </Typography>
@@ -40,7 +39,7 @@ const NewsItem = ({ author, date, text, avatarUrl, img }) => {
                     </Button>
                 </Stack>
                 <Box>
-                    <Typography variant={'body2'} color={'text.primary'}>
+                    <Typography variant={'body2'} >
                         {text}
                     </Typography>
                 </Box>

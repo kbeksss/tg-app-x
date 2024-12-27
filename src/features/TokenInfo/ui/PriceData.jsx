@@ -9,7 +9,7 @@ const PriceData = ({ selectedInfo, data }) => {
         <>
             <Stack direction={'row'} spacing={1.5}>
                 <Typography sx={{ mb: 1 }} color='text.primary' variant={'h4'}>
-                    $ {amountToFixed(data?.current_price, 4)}
+                    $ {amountToFixed(data?.market_data.current_price.usd, 4)}
                 </Typography>
                 {selectedInfo && (
                     <Box
@@ -24,8 +24,15 @@ const PriceData = ({ selectedInfo, data }) => {
                 )}
             </Stack>
             <Typography
-                color={data?.price_change_24h > 0 ? 'primary' : 'error'}>
-                {data?.price_change_24h} ({data?.price_change_percentage_24h}%)
+                color={
+                    data?.market_data.price_change_24h > 0 ? 'primary' : 'error'
+                }>
+                {amountToFixed(data?.market_data.price_change_24h, 5)} (
+                {amountToFixed(
+                    data?.market_data.price_change_percentage_24h,
+                    3
+                )}
+                %)
             </Typography>
         </>
     )

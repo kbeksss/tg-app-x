@@ -80,7 +80,6 @@ const SwipeableDialog = ({
                     <Box sx={{ py: 1, position: 'relative' }}>
                         <Typography
                             variant={'h6'}
-                            color={'text.primary'}
                             sx={{ fontSize: 16 }}
                             align={'center'}>
                             {label}

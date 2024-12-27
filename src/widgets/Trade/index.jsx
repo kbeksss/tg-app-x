@@ -61,7 +61,6 @@ const Trade = () => {
                             {trade.type === 'BUY' ? (
                                 <Grid2 size={'grow'}>
                                     <Typography
-                                        color={'text.primary'}
                                         fontSize={17}>
                                         Recommendation from
                                     </Typography>
@@ -140,7 +139,7 @@ const Trade = () => {
                                 }}>
                                 <Iconify width={13} icon={'mdi:tick'} />
                             </Avatar>
-                            <Typography color={'text.primary'}>
+                            <Typography >
                                 Successful
                             </Typography>
                         </Stack>

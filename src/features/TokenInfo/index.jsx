@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import CryptoChart from '@shared/ui/CryptoChart/index.jsx'
 import { useCoinDetails, useMarketChart } from '@features/TokenInfo/service.js'
 import tempData from './temp.json'
-import { Avatar, Box, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Divider, Stack, Typography } from '@mui/material'
 import { Iconify, useSwipeableDialog } from '@shared/ui/index.js'
 import { NetworkSelect } from '@widgets'
 import { useThemeContext } from '@app/providers/with-mui-theme.jsx'
@@ -24,18 +24,17 @@ const TokenInfo = ({ coinId = 'bitcoin' }) => {
     const [currentInfo, setCurrentInfo] = useState(null)
     const [selectedInfo, setSelectedInfo] = useState(null)
     const [days, setDays] = useState(365)
-    const {
-        data: chartData,
-        isLoading: isChartDataLoading,
-        isError: isChartDataError,
-    } = useMarketChart({
-        id: coinId,
-        days: days,
-    })
-    const { data: details, isLoading: isDetailsLoading } = useCoinDetails({
-        id: coinId,
-    })
-    console.log('details', details)
+    // const {
+    //     data: chartData,
+    //     isLoading: isChartDataLoading,
+    //     isError: isChartDataError,
+    // } = useMarketChart({
+    //     id: coinId,
+    //     days: days,
+    // })
+    // const { data: details, isLoading: isDetailsLoading } = useCoinDetails({
+    //     id: coinId,
+    // })
     return (
         <Box sx={{ position: 'relative' }}>
             <Box
@@ -86,13 +85,21 @@ const TokenInfo = ({ coinId = 'bitcoin' }) => {
                         </Stack>
                     </Box>
                 </NetworkSelect>
-                <PriceData data={details?.[0]} />
+                <PriceData isLoading={false} data={tempData.market_data} />
             </Box>
             <CryptoChart
+                isLoading={false}
                 setSelectedInfo={setSelectedInfo}
-                series={chartData?.prices}
+                series={tempData?.prices}
             />
             <TimeSettings activeDay={days} setActiveDay={setDays} />
+            <Divider sx={{ my: 2 }} />
+            <Box sx={{ px: 2 }}>
+                <Typography sx={{ mb: 1.5 }} variant={'subtitle1'}>
+                    About {coinId}
+                </Typography>
+                <Typography>{tempData.market_data.description.en}</Typography>
+            </Box>
         </Box>
     )
 }

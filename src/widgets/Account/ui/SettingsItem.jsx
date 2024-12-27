@@ -21,7 +21,7 @@ const SettingsItem = ({ icon, label, onClick, switchComponent }) => {
                     )}
                 </Grid2>
                 <Grid2 size={'grow'}>
-                    <Typography color={'text.primary'}>
+                    <Typography>
                         {label}
                     </Typography>
                 </Grid2>

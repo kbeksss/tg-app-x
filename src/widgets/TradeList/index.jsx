@@ -65,7 +65,7 @@ const TradeList = () => {
                     alignItems={'center'}
                     sx={{ height: '100%', px: 5 }}>
                     <Typography
-                        color={'text.primary'}
+
                         align={'center'}
                         variant={'h5'}>
                         No Transactions :(

@@ -15,10 +15,10 @@ const ProfileInfo = ({ name, username, avatar, editable }) => {
                     <Avatar src={avatar} sx={{ width: 50, height: 50 }} />
                 </Grid2>
                 <Grid2 size={8}>
-                    <Typography color={'text.primary'} fontWeight={500}>
+                    <Typography fontWeight={500}>
                         {name}
                     </Typography>
-                    <Typography color={'text.primary'}>
+                    <Typography >
                         {editable && '@'}
                         {username}
                     </Typography>

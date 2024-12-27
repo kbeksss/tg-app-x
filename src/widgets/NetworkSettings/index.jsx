@@ -63,7 +63,7 @@ const NetworkSettings = ({
                         <Avatar src={network.image} />
                     </Grid2>
                     <Grid2 size={'grow'}>
-                        <Typography color={'text.primary'} fontWeight={500}>
+                        <Typography fontWeight={500}>
                             Setting up {network.symbol} for trading
                         </Typography>
                     </Grid2>
@@ -82,7 +82,7 @@ const NetworkSettings = ({
                             direction={'row'}
                             alignItems={'center'}
                             justifyContent={'space-between'}>
-                            <Typography color={'text.primary'}>
+                            <Typography >
                                 Trade ERC20 tokens
                             </Typography>
                             <Switch checked={checked} onChange={handleChange} />
@@ -92,7 +92,6 @@ const NetworkSettings = ({
                         <>
                             <Box sx={{}}>
                                 <Typography
-                                    color={'text.primary'}
                                     fontWeight={600}>
                                     Trading bot settings:
                                 </Typography>

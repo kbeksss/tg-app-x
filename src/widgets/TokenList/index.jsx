@@ -21,7 +21,7 @@ const TokenList = ({ tokens, onTokenClick, tokensLoading }) => {
                 sx={{ mb: 2 }}
                 direction={'row'}
                 justifyContent={'space-between'}>
-                <Typography fontWeight={500} color={'text.primary'}>
+                <Typography fontWeight={500}>
                     Assets
                 </Typography>
                 <Typography

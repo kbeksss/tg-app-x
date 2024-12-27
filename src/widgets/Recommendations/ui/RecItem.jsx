@@ -22,7 +22,7 @@ const RecItem = ({ image, author, date, text }) => {
                     <Avatar src={image} />
                 </Grid2>
                 <Grid2>
-                    <Typography color={'text.primary'} fontWeight={500}>
+                    <Typography  fontWeight={500}>
                         {author}
                     </Typography>
                     <Typography variant={'body2'} color={'text.secondary'}>
@@ -31,7 +31,6 @@ const RecItem = ({ image, author, date, text }) => {
                 </Grid2>
             </Grid2>
             <Typography
-                color={'text.primary'}
                 sx={{ mt: 2, wordWrap: 'break-word' }}>
                 {text}
             </Typography>

@@ -30,7 +30,7 @@ const UserItem = ({
                         <ProfileImage icon={user.image} width={50} />
                     </Grid2>
                     <Grid2 size={'grow'}>
-                        <Typography color={'text.primary'}>
+                        <Typography>
                             {user.username}
                         </Typography>
                     </Grid2>

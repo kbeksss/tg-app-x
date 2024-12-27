@@ -61,7 +61,7 @@ const Receive = () => {
                                             sx={{ width: 20, height: 20 }}
                                             src={networkObj.icon}
                                         />
-                                        <Typography color={'text.primary'}>
+                                        <Typography >
                                             {networkObj.symbol}
                                         </Typography>
                                         <Chip
@@ -113,7 +113,6 @@ const Receive = () => {
                         <Typography
                             sx={{ wordWrap: 'break-word', mt: 2 }}
                             variant={'body2'}
-                            color={'text.primary'}
                             align={'center'}>
                             {address}
                         </Typography>

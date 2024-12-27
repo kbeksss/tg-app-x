@@ -28,7 +28,6 @@ const TradeItem = ({
                 <Grid2 size={'grow'}>
                     <Box>
                         <Typography
-                            color={'text.primary'}
                             component={'span'}
                             textTransform={'uppercase'}>
                             {tokenCode} /{' '}

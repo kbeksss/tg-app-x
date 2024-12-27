@@ -17,7 +17,7 @@ export async function fetchMarketChart(id, days) {
 }
 
 export async function fetchCoinDetails(id) {
-    const { data } = await axiosR.get(`/markets?vs_currency=usd&ids=${id}`)
+    const { data } = await axiosR.get(`/${id}`)
     return data
 }
 

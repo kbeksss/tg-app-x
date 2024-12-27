@@ -58,7 +58,7 @@ const Recommendations = ({ avatarImg, username }) => {
                         src='/assets/icons/utilities/no-posts.png'
                         alt=''
                     />
-                    <Typography color={'text.primary'} variant={'h5'}>
+                    <Typography variant={'h5'}>
                         Nothing Yet :(
                     </Typography>
                     <Typography color={'text.secondary'}>

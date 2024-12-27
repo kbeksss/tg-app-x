@@ -14,17 +14,31 @@ const CryptoChart = ({ series, setSelectedInfo }) => {
                 toolbar: {
                     show: false,
                 },
-                type: 'line',
+                type: 'area',
                 zoom: {
                     enabled: false,
                 },
             },
-            stroke: {
-                curve: 'smooth',
-                width: 3,
-                lineCap: 'round',
-                colors: theme.palette.primary.main,
+            dataLabels: {
+                enabled: false,
             },
+            stroke: {
+                width: 2,
+            },
+            fill: {
+                type: 'solid',
+                colors: [
+                    isDarkMode
+                        ? 'rgba(191, 254, 110, 0.1)'
+                        : 'rgba(0, 122, 255, 0.1)',
+                ],
+            },
+            markers: {
+                strokeColors: theme.palette.primary.main,
+                strokeWidth: 2,
+                colors: ['#fff'],
+            },
+            colors: [theme.palette.primary.main],
             grid: {
                 show: false,
             },
@@ -51,6 +65,7 @@ const CryptoChart = ({ series, setSelectedInfo }) => {
                 axisTicks: { color: '#777' },
                 axisBorder: { color: '#777' },
                 labels: {
+                    show: false,
                     style: { colors: '#777' },
                     formatter: (value) => dayjs(value).format('MM-DD HH:mm:ss'),
                 },
@@ -61,15 +76,20 @@ const CryptoChart = ({ series, setSelectedInfo }) => {
     return series ? (
         <Box
             sx={{
+                '& .apexcharts-tooltip.apexcharts-theme-light': {
+                    border: 'none',
+                    backgroundColor: 'transparent',
+                },
                 '& .chart-tooltip': {
                     borderRadius: '10px',
                     p: 2,
+                    border: 'none',
                     backgroundColor: 'primary.main',
                     color: isDarkMode ? '#000' : '#fff',
                 },
             }}>
             <ReactApexChart
-                type={'line'}
+                type={'area'}
                 height={450}
                 options={options}
                 series={[

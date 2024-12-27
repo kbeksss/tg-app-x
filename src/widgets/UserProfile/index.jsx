@@ -44,7 +44,7 @@ const UserProfile = () => {
             )}
 
             <Box sx={{ px: 2, pt: 3 }}>
-                <Typography variant={'h6'} color={'text.primary'}>
+                <Typography variant={'h6'}>
                     Latest recommendations
                 </Typography>
             </Box>
