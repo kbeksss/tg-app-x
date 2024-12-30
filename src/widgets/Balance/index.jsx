@@ -19,7 +19,10 @@ const Balance = ({ balance }) => {
                     p: 2,
                 }}>
                 <Stack spacing={1} alignItems={'center'} direction={'row'}>
-                    <Typography variant={'h6'} textTransform={'uppercase'}>
+                    <Typography
+                        color={'black'}
+                        variant={'h6'}
+                        textTransform={'uppercase'}>
                         Balance
                     </Typography>
                     <Iconify
@@ -31,7 +34,7 @@ const Balance = ({ balance }) => {
                         }
                     />
                 </Stack>
-                <Typography variant={'h2'}>
+                <Typography color={'black'} variant={'h2'}>
                     $ {balanceShown ? balance : '******'}
                 </Typography>
                 <Divider

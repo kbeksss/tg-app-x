@@ -11,12 +11,6 @@ const News = () => {
     const [network] = useState('ethereum')
     return (
         <Box sx={{ py: 3 }}>
-            {/*<Box sx={{ pb: 3 }}>*/}
-            {/*    <Chart token={network} />*/}
-            {/*</Box>*/}
-            <Box sx={{ pb: 3 }}>
-                <TokenInfo />
-            </Box>
             <Box sx={{ pb: 3 }}>
                 <SectionLabel label={'Recommendations'} />
                 <Recommendations recommendations={_newsRecommendations} />

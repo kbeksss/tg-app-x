@@ -52,10 +52,6 @@ export const Routing = () => {
                     <Route path={paths.receive} element={<ReceivePage />} />
                     <Route path={paths.send} element={<SendPage />} />
                     <Route
-                        path={`${paths.sell}/:tokenId`}
-                        element={<SellPage />}
-                    />
-                    <Route
                         path={paths.sendSuccess}
                         element={<PaymentSuccessPage />}
                     />
@@ -74,6 +70,7 @@ export const Routing = () => {
                     />
                 </Route>
                 <Route path={paths.seedphrase} element={<SeedphrasePage />} />
+                <Route path={`${paths.sell}/:tokenId`} element={<SellPage />} />
             </Routes>
         </>
     )
